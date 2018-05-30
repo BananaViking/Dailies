@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D84520BF5C1100D733C9 /* AppDelegate.swift */; };
-		0569D84820BF5C1100D733C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D84720BF5C1100D733C9 /* ViewController.swift */; };
+		0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D84720BF5C1100D733C9 /* DailiesViewController.swift */; };
 		0569D84B20BF5C1100D733C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84920BF5C1100D733C9 /* Main.storyboard */; };
 		0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84C20BF5C1200D733C9 /* Assets.xcassets */; };
 		0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */; };
+		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
+		0569D85C20BF692000D733C9 /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85B20BF692000D733C9 /* DailyDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0569D84220BF5C1100D733C9 /* Dailies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dailies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0569D84520BF5C1100D733C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0569D84720BF5C1100D733C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0569D84720BF5C1100D733C9 /* DailiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesViewController.swift; sourceTree = "<group>"; };
 		0569D84A20BF5C1100D733C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0569D84C20BF5C1200D733C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0569D84F20BF5C1200D733C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0569D85120BF5C1200D733C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		0569D85B20BF692000D733C9 /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,32 @@
 		0569D84420BF5C1100D733C9 /* Dailies */ = {
 			isa = PBXGroup;
 			children = (
-				0569D84520BF5C1100D733C9 /* AppDelegate.swift */,
-				0569D84720BF5C1100D733C9 /* ViewController.swift */,
 				0569D84920BF5C1100D733C9 /* Main.storyboard */,
-				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
 				0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */,
+				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
 				0569D85120BF5C1200D733C9 /* Info.plist */,
+				0569D84520BF5C1100D733C9 /* AppDelegate.swift */,
+				0569D85A20BF63B800D733C9 /* Data Models */,
+				0569D85720BF5CE800D733C9 /* View Controllers */,
 			);
 			path = Dailies;
+			sourceTree = "<group>";
+		};
+		0569D85720BF5CE800D733C9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0569D84720BF5C1100D733C9 /* DailiesViewController.swift */,
+				0569D85B20BF692000D733C9 /* DailyDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0569D85A20BF63B800D733C9 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				0569D85820BF63B200D733C9 /* Daily.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0569D84820BF5C1100D733C9 /* ViewController.swift in Sources */,
+				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
+				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
+				0569D85C20BF692000D733C9 /* DailyDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
