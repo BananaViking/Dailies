@@ -36,40 +36,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
-    var dailies: [Daily]
+    var dailies = [Daily]()
     
-    required init?(coder aDecoder: NSCoder) {
-        dailies = [Daily]()
-        
-        let row0item = Daily()
-        row0item.text = "Walk the dog"
-        row0item.checked = false
-        dailies.append(row0item)
-        
-        let row1item = Daily()
-        row1item.text = "Brush my teeth"
-        row1item.checked = true
-        dailies.append(row1item)
-        
-        let row2item = Daily()
-        row2item.text = "Learn iOS development"
-        row2item.checked = true
-        dailies.append(row2item)
-        
-        let row3item = Daily()
-        row3item.text = "Soccer practice"
-        row3item.checked = false
-        dailies.append(row3item)
-        
-        let row4item = Daily()
-        row4item.text = "Eat ice cream"
-        row4item.checked = true
-        dailies.append(row4item)
-        
-        super.init(coder: aDecoder)
-        
-        print("Documents folder is \(documentsDirectory())")
-        print("Data file path is \(dataFilePath())")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadDailies()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -162,7 +133,21 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
-            print("Error encoding item array.")
+            print("Error encoding daily array.")
+        }
+    }
+    
+    func loadDailies() {
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                dailies = try decoder.decode([Daily].self, from: data)
+            } catch {
+                print("Error decoding daily array.")
+            }
         }
     }
 
