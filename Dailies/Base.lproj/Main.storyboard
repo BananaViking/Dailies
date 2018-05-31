@@ -44,7 +44,7 @@
                     <navigationItem key="navigationItem" title="Dailies" id="vWT-Bg-phV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eHd-MC-v17">
                             <connections>
-                                <segue destination="j2u-qg-vi9" kind="show" id="ejj-h1-8Nv"/>
+                                <segue destination="j2u-qg-vi9" kind="show" identifier="AddDaily" id="ejj-h1-8Nv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

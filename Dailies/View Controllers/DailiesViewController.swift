@@ -15,20 +15,13 @@ class DailiesViewController: UITableViewController, AddDailyViewControllerDelega
     }
     
     func addDailyViewController(_ controller: AddDailyViewController, didFinishAdding daily: Daily) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func addItem() {
         let newRowIndex = dailies.count
-        
-        let daily = Daily()
-        daily.text = "I am a new row"
-        daily.checked = false
         dailies.append(daily)
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
     }
     
     var dailies: [Daily]
@@ -97,6 +90,15 @@ class DailiesViewController: UITableViewController, AddDailyViewControllerDelega
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
+    // tells AddDailyVC that DailiesVC is its delegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddDaily" {
+            let controller = segue.destination as! AddDailyViewController
+            
+            controller.delegate = self 
+        }
     }
     
     func configureCheckmark(for cell: UITableViewCell,
