@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Daily {
+class Daily: NSObject, Codable {
     var text = ""
     var checked = false
     

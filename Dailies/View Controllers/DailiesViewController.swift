@@ -8,19 +8,29 @@
 
 import UIKit
 
-class DailiesViewController: UITableViewController, AddDailyViewControllerDelegate {
+class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
-    func addDailyViewControllerDidCancel(_ controller: AddDailyViewController) {
+    func addDailyViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addDailyViewController(_ controller: AddDailyViewController, didFinishAdding daily: Daily) {
+    func addDailyViewController(_ controller: DailyDetailViewController, didFinishAdding daily: Daily) {
         let newRowIndex = dailies.count
         dailies.append(daily)
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addDailyViewController(_ controller: DailyDetailViewController, didFinishEditing daily: Daily) {
+        if let index = dailies.index(of: daily) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: daily)
+            }
+        }
         navigationController?.popViewController(animated: true)
     }
     
@@ -95,11 +105,11 @@ class DailiesViewController: UITableViewController, AddDailyViewControllerDelega
     // tells AddDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDaily" {
-            let controller = segue.destination as! AddDailyViewController
+            let controller = segue.destination as! DailyDetailViewController
             
             controller.delegate = self 
         } else if segue.identifier == "EditDaily" {
-            let controller = segue.destination as! AddDailyViewController
+            let controller = segue.destination as! DailyDetailViewController
             
             controller.delegate = self
             
