@@ -6,7 +6,12 @@
 //  Copyright © 2018 Banana Viking. All rights reserved.
 //
 
+import Foundation
 
+class Daily {
+    var text = ""
+    var checked = false 
+}
 
 
 

@@ -9,31 +9,81 @@
 import UIKit
 
 class DailiesViewController: UITableViewController {
+
+    var dailies: [Daily]
+    
+    required init?(coder aDecoder: NSCoder) {
+        dailies = [Daily]()
+        
+        let row0item = Daily()
+        row0item.text = "Walk the dog"
+        row0item.checked = false
+        dailies.append(row0item)
+        
+        let row1item = Daily()
+        row1item.text = "Brush my teeth"
+        row1item.checked = true
+        dailies.append(row1item)
+        
+        let row2item = Daily()
+        row2item.text = "Learn iOS development"
+        row2item.checked = true
+        dailies.append(row2item)
+        
+        let row3item = Daily()
+        row3item.text = "Soccer practice"
+        row3item.checked = false
+        dailies.append(row3item)
+        
+        let row4item = Daily()
+        row4item.text = "Eat ice cream"
+        row4item.checked = true
+        dailies.append(row4item)
+        
+        super.init(coder: aDecoder)
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dailies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
         
+        let daily = dailies[indexPath.row]
+        
         let label = cell.viewWithTag(1000) as! UILabel
         
-        if indexPath.row == 0 {
-            label.text = "Walk the dog"
-        } else if indexPath.row == 1 {
-            label.text = "Brush my teeth"
-        } else if indexPath.row == 2 {
-            label.text = "Learn iOS development"
-        } else if indexPath.row == 3 {
-            label.text = "Soccer practice"
-        } else if indexPath.row == 4 {
-            label.text = "Eat ice cream"
-        }
+        label.text = daily.text
+        
+        configureCheckmark(for: cell, at: indexPath)
         
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            let daily = dailies[indexPath.row]
+            daily.checked = !daily.checked
+            
+            configureCheckmark(for: cell, at: indexPath)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func configureCheckmark(for cell: UITableViewCell,
+                            at indexPath: IndexPath) {
+        
+        let daily = dailies[indexPath.row]
+        
+        if daily.checked {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+    }
 
 }
 
