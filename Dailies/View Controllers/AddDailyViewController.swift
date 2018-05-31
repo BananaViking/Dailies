@@ -8,21 +8,31 @@
 
 import UIKit
 
+protocol AddDailyViewControllerDelegate: class {
+    func addDailyViewControllerDidCancel(_ controller: AddDailyViewController)
+    
+    func addDailyViewController(_ controller: AddDailyViewController, didFinishAdding daily: Daily)
+}
+
 class AddDailyViewController: UITableViewController, UITextFieldDelegate {
 
-    @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func done() {
-        print("Contents of the text field: \(textField.text!)")
-        
-        navigationController?.popViewController(animated: true)
-    }
-    
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    weak var delegate: AddDailyViewControllerDelegate?
+    
+    @IBAction func cancel() {
+        delegate?.addDailyViewControllerDidCancel(self)
+    }
+    
+    @IBAction func done() {
+        let daily = Daily()
+        daily.text = textField.text!
+        daily.checked = false
+        
+        delegate?.addDailyViewController(self, didFinishAdding: daily)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,8 +8,16 @@
 
 import UIKit
 
-class DailiesViewController: UITableViewController {
-
+class DailiesViewController: UITableViewController, AddDailyViewControllerDelegate {
+    
+    func addDailyViewControllerDidCancel(_ controller: AddDailyViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addDailyViewController(_ controller: AddDailyViewController, didFinishAdding daily: Daily) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func addItem() {
         let newRowIndex = dailies.count
         
