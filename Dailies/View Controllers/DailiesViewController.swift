@@ -52,11 +52,9 @@ class DailiesViewController: UITableViewController {
         
         let daily = dailies[indexPath.row]
         
-        let label = cell.viewWithTag(1000) as! UILabel
+        configureText(for: cell, with: daily)
         
-        label.text = daily.text
-        
-        configureCheckmark(for: cell, at: indexPath)
+        configureCheckmark(for: cell, with: daily)
         
         return cell
     }
@@ -65,24 +63,26 @@ class DailiesViewController: UITableViewController {
         
         if let cell = tableView.cellForRow(at: indexPath) {
             let daily = dailies[indexPath.row]
-            daily.checked = !daily.checked
-            
-            configureCheckmark(for: cell, at: indexPath)
+            daily.toggleChecked()
+            configureCheckmark(for: cell, with: daily)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func configureCheckmark(for cell: UITableViewCell,
-                            at indexPath: IndexPath) {
-        
-        let daily = dailies[indexPath.row]
+                            with daily: Daily) {
         
         if daily.checked {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
+    }
+    
+    func configureText(for cell: UITableViewCell, with daily: Daily) {
+        let label = cell.viewWithTag(1000) as! UILabel
+        label.text = daily.text
     }
 
 }

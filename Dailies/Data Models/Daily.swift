@@ -10,7 +10,11 @@ import Foundation
 
 class Daily {
     var text = ""
-    var checked = false 
+    var checked = false
+    
+    func toggleChecked() {
+        checked = !checked 
+    }
 }
 
 
