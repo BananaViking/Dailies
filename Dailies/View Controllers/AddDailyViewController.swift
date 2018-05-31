@@ -1,15 +1,41 @@
 //
-//  DailyDetailViewController.swift
+//  AddDailyViewController.swift
 //  Dailies
 //
-//  Created by Banana Viking on 5/30/18.
+//  Created by Banana Viking on 5/31/18.
 //  Copyright © 2018 Banana Viking. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class AddDailyViewController: UITableViewController {
+
+    @IBAction func cancel() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func done() {
+        print("Contents of the text field: \(textField.text!)")
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    // stops the cell from highlighting when tap just outside the text field
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    
+}
 
 
-//
 //import UIKit
 //import UserNotifications
 //

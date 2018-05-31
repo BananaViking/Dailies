@@ -10,6 +10,19 @@ import UIKit
 
 class DailiesViewController: UITableViewController {
 
+    @IBAction func addItem() {
+        let newRowIndex = dailies.count
+        
+        let daily = Daily()
+        daily.text = "I am a new row"
+        daily.checked = false
+        dailies.append(daily)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
     var dailies: [Daily]
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,6 +81,14 @@ class DailiesViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // enables swipe to delete rows
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        dailies.remove(at: indexPath.row)
+        
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
     func configureCheckmark(for cell: UITableViewCell,
