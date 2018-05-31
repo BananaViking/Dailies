@@ -6,24 +6,7 @@
 //  Copyright © 2018 Banana Viking. All rights reserved.
 //
 
-import Foundation
-import UserNotifications
 
-class Daily: NSObject, Codable {
-    var text = ""
-    var checked = false
-    var dailyID: Int
-    
-    func toggleChecked() {
-        checked = !checked
-    }
-    
-    init(text: String) {
-        self.text = text
-        dailyID = DataModel.nextDailyID()
-        super.init()
-    }
-}
 
 
 
