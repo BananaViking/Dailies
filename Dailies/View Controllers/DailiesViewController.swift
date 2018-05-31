@@ -8,13 +8,13 @@
 
 import UIKit
 
-class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
+class DailiesViewController: UITableViewController, AddDailyViewControllerDelegate {
     
-    func addDailyViewControllerDidCancel(_ controller: DailyDetailViewController) {
+    func addDailyViewControllerDidCancel(_ controller: AddDailyViewController) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addDailyViewController(_ controller: DailyDetailViewController, didFinishAdding daily: Daily) {
+    func addDailyViewController(_ controller: AddDailyViewController, didFinishAdding daily: Daily) {
         let newRowIndex = dailies.count
         dailies.append(daily)
         
@@ -24,7 +24,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         navigationController?.popViewController(animated: true)
     }
     
-    func addDailyViewController(_ controller: DailyDetailViewController, didFinishEditing daily: Daily) {
+    func addDailyViewController(_ controller: AddDailyViewController, didFinishEditing daily: Daily) {
         if let index = dailies.index(of: daily) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -105,11 +105,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // tells AddDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDaily" {
-            let controller = segue.destination as! DailyDetailViewController
+            let controller = segue.destination as! AddDailyViewController
             
             controller.delegate = self 
         } else if segue.identifier == "EditDaily" {
-            let controller = segue.destination as! DailyDetailViewController
+            let controller = segue.destination as! AddDailyViewController
             
             controller.delegate = self
             
