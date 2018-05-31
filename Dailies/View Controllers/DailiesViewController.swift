@@ -98,16 +98,25 @@ class DailiesViewController: UITableViewController, AddDailyViewControllerDelega
             let controller = segue.destination as! AddDailyViewController
             
             controller.delegate = self 
+        } else if segue.identifier == "EditDaily" {
+            let controller = segue.destination as! AddDailyViewController
+            
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.dailyToEdit = dailies[indexPath.row]
+            }
         }
     }
     
     func configureCheckmark(for cell: UITableViewCell,
                             with daily: Daily) {
+        let label = cell.viewWithTag(1001) as! UILabel
         
         if daily.checked {
-            cell.accessoryType = .checkmark
+            label.text = "√"
         } else {
-            cell.accessoryType = .none
+            label.text = ""
         }
     }
     

@@ -22,6 +22,8 @@ class AddDailyViewController: UITableViewController, UITextFieldDelegate {
     
     weak var delegate: AddDailyViewControllerDelegate?
     
+    var dailyToEdit: Daily?
+    
     @IBAction func cancel() {
         delegate?.addDailyViewControllerDidCancel(self)
     }
@@ -36,7 +38,11 @@ class AddDailyViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ 
+        if let dailyToEdit = dailyToEdit {
+            title = "Edit Daily"
+            textField.text = dailyToEdit.text
+        }
     }
     
     // activates the text field when page is loaded without having to select it first
