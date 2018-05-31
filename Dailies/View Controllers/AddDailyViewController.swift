@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddDailyViewController: UITableViewController {
+class AddDailyViewController: UITableViewController, UITextFieldDelegate {
 
     @IBAction func cancel() {
         navigationController?.popViewController(animated: true)
@@ -22,9 +22,17 @@ class AddDailyViewController: UITableViewController {
     
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    // activates the text field when page is loaded without having to select it first
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textField.becomeFirstResponder()
     }
     
     // stops the cell from highlighting when tap just outside the text field
@@ -32,7 +40,16 @@ class AddDailyViewController: UITableViewController {
         return nil
     }
 
-    
+    // disables doneBarButton if textField is empty
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldText = textField.text!
+        let stringRange = Range(range, in: oldText)!
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+        
+        doneBarButton.isEnabled = !newText.isEmpty
+        
+        return true
+    }
 }
 
 
