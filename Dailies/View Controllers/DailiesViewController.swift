@@ -22,6 +22,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        saveDailies()
     }
     
     func dailyDetailViewController(_ controller: DailyDetailViewController, didFinishEditing daily: Daily) {
@@ -32,6 +33,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         }
         navigationController?.popViewController(animated: true)
+        saveDailies()
     }
     
     var dailies: [Daily]
@@ -65,6 +67,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         dailies.append(row4item)
         
         super.init(coder: aDecoder)
+        
+        print("Documents folder is \(documentsDirectory())")
+        print("Data file path is \(dataFilePath())")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,6 +97,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        saveDailies()
     }
     
     // enables swipe to delete rows
@@ -100,6 +106,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveDailies()
     }
     
     // tells AddDailyVC that DailiesVC is its delegate
@@ -134,104 +141,30 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let label = cell.viewWithTag(1000) as! UILabel
         label.text = daily.text
     }
+    
+    // gets full path to the Documents folder
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Dailies.plist")
+    }
+    
+    // takes contents of dailies array, converts to block of binary data, and writes it to a file
+    func saveDailies() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(dailies)
+            
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array.")
+        }
+    }
 
 }
 
-//import UIKit
-//
-//class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
-//
-//    var checklist: Checklist!
-//
-//    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
-//        navigationController?.popViewController(animated: true)
-//    }
-//
-//    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
-//        let newRowIndex = checklist.items.count
-//        checklist.items.append(item)
-//
-//        let indexPath = IndexPath(row: newRowIndex, section: 0)
-//        let indexPaths = [indexPath]
-//        tableView.insertRows(at: indexPaths, with: .automatic)
-//        navigationController?.popViewController(animated: true)
-//    }
-//
-//    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
-//        if let index = checklist.items.index(of: item) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            if let cell = tableView.cellForRow(at: indexPath) {
-//                configureText(for: cell, with: item)
-//            }
-//        }
-//        navigationController?.popViewController(animated: true)
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        navigationItem.largeTitleDisplayMode = .never
-//        title = checklist.name
-//        // Do any additional setup after loading the view, typically from a nib.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return checklist.items.count
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
-//        let item = checklist.items[indexPath.row]
-//        configureText(for: cell, with: item)
-//        configureCheckmark(for: cell, with: item)
-//        return cell
-//    }
-//
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let cell = tableView.cellForRow(at: indexPath) {
-//            let item = checklist.items[indexPath.row]
-//            item.toggleChecked()
-//            configureCheckmark(for: cell, with: item)
-//        }
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        checklist.items.remove(at: indexPath.row)
-//        let indexPaths = [indexPath]
-//        tableView.deleteRows(at: indexPaths, with: .automatic)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "AddItem" {
-//            let controller = segue.destination as! ItemDetailViewController
-//            controller.delegate = self
-//        } else if segue.identifier == "EditItem" {
-//            let controller = segue.destination as! ItemDetailViewController
-//            controller.delegate = self
-//            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-//                controller.itemToEdit = checklist.items[indexPath.row]
-//            }
-//        }
-//    }
-//
-//    func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
-//        let label = cell.viewWithTag(1001) as! UILabel
-//        label.textColor = view.tintColor
-//        if item.checked {
-//            label.text = "√"
-//        } else {
-//            label.text = ""
-//        }
-//    }
-//
-//    func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
-//        let label = cell.viewWithTag(1000) as! UILabel
-//        label.text = "\(item.text)"
-//    }
-//}
-//
