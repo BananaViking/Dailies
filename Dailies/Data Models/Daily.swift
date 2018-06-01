@@ -31,4 +31,15 @@ class Daily: NSObject, Codable {
         userDefaults.synchronize()
         return dailyID
     }
+    
+    func scheduleNotification() {
+        if shouldRemind && dueDate > Date() {
+            print("We should schedule a notification!")
+        }
+    }
 }
+
+
+
+
+
