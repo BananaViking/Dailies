@@ -18,14 +18,11 @@ protocol DailyDetailViewControllerDelegate: class {
 
 class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var textField: UITextField!
-    
-    @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    
     weak var delegate: DailyDetailViewControllerDelegate?
     
     var dailyToEdit: Daily?
     
+    // MARK: - Actions
     @IBAction func cancel() {
         delegate?.dailyDetailViewControllerDidCancel(self)
     }
@@ -44,25 +41,32 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
- 
-        if let dailyToEdit = dailyToEdit {
-            title = "Edit Daily"
-            textField.text = dailyToEdit.text
-            doneBarButton.isEnabled = true
-        }
+    // MARK: - Outlets
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    //MARK: - tableView Delegates
+    // stops the cell from highlighting when tap just outside the text field
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
+    // MARK: - Functions
     // activates the text field when page is loaded without having to select it first
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
     }
     
-    // stops the cell from highlighting when tap just outside the text field
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let dailyToEdit = dailyToEdit {
+            title = "Edit Daily"
+            textField.text = dailyToEdit.text
+            doneBarButton.isEnabled = true
+        }
     }
 
     // disables doneBarButton if textField is empty

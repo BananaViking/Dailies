@@ -10,6 +10,7 @@ import UIKit
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
+    // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -38,11 +39,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     var dailies = [Daily]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadDailies()
-    }
-    
+    // MARK: - tableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailies.count
     }
@@ -80,21 +77,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
-    // tells AddDailyVC that DailiesVC is its delegate
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddDaily" {
-            let controller = segue.destination as! DailyDetailViewController
-            
-            controller.delegate = self 
-        } else if segue.identifier == "EditDaily" {
-            let controller = segue.destination as! DailyDetailViewController
-            
-            controller.delegate = self
-            
-            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.dailyToEdit = dailies[indexPath.row]
-            }
-        }
+    // MARK: - Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadDailies()
     }
     
     func configureCheckmark(for cell: UITableViewCell,
@@ -150,6 +136,23 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         }
     }
-
+    
+    // MARK: - Navigation
+    // tells AddDailyVC that DailiesVC is its delegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddDaily" {
+            let controller = segue.destination as! DailyDetailViewController
+            
+            controller.delegate = self 
+        } else if segue.identifier == "EditDaily" {
+            let controller = segue.destination as! DailyDetailViewController
+            
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.dailyToEdit = dailies[indexPath.row]
+            }
+        }
+    }
 }
 
