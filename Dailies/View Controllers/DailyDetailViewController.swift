@@ -22,6 +22,10 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     var dailyToEdit: Daily?
     
+    var dueDate = Date()
+    
+    var datePickerVisible = false
+    
     // MARK: - Actions
     @IBAction func cancel() {
         delegate?.dailyDetailViewControllerDidCancel(self)
@@ -31,11 +35,17 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         if let dailyToEdit = dailyToEdit {
             dailyToEdit.text = textField.text!
             
+            dailyToEdit.shouldRemind = shouldRemindSwitch.isOn
+            dailyToEdit.dueDate = dueDate
+            
             delegate?.dailyDetailViewController(self, didFinishEditing: dailyToEdit)
         } else {
             let daily = Daily()
             daily.text = textField.text!
             daily.checked = false
+            
+            dailyToEdit?.shouldRemind = shouldRemindSwitch.isOn
+            dailyToEdit?.dueDate = dueDate
             
             delegate?.dailyDetailViewController(self, didFinishAdding: daily)
         }
@@ -50,10 +60,63 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dueDateLabel: UILabel!
     
+    @IBOutlet weak var datePickerCell: UITableViewCell!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
     //MARK: - tableView Delegates
     // stops the cell from highlighting when tap just outside the text field
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        if indexPath.section == 1 && indexPath.row == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    // override to show datePickerCell when tapped even though table view has static cells
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 && indexPath.row == 2 {
+            return datePickerCell
+        } else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 && datePickerVisible {
+            return 3
+        } else {
+            return super.tableView(tableView, numberOfRowsInSection: section)
+        }
+    }
+    
+    // override to make height of cell bigger to fit datePickerCell
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 && indexPath.row == 2 {
+            return 217
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        textField.resignFirstResponder()
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            showDatePicker()
+        }
+    }
+    
+    // delegate method required when overriding data source for static table view cell
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        var newIndexPath = indexPath
+        if indexPath.section == 1 && indexPath.row == 2 {
+            newIndexPath = IndexPath(row: 0, section: indexPath.section)
+        }
+        
+        return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
     // MARK: - Functions
@@ -70,7 +133,11 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
             title = "Edit Daily"
             textField.text = dailyToEdit.text
             doneBarButton.isEnabled = true
+            shouldRemindSwitch.isOn = dailyToEdit.shouldRemind
+            dueDate = dailyToEdit.dueDate
         }
+        
+        updateDueDateLabel()
     }
 
     // disables doneBarButton if textField is empty
@@ -83,4 +150,23 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    func updateDueDateLabel() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        dueDateLabel.text = formatter.string(from: dueDate)
+    }
+    
+    func showDatePicker() {
+        datePickerVisible = true
+        let indexPathDatePicker = IndexPath(row: 2, section: 1)
+        tableView.insertRows(at: [indexPathDatePicker], with: .fade)
+    }
 }
+
+
+
+
+
+
