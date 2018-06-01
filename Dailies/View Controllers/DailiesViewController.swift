@@ -10,6 +10,8 @@ import UIKit
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
+    var dailies = [Daily]()
+    
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -36,8 +38,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         navigationController?.popViewController(animated: true)
         saveDailies()
     }
-    
-    var dailies = [Daily]()
     
     // MARK: - tableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -46,6 +46,10 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var shouldRemindSwitch: UISwitch!
+    
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
     //MARK: - tableView Delegates
     // stops the cell from highlighting when tap just outside the text field
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
