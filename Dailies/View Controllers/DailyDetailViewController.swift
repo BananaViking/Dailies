@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol DailyDetailViewControllerDelegate: class {
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController)
@@ -41,21 +42,33 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
             dailyToEdit.scheduleNotification()
             delegate?.dailyDetailViewController(self, didFinishEditing: dailyToEdit)
         } else {
-            let daily = Daily()
-            daily.text = textField.text!
-            daily.checked = false
+            let dailyToEdit = Daily()
+            dailyToEdit.text = textField.text!
+            dailyToEdit.checked = false
             
-            dailyToEdit?.shouldRemind = shouldRemindSwitch.isOn
-            dailyToEdit?.dueDate = dueDate
+            dailyToEdit.shouldRemind = shouldRemindSwitch.isOn
+            dailyToEdit.dueDate = dueDate
             
-            dailyToEdit?.scheduleNotification()
-            delegate?.dailyDetailViewController(self, didFinishAdding: daily)
+            dailyToEdit.scheduleNotification()
+            delegate?.dailyDetailViewController(self, didFinishAdding: dailyToEdit)
         }
     }
     
     @IBAction func dateChanged(_ datePicker: UIDatePicker) {
         dueDate = datePicker.date
         updateDueDateLabel()
+    }
+    
+    @IBAction func shouldRemindToggled(_ switchControl: UISwitch) {
+        textField.resignFirstResponder()
+        
+        if switchControl.isOn {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) {
+                granted, error in
+                // do nothing
+            }
+        }
     }
     
     // MARK: - Outlets
@@ -164,12 +177,13 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     func updateDueDateLabel() {
         let formatter = DateFormatter()
+        formatter.dateStyle = .medium
         formatter.timeStyle = .short
         dueDateLabel.text = formatter.string(from: dueDate)
     }
     
     func showDatePicker() {
-        self.datePicker.datePickerMode = .time
+//        self.datePicker.datePickerMode = .time
         datePickerVisible = true
         let indexPathDateRow = IndexPath(row: 1, section: 1)
         let indexPathDatePicker = IndexPath(row: 2, section: 1)

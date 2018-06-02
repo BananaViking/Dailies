@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class Daily: NSObject, Codable {
     var text = ""
@@ -33,9 +34,41 @@ class Daily: NSObject, Codable {
     }
     
     func scheduleNotification() {
+        removeNotification()
         if shouldRemind && dueDate > Date() {
-            print("We should schedule a notification!")
+            let content = UNMutableNotificationContent()
+            content.title = "Reminder:"
+            content.body = text
+            content.sound = UNNotificationSound.default()
+            
+            let calendar = Calendar(identifier: .gregorian)
+            let components = calendar.dateComponents([.month, .day, .hour, .minute], from: dueDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "\(dailyID)", content: content, trigger: trigger)
+            let center = UNUserNotificationCenter.current()
+            center.add(request)
+            
+            print("Scheduled: \(request) for dailyID: \(dailyID)")
+            
+            //        let content = UNMutableNotificationContent()
+            //        content.title = "Hello!"
+            //        content.body = "I am a local notification"
+            //        content.sound = UNNotificationSound.default()
+            //
+            //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            //        let request = UNNotificationRequest(identifier: "MyNotification", content: content, trigger: trigger)
+            //        center.add(request)
         }
+    }
+    
+    func removeNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["\(dailyID)"])
+    }
+    
+    deinit {
+        removeNotification()
     }
 }
 

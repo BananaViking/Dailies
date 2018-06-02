@@ -19,15 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let center = UNUserNotificationCenter.current()
         center.delegate = self
-
-//        let content = UNMutableNotificationContent()
-//        content.title = "Hello!"
-//        content.body = "I am a local notification"
-//        content.sound = UNNotificationSound.default()
-//
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//        let request = UNNotificationRequest(identifier: "MyNotification", content: content, trigger: trigger)
-//        center.add(request)
         
         return true
     }
