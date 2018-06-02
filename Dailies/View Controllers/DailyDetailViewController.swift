@@ -164,12 +164,12 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     func updateDueDateLabel() {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
         formatter.timeStyle = .short
         dueDateLabel.text = formatter.string(from: dueDate)
     }
     
     func showDatePicker() {
+        self.datePicker.datePickerMode = .time
         datePickerVisible = true
         let indexPathDateRow = IndexPath(row: 1, section: 1)
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
