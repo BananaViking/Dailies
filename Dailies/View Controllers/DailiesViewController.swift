@@ -11,6 +11,7 @@ import UIKit
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var dailies = [Daily]()
+    var dailiesDone = 0
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -61,8 +62,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if let cell = tableView.cellForRow(at: indexPath) {
             let daily = dailies[indexPath.row]
             daily.toggleChecked()
-            // if all dailies checked, fire pop-up with congrats and streak
             configureCheckmark(for: cell, with: daily)
+            if daily.checked {
+                dailiesDone += 1
+                print("\(dailiesDone) out of \(dailies.count) completed.")
+            } else {
+                if dailiesDone > 0 {
+                    dailiesDone -= 1
+                    print("\(dailiesDone) out of \(dailies.count) completed.")
+                }
+            }
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -71,10 +80,18 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     // enables swipe to delete rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let daily = dailies[indexPath.row]
+        if daily.checked {
+            if dailiesDone > 0 {
+                dailiesDone -= 1
+            }
+        }
         dailies.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        print("\(dailiesDone) out of \(dailies.count) completed.")
         saveDailies()
     }
     
