@@ -66,6 +66,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if daily.checked {
                 dailiesDone += 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
+                checkDailiesComplete()
             } else {
                 if dailiesDone > 0 {
                     dailiesDone -= 1
@@ -99,6 +100,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDailies()
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
+        }
     }
     
     func configureCheckmark(for cell: UITableViewCell,
@@ -152,6 +156,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             } catch {
                 print("Error decoding daily array.")
             }
+        }
+    }
+    
+    func checkDailiesComplete() {
+        let alert = UIAlertController(title: "Great Job!", message: "You completed all of your Dailies today! \n\nDailies Streak: 1 day \nHabit Level: Weak", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Gimme a high five!", style: .default, handler: nil))
+        
+        if dailiesDone == dailies.count {
+            present(alert, animated: true, completion: nil)
         }
     }
     
