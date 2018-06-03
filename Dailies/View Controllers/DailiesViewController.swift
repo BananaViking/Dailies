@@ -160,9 +160,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        let alert = UIAlertController(title: "Great Job!", message: "You completed all of your Dailies today! \n\nDailies Streak: 1 day \nHabit Level: Weak", preferredStyle: .alert)
+        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nDailies Streak: 1 day \nHabit Level: Weak", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Gimme a high five!", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
         
         if dailiesDone == dailies.count {
             present(alert, animated: true, completion: nil)
