@@ -20,6 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
+        // get the time the app last launched
+        let lastLaunch = UserDefaults.standard.double(forKey: "lastLaunch")
+        let lastLaunchDate = NSDate(timeIntervalSince1970: lastLaunch)
+        
+        //check to see if lastLaunchDate is today
+        let lastLaunchIsToday = NSCalendar.current.isDateInToday(lastLaunchDate as Date)
+        
+        if !lastLaunchIsToday {
+            
+        }
+        
+        print("lastLaunch = \(lastLaunch)")
+        print("lastLaunchDate = \(lastLaunchDate)")
+        print("lastLaunchIsToday = \(lastLaunchIsToday)")
+        
+        // update the last launch value
+//        UserDefaults.set(Double(NSDate().timeIntervalSince1970()), forKey: "lastLaunch")
+//        UserDefaults.set(NSDate().timeIntervalSince1970(), forKey: "lastLaunch")
+        
+        
         return true
     }
 

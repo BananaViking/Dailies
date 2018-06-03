@@ -12,6 +12,7 @@ import UserNotifications
 class Daily: NSObject, Codable {
     var text = ""
     var checked = false
+    var allChecked = false
     var dueDate = Date()
     var shouldRemind = false
     var dailyID: Int
@@ -22,7 +23,7 @@ class Daily: NSObject, Codable {
     }
     
     func toggleChecked() {
-        checked = !checked 
+        checked = !checked
     }
     
     class func nextDailyID() -> Int {

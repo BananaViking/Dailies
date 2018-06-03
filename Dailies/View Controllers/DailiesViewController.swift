@@ -61,6 +61,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if let cell = tableView.cellForRow(at: indexPath) {
             let daily = dailies[indexPath.row]
             daily.toggleChecked()
+            // if all dailies checked, fire pop-up with congrats and streak
             configureCheckmark(for: cell, with: daily)
         }
         
