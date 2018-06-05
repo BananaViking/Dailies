@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
+        if UserDefaults.standard.object(forKey: "lastLaunch") as? Date == nil {
+            UserDefaults.standard.set(Date(), forKey: "lastLaunch")
+        }
+        
         return true
     }
     
