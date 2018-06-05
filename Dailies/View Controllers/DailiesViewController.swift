@@ -12,6 +12,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     var dailies = [Daily]()
     var dailiesDone = 0
+    var streak = 0
+    var level = "Beginner"
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -160,7 +162,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nDailies Streak: 1 day \nHabit Level: Weak", preferredStyle: .alert)
+        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(streak) \nLevel: \(level)", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
         
@@ -170,7 +172,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - Navigation
-    // tells AddDailyVC that DailiesVC is its delegate
+    // tells DailyDetailDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDaily" {
             let controller = segue.destination as! DailyDetailViewController

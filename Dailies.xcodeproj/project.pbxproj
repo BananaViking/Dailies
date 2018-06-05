@@ -14,6 +14,7 @@
 		0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */; };
 		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
+		05C3F4DA20C6D8A300C78184 /* Dailies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* Dailies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0569D85120BF5C1200D733C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
+		05C3F4D920C6D8A300C78184 /* Dailies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dailies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0569D85820BF63B200D733C9 /* Daily.swift */,
+				05C3F4D920C6D8A300C78184 /* Dailies.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
+				05C3F4DA20C6D8A300C78184 /* Dailies.swift in Sources */,
 				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +310,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YNF79H478;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Dailies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,6 +329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YNF79H478;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Dailies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -14,26 +14,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
-        // get the time the app last launched
-        let lastLaunch = UserDefaults.standard.double(forKey: "lastLaunch")
-        let lastLaunchDate = NSDate(timeIntervalSince1970: lastLaunch)
+//        UserDefaults.standard.set(Date(), forKey: "lastLaunch")
+
+        
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date
+        let currentLaunch = Date().timeIntervalSince(lastLaunch!)
+        
+        print("last launch: \(UserDefaults.standard.object(forKey: "lastLaunch") as? Date)")
+        print("current launch: \(currentLaunch)")
+        
+//        let currentDate = Date()
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .short
+//        print(formatter.string(from: currentDate))
+//        print("currentDate is \(currentDate)")
+        
+        // get the time the app last launched (returns 0.0 if key doesn't exist)
+//        let lastLaunch = UserDefaults.standard.double(forKey: "lastLaunch")
+//        let lastLaunchDate = NSDate(timeIntervalSince1970: lastLaunch)
         
         //check to see if lastLaunchDate is today
-        let lastLaunchIsToday = NSCalendar.current.isDateInToday(lastLaunchDate as Date)
+//        let lastLaunchIsToday = NSCalendar.current.isDateInToday(lastLaunchDate as Date)
+//
+//        if !lastLaunchIsToday {
+//
+//        }
         
-        if !lastLaunchIsToday {
-            
-        }
-        
-        print("lastLaunch = \(lastLaunch)")
-        print("lastLaunchDate = \(lastLaunchDate)")
-        print("lastLaunchIsToday = \(lastLaunchIsToday)")
+//        print("lastLaunch = \(lastLaunch)")
+//        print("lastLaunchDate = \(lastLaunchDate)")
+//        print("lastLaunchIsToday = \(lastLaunchIsToday)")
         
         // update the last launch value
 //        UserDefaults.set(Double(NSDate().timeIntervalSince1970()), forKey: "lastLaunch")
@@ -51,6 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        UserDefaults.standard.set(Date(), forKey: "lastLaunch")
+        print(UserDefaults.standard.object(forKey: "lastLaunch") as? Date)
+
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -63,6 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        UserDefaults.standard.set(Date(), forKey: "lastLaunch")
+        print(UserDefaults.standard.object(forKey: "lastLaunch") as? Date)
+
     }
     
     // MARK: - User Notification Delegates
