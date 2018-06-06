@@ -105,6 +105,38 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        let lastLaunchDate = dateFormatter.string(from: UserDefaults.standard.object(forKey: "lastLaunch") as! Date)
+        
+        let today = Date()
+        let todayDate = dateFormatter.string(from: today)
+        
+        print("lastLaunch: \(UserDefaults.standard.object(forKey: "lastLaunch") as! Date)")
+        print("today: \(today)")
+        print("lastLaunchDate: \(lastLaunchDate)")
+        print("todayDate: \(todayDate)")
+        
+        if lastLaunchDate == todayDate { // change this back to !=
+            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "I can get them all done today!", style: .default, handler: nil))
+            
+            present(alert, animated: true, completion: nil)
+            
+            for daily in dailies {
+                if daily.checked {
+                    daily.checked = false
+                }
+            }
+            
+            dailiesDone = 0
+        } else {
+            print("You have already logged in today.")
+        }
     }
     
     func configureCheckmark(for cell: UITableViewCell,

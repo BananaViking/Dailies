@@ -19,27 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        let lastLaunchDate = dateFormatter.string(from: UserDefaults.standard.object(forKey: "lastLaunch") as! Date)
-        
-        let today = Date()
-        let todayDate = dateFormatter.string(from: today)
-        
-        print("lastLaunch: \(UserDefaults.standard.object(forKey: "lastLaunch") as! Date)")
-        print("today: \(today)")
-        print("lastLaunchDate: \(lastLaunchDate)")
-        print("todayDate: \(todayDate)")
-        
-        if lastLaunchDate == todayDate {
-            print("You have already logged in today.")
-        } else {
-            print("This is your first login of the day.")
-        }
-        
-        
         return true
     }
     

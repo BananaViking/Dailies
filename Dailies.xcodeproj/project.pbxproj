@@ -15,6 +15,7 @@
 		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
 		05C3F4DA20C6D8A300C78184 /* Dailies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* Dailies.swift */; };
+		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 		05C3F4D920C6D8A300C78184 /* Dailies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dailies.swift; sourceTree = "<group>"; };
+		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +49,7 @@
 			children = (
 				0569D84420BF5C1100D733C9 /* Dailies */,
 				0569D84320BF5C1100D733C9 /* Products */,
+				05C5A7EE20C72206008B5439 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +91,14 @@
 				05C3F4D920C6D8A300C78184 /* Dailies.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		05C5A7EE20C72206008B5439 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05C5A7EF20C72206008B5439 /* PassKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
