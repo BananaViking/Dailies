@@ -18,7 +18,7 @@ protocol DailyDetailViewControllerDelegate: class {
 }
 
 class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
-
+    
     weak var delegate: DailyDetailViewControllerDelegate?
     
     var dailyToEdit: Daily?
