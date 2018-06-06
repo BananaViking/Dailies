@@ -112,13 +112,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         
-        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as! Date
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
         let lastLaunchDate = dateFormatter.string(from: lastLaunch)
         
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        print("lastLaunch: \(UserDefaults.standard.object(forKey: "lastLaunch") as! Date)")
+        print("lastLaunch: \(lastLaunch)")
         print("today: \(today)")
         print("lastLaunchDate: \(lastLaunchDate)")
         print("todayDate: \(todayDate)")

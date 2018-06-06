@@ -21,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
-        if UserDefaults.standard.object(forKey: "lastLaunch") as? Date == nil {
-            UserDefaults.standard.set(Date(), forKey: "lastLaunch")
-        }
+        // the following commented out code was used before adding the nil coalescing operator to lastLaunch which hopefully makes this unnecessary:
+//        if UserDefaults.standard.object(forKey: "lastLaunch") as? Date == nil {
+//            UserDefaults.standard.set(Date(), forKey: "lastLaunch")
+//        }
         
         return true
     }
@@ -48,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        // this is giving a warning in the compiler because on app launch there is already an alert active
         let alert = UIAlertController(title: "appDidBecomeActive", message: "test message", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
