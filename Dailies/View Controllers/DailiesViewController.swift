@@ -12,8 +12,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     var dailies = [Daily]()
     var dailiesDone = 0
-    var streak = 0
-    var level = "Beginner"
+    var streak = 0  // this needs to get saved as UserDefault?
+    var level = "Beginner"  // this needs to get saved as UserDefault?
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -101,7 +101,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadDailies()
+        
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
@@ -122,18 +124,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to !=
             let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "I can get them all done today!", style: .default, handler: nil))
-            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
             
-            for daily in dailies {
-                if daily.checked {
-                    daily.checked = false
-                }
-            }
-            
-            dailiesDone = 0
+            resetDailies()
         } else {
             print("You have already logged in today.")
         }
@@ -201,6 +195,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if dailiesDone == dailies.count {
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func resetDailies() {
+        for daily in dailies {
+            if daily.checked {
+                daily.checked = false
+            }
+        }
+        
+        dailiesDone = 0
     }
     
     // MARK: - Navigation
