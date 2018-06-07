@@ -11,6 +11,9 @@ import UIKit
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var dailies = [Daily]()
+    var dailiesDone = 0
+    var streak = 0  // this needs to get saved as UserDefault?
+    var level = "Beginner"  // this needs to get saved as UserDefault?
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -62,6 +65,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let daily = dailies[indexPath.row]
             daily.toggleChecked()
             configureCheckmark(for: cell, with: daily)
+            if daily.checked {
+                dailiesDone += 1
+                print("\(dailiesDone) out of \(dailies.count) completed.")
+                checkDailiesComplete()
+            } else {
+                if dailiesDone > 0 {
+                    dailiesDone -= 1
+                    print("\(dailiesDone) out of \(dailies.count) completed.")
+                }
+            }
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -70,17 +83,55 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     // enables swipe to delete rows
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let daily = dailies[indexPath.row]
+        if daily.checked {
+            if dailiesDone > 0 {
+                dailiesDone -= 1
+            }
+        }
         dailies.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        print("\(dailiesDone) out of \(dailies.count) completed.")
         saveDailies()
     }
     
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadDailies()
+        
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
+        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
+        
+        let today = Date()
+        let todayDate = dateFormatter.string(from: today)
+        
+        print("lastLaunch: \(lastLaunch)")
+        print("today: \(today)")
+        print("lastLaunchDate: \(lastLaunchDate)")
+        print("todayDate: \(todayDate)")
+        
+        if lastLaunchDate == todayDate { // change this back to !=
+            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            
+            resetDailies()
+        } else {
+            print("You have already logged in today.")
+        }
     }
     
     func configureCheckmark(for cell: UITableViewCell,
@@ -137,8 +188,28 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
+    func checkDailiesComplete() {
+        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(streak) \nLevel: \(level)", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
+        
+        if dailiesDone == dailies.count {
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func resetDailies() {
+        for daily in dailies {
+            if daily.checked {
+                daily.checked = false
+            }
+        }
+        
+        dailiesDone = 0
+    }
+    
     // MARK: - Navigation
-    // tells AddDailyVC that DailiesVC is its delegate
+    // tells DailyDetailDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDaily" {
             let controller = segue.destination as! DailyDetailViewController

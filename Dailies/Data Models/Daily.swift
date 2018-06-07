@@ -22,7 +22,7 @@ class Daily: NSObject, Codable {
     }
     
     func toggleChecked() {
-        checked = !checked 
+        checked = !checked
     }
     
     class func nextDailyID() -> Int {
@@ -35,14 +35,14 @@ class Daily: NSObject, Codable {
     
     func scheduleNotification() {
         removeNotification()
-        if shouldRemind && dueDate > Date() {
+        if shouldRemind {
             let content = UNMutableNotificationContent()
             content.title = "Reminder:"
             content.body = text
             content.sound = UNNotificationSound.default()
             
             let calendar = Calendar(identifier: .gregorian)
-            let components = calendar.dateComponents([.month, .day, .hour, .minute], from: dueDate)
+            let components = calendar.dateComponents([.hour, .minute], from: dueDate)
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
             
             let request = UNNotificationRequest(identifier: "\(dailyID)", content: content, trigger: trigger)
