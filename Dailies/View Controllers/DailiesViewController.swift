@@ -11,9 +11,9 @@ import UIKit
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var dailies = [Daily]()
+    var playerStats = PlayerStats()
     var dailiesDone = 0
-    var streak = 0  // this needs to get saved as UserDefault?
-    var level = "Beginner"  // this needs to get saved as UserDefault?
+    
     var landscapeVC: LandscapeViewController?
 
     
@@ -191,11 +191,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(streak) \nLevel: \(level)", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
-        
         if dailiesDone == dailies.count {
+            playerStats.streak += 1
+            if playerStats.streak > playerStats.maxStreak {
+                playerStats.maxStreak = playerStats.streak
+            }
+            let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(playerStats.streak) \nMax Streak: \(playerStats.maxStreak)", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
+            
+            
             present(alert, animated: true, completion: nil)
         }
     }

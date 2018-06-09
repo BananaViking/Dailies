@@ -10,6 +10,7 @@ import UIKit
 
 class PlayerStatsViewController: UITableViewController {
     
+    
     var landscapeVC: LandscapeViewController?
     
     // MARK: - Landscape
