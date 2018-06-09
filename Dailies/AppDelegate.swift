@@ -51,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // this is giving a warning in the compiler because on app launch there is already an alert active
-        let alert = UIAlertController(title: "appDidBecomeActive", message: "test message", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "appDidBecomeActive", message: "test message", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
 
     }
     
