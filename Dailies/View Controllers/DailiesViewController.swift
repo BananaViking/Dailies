@@ -110,30 +110,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             dailiesDone += 1
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        checkLastLaunch()
         
-        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
-        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
-        
-        let today = Date()
-        let todayDate = dateFormatter.string(from: today)
-        
-        print("lastLaunch: \(lastLaunch)")
-        print("today: \(today)")
-        print("lastLaunchDate: \(lastLaunchDate)")
-        print("todayDate: \(todayDate)")
-        
-        if lastLaunchDate == todayDate { // change this back to !=
-            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-            
-            resetDailies()
-        } else {
-            print("You have already logged in today.")
-        }
     }
     
     func configureCheckmark(for cell: UITableViewCell,
@@ -190,6 +168,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
+    func resetDailies() {
+        for daily in dailies {
+            if daily.checked {
+                daily.checked = false
+            }
+        }
+        
+        dailiesDone = 0
+    }
+    
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
             playerStats.streak += 1
@@ -207,15 +195,33 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func resetDailies() {
-        for daily in dailies {
-            if daily.checked {
-                daily.checked = false
-            }
-        }
+    func checkLastLaunch() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
         
-        dailiesDone = 0
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
+        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
+        
+        let today = Date()
+        let todayDate = dateFormatter.string(from: today)
+        
+        print("lastLaunch: \(lastLaunch)")
+        print("today: \(today)")
+        print("lastLaunchDate: \(lastLaunchDate)")
+        print("todayDate: \(todayDate)")
+        
+        if lastLaunchDate == todayDate { // change this back to !=
+            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            
+            resetDailies()
+        } else {
+            print("You have already logged in today.")
+        }
     }
+    
     
     // MARK: - Landscape
     
