@@ -11,9 +11,10 @@ import UIKit
 class PlayerStatsViewController: UITableViewController {
     
     var landscapeVC: LandscapeViewController?
+    var playerStats = PlayerStats()
 
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var wizardClassLabel: UILabel!
+    @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var maxStreakLabel: UILabel!
     
@@ -23,8 +24,8 @@ class PlayerStatsViewController: UITableViewController {
     }
     
     func updateLabels() {
-        levelLabel.text = ""
-        wizardClassLabel.text = ""
+        levelLabel.text = String(playerStats.level)
+        rankLabel.text = playerStats.rank
         streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
         maxStreakLabel.text = "\(UserDefaults.standard.object(forKey: "maxStreak") ?? "0")"
     }

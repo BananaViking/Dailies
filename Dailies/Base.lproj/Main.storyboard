@@ -158,8 +158,8 @@
                     <connections>
                         <outlet property="levelLabel" destination="59C-DF-xK0" id="VAP-Vx-maD"/>
                         <outlet property="maxStreakLabel" destination="xL4-sj-oXP" id="aOs-Vw-qH7"/>
+                        <outlet property="rankLabel" destination="sJM-UT-HKV" id="GoP-E5-EJC"/>
                         <outlet property="streakLabel" destination="4da-eK-kme" id="cxg-9G-aYn"/>
-                        <outlet property="wizardClassLabel" destination="sJM-UT-HKV" id="eE6-cQ-EaI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3J-Lw-3TF" userLabel="First Responder" sceneMemberID="firstResponder"/>
