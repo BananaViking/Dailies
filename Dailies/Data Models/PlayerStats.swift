@@ -11,7 +11,7 @@ import Foundation
 class PlayerStats: NSObject, Codable {
     
     var level = 1
-    var wizardClass = "Apprentice"
+    var rank = "Apprentice"
     var streak = 0
     var maxStreak = 0
     
