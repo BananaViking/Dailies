@@ -70,7 +70,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if daily.checked {
                 dailiesDone += 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
-                checkDailiesComplete()
             } else {
                 if dailiesDone > 0 {
                     dailiesDone -= 1
@@ -186,12 +185,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 playerStats.maxStreak = playerStats.streak
                 UserDefaults.standard.set(playerStats.maxStreak, forKey: "maxStreak")
             }
-            let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(playerStats.streak) \nMax Streak: \(playerStats.maxStreak)", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
-            
-            
-            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -212,7 +205,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("todayDate: \(todayDate)")
         
         if lastLaunchDate == todayDate { // change this back to !=
-            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
+            var message: String
+            
+            checkDailiesComplete()
+            
+            if dailiesDone == dailies.count {
+                message = "Great job! Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak) \n Max Streak: \(playerStats.maxStreak)"
+            } else {
+                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak) \n Max Streak: \(playerStats.maxStreak)"
+            }
+            
+            let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
             
