@@ -40,10 +40,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
-                            <tableViewSection id="xdV-8S-Qlg">
+                            <tableViewSection headerTitle="Player Info" id="xdV-8S-Qlg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="htn-1p-Xfz">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="htn-1p-Xfz" id="BeV-9W-4J6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -68,7 +68,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fLi-2H-u4N">
-                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fLi-2H-u4N" id="3Cy-Qu-sAe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -94,10 +94,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="L0W-IE-BY2">
+                            <tableViewSection headerTitle="Streaks" id="L0W-IE-BY2">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mko-aI-L0o">
-                                        <rect key="frame" x="0.0" y="159" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="199.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mko-aI-L0o" id="ZF6-lD-HVa">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -122,7 +122,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="O0R-CQ-C6F">
-                                        <rect key="frame" x="0.0" y="203" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="243.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O0R-CQ-C6F" id="9cD-1F-GaA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -155,6 +155,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Player Stats" id="NfJ-Wn-DoX"/>
+                    <connections>
+                        <outlet property="levelLabel" destination="59C-DF-xK0" id="VAP-Vx-maD"/>
+                        <outlet property="maxStreakLabel" destination="xL4-sj-oXP" id="aOs-Vw-qH7"/>
+                        <outlet property="streakLabel" destination="4da-eK-kme" id="cxg-9G-aYn"/>
+                        <outlet property="wizardClassLabel" destination="sJM-UT-HKV" id="eE6-cQ-EaI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3J-Lw-3TF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

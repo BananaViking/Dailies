@@ -193,8 +193,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
             playerStats.streak += 1
+            UserDefaults.standard.set(playerStats.streak, forKey: "streak")
             if playerStats.streak > playerStats.maxStreak {
                 playerStats.maxStreak = playerStats.streak
+                UserDefaults.standard.set(playerStats.maxStreak, forKey: "maxStreak")
             }
             let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(playerStats.streak) \nMax Streak: \(playerStats.maxStreak)", preferredStyle: .alert)
             

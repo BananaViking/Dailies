@@ -10,8 +10,24 @@ import UIKit
 
 class PlayerStatsViewController: UITableViewController {
     
-    
     var landscapeVC: LandscapeViewController?
+
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var wizardClassLabel: UILabel!
+    @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var maxStreakLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateLabels()
+    }
+    
+    func updateLabels() {
+        levelLabel.text = ""
+        wizardClassLabel.text = ""
+        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
+        maxStreakLabel.text = "\(UserDefaults.standard.object(forKey: "maxStreak") ?? "0")"
+    }
     
     // MARK: - Landscape
     
