@@ -21,6 +21,7 @@ class PlayerStatsViewController: UITableViewController {
         super.viewDidLoad()
         calculateRank()
         updateLabels()
+        self.tableView.allowsSelection = false 
     }
     
     func updateLabels() {
