@@ -221,10 +221,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             var message: String
             
             if gainedLevel == true { // doesnt work
-                message = "Great job! You have gained a level and reached the rank of \(playerStats.rank)."
-            }
-            if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. \n\n Next Level: \(playerStats.streak) day"
+                message = "You have gained a level and reached the rank of \(playerStats.rank). \n\n Next Level: \(playerStats.streak) days"
+            } else if dailiesDone == dailies.count {
+                message = "Great job! Yesterday you completed all \(dailiesDone) of your dailies. \n\n Next Level: \(playerStats.streak) day"
                 if playerStats.streak != 1 {
                     message += "s"
                 }

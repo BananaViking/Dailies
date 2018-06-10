@@ -52,15 +52,15 @@ class PlayerStatsViewController: UITableViewController {
         } else if playerStats.level == 5 {
             playerStats.rank = "Mage"
         } else if playerStats.level == 6 {
-            playerStats.rank = "Archmage"
+            playerStats.rank = "Battle Mage"
         } else if playerStats.level == 7 {
-            playerStats.rank = "Wizard"
+            playerStats.rank = "Archmage"
         } else if playerStats.level == 8 {
-            playerStats.rank = "Master Wizard"
+            playerStats.rank = "Wizard"
         } else if playerStats.level == 9 {
-            playerStats.rank = "Grandmaster Wizard"
+            playerStats.rank = "Master Wizard"
         } else if playerStats.level == 10 {
-            playerStats.rank = "Transcendent"
+            playerStats.rank = "Grandmaster Wizard"
         }
     }
     
