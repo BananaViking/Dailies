@@ -46,6 +46,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
+        playerStats.level = UserDefaults.standard.integer(forKey: "level")
+        
+        if playerStats.level == 0 {
+            playerStats.level = 1
+        }
+        
+        print("level: \(playerStats.level)")
+        
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
@@ -177,24 +186,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
-        playerStats.level = UserDefaults.standard.integer(forKey: "level")
-        print("level: \(playerStats.level)")
         if dailiesDone == dailies.count {
             playerStats.streak += 1
             if playerStats.streak == 3 {
                 playerStats.level += 1
                 playerStats.streak = 0
             }
-//            UserDefaults.standard.set(playerStats.streak, forKey: "streak")
-//            print("streak: \(playerStats.streak)")
         } else {
             playerStats.streak = 0
         }
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
-        print("streak: \(playerStats.streak)")
-        print("level after set: \(playerStats.level)")
     }
     
     func checkLastLaunch() {
@@ -213,7 +215,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("lastLaunchDate: \(lastLaunchDate)")
         print("todayDate: \(todayDate)")
         
-        if lastLaunchDate == todayDate { // change this back to !=
+        if lastLaunchDate != todayDate { // change this back to !=
             var message: String
             
             if dailiesDone == dailies.count {
