@@ -16,6 +16,7 @@ class PlayerStatsViewController: UITableViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var daysLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,14 @@ class PlayerStatsViewController: UITableViewController {
     func updateLabels() {
         levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
         rankLabel.text = playerStats.rank
-        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
+        
+        let nextLevel = 3 - UserDefaults.standard.integer(forKey: "streak") // change to 7 on launch
+        streakLabel.text = String(nextLevel)
+        
+        if nextLevel == 1 {
+            daysLabel.text = "day"
+        }
+//        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
     }
     
     func calculateRank() {

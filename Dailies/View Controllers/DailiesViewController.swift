@@ -188,7 +188,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
             playerStats.streak += 1
-            if playerStats.streak == 3 {
+            if playerStats.streak == 3 { // change to 7 on launch
                 playerStats.level += 1
                 playerStats.streak = 0
             }
@@ -215,7 +215,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("lastLaunchDate: \(lastLaunchDate)")
         print("todayDate: \(todayDate)")
         
-        if lastLaunchDate != todayDate { // change this back to !=
+        if lastLaunchDate == todayDate { // change this back to !=
             var message: String
             
             if dailiesDone == dailies.count {
