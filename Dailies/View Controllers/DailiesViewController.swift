@@ -47,13 +47,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         super.viewDidLoad()
         
         loadDailies()
-        
+
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
-        
+        print("dailesDone: \(dailiesDone)")
+
         checkLastLaunch()
-        
+        resetDailies()
+
     }
     
     // MARK: - tableView Delegates
@@ -219,9 +221,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-            
-            resetDailies()
+            print("before debug warning")
+            self.present(alert, animated: true, completion: nil)
+            print("after debug warning")
         } else {
             print("You have already logged in today.")
         }
