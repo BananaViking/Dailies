@@ -19,16 +19,11 @@ protocol DailyDetailViewControllerDelegate: class {
 
 class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
-    weak var delegate: DailyDetailViewControllerDelegate?
-    
-    var dailyToEdit: Daily?
-    
-    var dueDate = Date()
-    
-    var datePickerVisible = false
-    
     var landscapeVC: LandscapeViewController?
-
+    weak var delegate: DailyDetailViewControllerDelegate?
+    var dailyToEdit: Daily?
+    var dueDate = Date()
+    var datePickerVisible = false
     
     // MARK: - Actions
     @IBAction func cancel() {
@@ -76,15 +71,10 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
-    
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
-    
     @IBOutlet weak var dueDateLabel: UILabel!
-    
     @IBOutlet weak var datePickerCell: UITableViewCell!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     //MARK: - tableView Delegates

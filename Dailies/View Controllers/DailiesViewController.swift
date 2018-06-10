@@ -10,12 +10,10 @@ import UIKit
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
-    var dailies = [Daily]()
-    var playerStats = PlayerStats()
-    var dailiesDone = 0
-    
     var landscapeVC: LandscapeViewController?
-
+    var playerStats = PlayerStats()
+    var dailies = [Daily]()
+    var dailiesDone = 0
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -42,6 +40,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         navigationController?.popViewController(animated: true)
         saveDailies()
+    }
+    
+    // MARK: - main overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loadDailies()
+        
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
+        }
+        
+        checkLastLaunch()
+        
     }
     
     // MARK: - tableView Delegates
@@ -100,19 +112,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - Functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        loadDailies()
-        
-        for daily in dailies where daily.checked {
-            dailiesDone += 1
-        }
-        
-        checkLastLaunch()
-        
-    }
-    
     func configureCheckmark(for cell: UITableViewCell,
                             with daily: Daily) {
         let label = cell.viewWithTag(1001) as! UILabel
@@ -228,9 +227,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    
     // MARK: - Landscape
-    
     // landscape transition
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)

@@ -20,6 +20,7 @@ class PlayerStatsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calculateRank()
         updateLabels()
     }
     
@@ -30,8 +31,31 @@ class PlayerStatsViewController: UITableViewController {
         maxStreakLabel.text = "\(UserDefaults.standard.object(forKey: "maxStreak") ?? "0")"
     }
     
-    // MARK: - Landscape
+    func calculateRank() {
+        if playerStats.level == 1 {
+            playerStats.rank = "Novice"
+        } else if playerStats.level == 2 {
+            playerStats.rank = "Apprentice"
+        } else if playerStats.level == 3 {
+            playerStats.rank = "Initiate"
+        } else if playerStats.level == 4 {
+            playerStats.rank = "Adept"
+        } else if playerStats.level == 5 {
+            playerStats.rank = "Mage"
+        } else if playerStats.level == 6 {
+            playerStats.rank = "Archmage"
+        } else if playerStats.level == 7 {
+            playerStats.rank = "Wizard"
+        } else if playerStats.level == 8 {
+            playerStats.rank = "Master Wizard"
+        } else if playerStats.level == 9 {
+            playerStats.rank = "Grandmaster Wizard"
+        } else if playerStats.level == 10 {
+            playerStats.rank = "Transcendent"
+        }
+    }
     
+    // MARK: - Landscape
     // landscape transition
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
