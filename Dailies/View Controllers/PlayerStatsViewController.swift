@@ -16,7 +16,6 @@ class PlayerStatsViewController: UITableViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
-    @IBOutlet weak var maxStreakLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,6 @@ class PlayerStatsViewController: UITableViewController {
         levelLabel.text = String(playerStats.level)
         rankLabel.text = playerStats.rank
         streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
-        maxStreakLabel.text = "\(UserDefaults.standard.object(forKey: "maxStreak") ?? "0")"
     }
     
     func calculateRank() {

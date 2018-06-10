@@ -181,13 +181,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
             playerStats.streak += 1
+            print("streak: \(playerStats.streak)")
             UserDefaults.standard.set(playerStats.streak, forKey: "streak")
-            if playerStats.streak > playerStats.maxStreak {
-                playerStats.maxStreak = playerStats.streak
-                UserDefaults.standard.set(playerStats.maxStreak, forKey: "maxStreak")
-            }
         } else {
             playerStats.streak = 0
+            print("streak: \(playerStats.streak)")
             UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         }
     }
@@ -214,9 +212,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             checkDailiesComplete()
             
             if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak) \n Max Streak: \(playerStats.maxStreak)"
+                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak)"
             } else {
-                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak) \n Max Streak: \(playerStats.maxStreak)"
+                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak)"
             }
             
             let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)

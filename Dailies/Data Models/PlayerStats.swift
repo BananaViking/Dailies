@@ -13,5 +13,4 @@ class PlayerStats: NSObject, Codable {
     var level = 1
     var rank = ""
     var streak = 0
-    var maxStreak = 0
 }
