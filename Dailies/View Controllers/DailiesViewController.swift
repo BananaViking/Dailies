@@ -60,11 +60,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
-        
         let daily = dailies[indexPath.row]
         
         configureText(for: cell, with: daily)
-        
         configureCheckmark(for: cell, with: daily)
         
         return cell
@@ -176,6 +174,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
+        saveDailies()
         print("dailiesDone from resetDailies: \(dailiesDone)") // CORRECT
     }
     
