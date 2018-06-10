@@ -14,6 +14,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var playerStats = PlayerStats()
     var dailies = [Daily]()
     var dailiesDone = 0
+    var gainedLevel = false
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -187,13 +188,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
-            playerStats.streak += 1
-            if playerStats.streak == 3 { // change to 7 on launch
+            playerStats.streak -= 1
+            if playerStats.streak == 0 { // change to 7 on launch
                 playerStats.level += 1
-                playerStats.streak = 0
+                gainedLevel = true
+                playerStats.streak = 3 // change to 7 on launch
             }
         } else {
-            playerStats.streak = 0
+            playerStats.streak = 3 // change to 7 on launch
         }
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
@@ -215,13 +217,19 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("lastLaunchDate: \(lastLaunchDate)")
         print("todayDate: \(todayDate)")
         
-        if lastLaunchDate == todayDate { // change this back to !=
+        if lastLaunchDate == todayDate { // change this back to != on launch
             var message: String
             
+            if gainedLevel == true { // doesnt work
+                message = "Great job! You have gained a level and reached the rank of \(playerStats.rank)."
+            }
             if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak)"
+                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. \n\n Next Level: \(playerStats.streak) day"
+                if playerStats.streak != 1 {
+                    message += "s"
+                }
             } else {
-                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak)"
+                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Next Level: \(playerStats.streak) days"
             }
             
             let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
@@ -229,6 +237,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
             print("after debug warning")
+            gainedLevel = false
         } else {
             print("You have already logged in today.")
         }

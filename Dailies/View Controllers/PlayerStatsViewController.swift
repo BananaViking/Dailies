@@ -29,13 +29,14 @@ class PlayerStatsViewController: UITableViewController {
         levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
         rankLabel.text = playerStats.rank
         
-        let nextLevel = 3 - UserDefaults.standard.integer(forKey: "streak") // change to 7 on launch
-        streakLabel.text = String(nextLevel)
+//        let nextLevel = 3 - UserDefaults.standard.integer(forKey: "streak") // change to 7 on launch
+//        streakLabel.text = String(nextLevel)
+        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "3")" // change to 7 on launch
+
         
-        if nextLevel == 1 {
+        if streakLabel.text == "1" {
             daysLabel.text = "day"
         }
-//        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
     }
     
     func calculateRank() {
