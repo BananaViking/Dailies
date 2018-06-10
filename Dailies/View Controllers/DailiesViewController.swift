@@ -59,6 +59,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
+        calculateRank()
         resetDailies()
 
     }
@@ -219,9 +220,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             var message: String
+            var title = "Welcome back!"
             
             if gainedLevel == true { // doesnt work
-                message = "You have gained a level and reached the rank of \(playerStats.rank). \n\n Next Level: \(playerStats.streak) days"
+                calculateRank()
+                title = "Congratulations!"
+                message = "You have reached level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
             } else if dailiesDone == dailies.count {
                 message = "Great job! Yesterday you completed all \(dailiesDone) of your dailies. \n\n Next Level: \(playerStats.streak) day"
                 if playerStats.streak != 1 {
@@ -231,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Next Level: \(playerStats.streak) days"
             }
             
-            let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
@@ -240,6 +244,32 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else {
             print("You have already logged in today.")
         }
+    }
+    
+    func calculateRank() {
+        playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
+        if playerStats.level == 1 {
+            playerStats.rank = "Novice"
+        } else if playerStats.level == 2 {
+            playerStats.rank = "Apprentice"
+        } else if playerStats.level == 3 {
+            playerStats.rank = "Initiate"
+        } else if playerStats.level == 4 {
+            playerStats.rank = "Adept"
+        } else if playerStats.level == 5 {
+            playerStats.rank = "Mage"
+        } else if playerStats.level == 6 {
+            playerStats.rank = "Battle Mage"
+        } else if playerStats.level == 7 {
+            playerStats.rank = "Archmage"
+        } else if playerStats.level == 8 {
+            playerStats.rank = "Wizard"
+        } else if playerStats.level == 9 {
+            playerStats.rank = "Master Wizard"
+        } else if playerStats.level == 10 {
+            playerStats.rank = "Grandmaster Wizard"
+        }
+        UserDefaults.standard.set(playerStats.rank, forKey: "rank")
     }
     
     // MARK: - Landscape

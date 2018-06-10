@@ -11,6 +11,6 @@ import Foundation
 class PlayerStats: NSObject, Codable {
     
     var level = 1
-    var rank = ""
+    var rank = "Novice"
     var streak = 3 // change to 7 on launch
 }
