@@ -189,14 +189,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
+            if playerStats.streak > 0 {
             playerStats.streak -= 1
+            }
             if playerStats.streak == 0 { // change to 7 on launch
                 playerStats.level += 1
                 gainedLevel = true
-                playerStats.streak = 3 // change to 7 on launch
+                playerStats.streak = 2 // change to 7 on launch
             }
         } else {
-            playerStats.streak = 3 // change to 7 on launch
+            playerStats.streak = 2 // change to 7 on launch
         }
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
@@ -225,7 +227,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if gainedLevel == true { // doesnt work
                 calculateRank()
                 title = "Congratulations!"
-                message = "You have reached level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
+                message = "You have reached Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
             } else if dailiesDone == dailies.count {
                 message = "Great job! Yesterday you completed all \(dailiesDone) of your dailies. \n\n Next Level: \(playerStats.streak) day"
                 if playerStats.streak != 1 {

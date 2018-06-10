@@ -12,5 +12,5 @@ class PlayerStats: NSObject, Codable {
     
     var level = 1
     var rank = "Novice"
-    var streak = 3 // change to 7 on launch
+    var streak = 2 // change to 7 on launch
 }
