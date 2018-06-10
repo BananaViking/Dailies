@@ -19,12 +19,10 @@ protocol DailyDetailViewControllerDelegate: class {
 
 class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
+    var landscapeVC: LandscapeViewController?
     weak var delegate: DailyDetailViewControllerDelegate?
-    
     var dailyToEdit: Daily?
-    
     var dueDate = Date()
-    
     var datePickerVisible = false
     
     // MARK: - Actions
@@ -73,15 +71,10 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
-    
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var shouldRemindSwitch: UISwitch!
-    
     @IBOutlet weak var dueDateLabel: UILabel!
-    
     @IBOutlet weak var datePickerCell: UITableViewCell!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     //MARK: - tableView Delegates
@@ -218,6 +211,58 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         hideDatePicker()
+    }
+    
+    // MARK: - Landscape
+    
+    // landscape transition
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
+        }
+    }
+    
+    func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        guard landscapeVC == nil else { return }
+        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        
+        if let controller = landscapeVC {
+            controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
+            // alpha 0 to 1 makes the transition fade in
+            controller.view.alpha = 0
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 1
+            }, completion: { _ in
+                controller.didMove(toParentViewController: self)
+            })
+            //            self.navigationItem.title = "Your Kingdom"
+            self.navigationController?.isNavigationBarHidden = true
+        }
+        textField.resignFirstResponder()
+    }
+    
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        if let controller = landscapeVC {
+            controller.willMove(toParentViewController: nil)
+            
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 0
+            }, completion: { _ in
+                controller.view.removeFromSuperview()
+                controller.removeFromParentViewController()
+                self.landscapeVC = nil
+                //                self.navigationItem.title = "Dailies"
+                self.navigationController?.isNavigationBarHidden = false
+            })
+        }
+        textField.becomeFirstResponder()
     }
 }
 

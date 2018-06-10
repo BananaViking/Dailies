@@ -10,10 +10,10 @@ import UIKit
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
+    var landscapeVC: LandscapeViewController?
+    var playerStats = PlayerStats()
     var dailies = [Daily]()
     var dailiesDone = 0
-    var streak = 0  // this needs to get saved as UserDefault?
-    var level = "Beginner"  // this needs to get saved as UserDefault?
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -42,6 +42,26 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
+    // MARK: - main overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
+        playerStats.level = UserDefaults.standard.integer(forKey: "level")
+        
+        if playerStats.level == 0 {
+            playerStats.level = 1
+        }
+        
+        print("level: \(playerStats.level)")
+        
+        loadDailies()
+        checkDailiesComplete()
+        checkLastLaunch()
+        resetDailies()
+
+    }
+    
     // MARK: - tableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailies.count
@@ -49,11 +69,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
-        
         let daily = dailies[indexPath.row]
         
         configureText(for: cell, with: daily)
-        
         configureCheckmark(for: cell, with: daily)
         
         return cell
@@ -68,7 +86,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if daily.checked {
                 dailiesDone += 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
-                checkDailiesComplete()
             } else {
                 if dailiesDone > 0 {
                     dailiesDone -= 1
@@ -99,41 +116,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - Functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        loadDailies()
-        
-        for daily in dailies where daily.checked {
-            dailiesDone += 1
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
-        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
-        
-        let today = Date()
-        let todayDate = dateFormatter.string(from: today)
-        
-        print("lastLaunch: \(lastLaunch)")
-        print("today: \(today)")
-        print("lastLaunchDate: \(lastLaunchDate)")
-        print("todayDate: \(todayDate)")
-        
-        if lastLaunchDate == todayDate { // change this back to !=
-            let alert = UIAlertController(title: "Welcome back!", message: "Yesterday you completed \(dailiesDone) of \(dailies.count) dailies.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-            
-            resetDailies()
-        } else {
-            print("You have already logged in today.")
-        }
-    }
-    
     func configureCheckmark(for cell: UITableViewCell,
                             with daily: Daily) {
         let label = cell.viewWithTag(1001) as! UILabel
@@ -186,15 +168,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 print("Error decoding daily array.")
             }
         }
-    }
-    
-    func checkDailiesComplete() {
-        let alert = UIAlertController(title: "NICE WORK!", message: "You completed all of your Dailies today! \n\nStreak: \(streak) \nLevel: \(level)", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Gimme a high five! ✋", style: .default, handler: nil))
-        
-        if dailiesDone == dailies.count {
-            present(alert, animated: true, completion: nil)
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
         }
     }
     
@@ -206,6 +182,105 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
+        saveDailies()
+    }
+    
+    func checkDailiesComplete() {
+        if dailiesDone == dailies.count {
+            playerStats.streak += 1
+            if playerStats.streak == 3 {
+                playerStats.level += 1
+                playerStats.streak = 0
+            }
+        } else {
+            playerStats.streak = 0
+        }
+        UserDefaults.standard.set(playerStats.streak, forKey: "streak")
+        UserDefaults.standard.set(playerStats.level, forKey: "level")
+    }
+    
+    func checkLastLaunch() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
+        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
+        
+        let today = Date()
+        let todayDate = dateFormatter.string(from: today)
+        
+        print("lastLaunch: \(lastLaunch)")
+        print("today: \(today)")
+        print("lastLaunchDate: \(lastLaunchDate)")
+        print("todayDate: \(todayDate)")
+        
+        if lastLaunchDate != todayDate { // change this back to !=
+            var message: String
+            
+            if dailiesDone == dailies.count {
+                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak)"
+            } else {
+                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak)"
+            }
+            
+            let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            print("before debug warning")
+            self.present(alert, animated: true, completion: nil)
+            print("after debug warning")
+        } else {
+            print("You have already logged in today.")
+        }
+    }
+    
+    // MARK: - Landscape
+    // landscape transition
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
+        }
+    }
+    
+    func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        guard landscapeVC == nil else { return }
+        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        
+        if let controller = landscapeVC {
+            controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
+            // alpha 0 to 1 makes the transition fade in
+            controller.view.alpha = 0
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 1
+            }, completion: { _ in
+                controller.didMove(toParentViewController: self)
+            })
+            //            self.navigationItem.title = "Your Kingdom"
+            self.navigationController?.isNavigationBarHidden = true
+        }
+    }
+    
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        if let controller = landscapeVC {
+            controller.willMove(toParentViewController: nil)
+            
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 0
+            }, completion: { _ in
+                controller.view.removeFromSuperview()
+                controller.removeFromParentViewController()
+                self.landscapeVC = nil
+                //                self.navigationItem.title = "Dailies"
+                self.navigationController?.isNavigationBarHidden = false
+            })
+        }
     }
     
     // MARK: - Navigation

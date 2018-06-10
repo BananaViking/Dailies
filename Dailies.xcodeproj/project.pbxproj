@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB520CC65C300059761 /* LandscapeViewController.swift */; };
+		0553BEB820CC6AA800059761 /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB720CC6AA800059761 /* PlayerStatsViewController.swift */; };
+		0553BEBA20CC71B100059761 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB920CC71B100059761 /* PlayerStats.swift */; };
 		0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D84520BF5C1100D733C9 /* AppDelegate.swift */; };
 		0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D84720BF5C1100D733C9 /* DailiesViewController.swift */; };
 		0569D84B20BF5C1100D733C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84920BF5C1100D733C9 /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0553BEB520CC65C300059761 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		0553BEB720CC6AA800059761 /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
+		0553BEB920CC71B100059761 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		0569D84220BF5C1100D733C9 /* Dailies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dailies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0569D84520BF5C1100D733C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0569D84720BF5C1100D733C9 /* DailiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 			children = (
 				0569D84720BF5C1100D733C9 /* DailiesViewController.swift */,
 				059510EA20C053320014D80D /* DailyDetailViewController.swift */,
+				0553BEB520CC65C300059761 /* LandscapeViewController.swift */,
+				0553BEB720CC6AA800059761 /* PlayerStatsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 			children = (
 				0569D85820BF63B200D733C9 /* Daily.swift */,
 				05C3F4D920C6D8A300C78184 /* DailiesList.swift */,
+				0553BEB920CC71B100059761 /* PlayerStats.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -172,10 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0553BEBA20CC71B100059761 /* PlayerStats.swift in Sources */,
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
+				0553BEB820CC6AA800059761 /* PlayerStatsViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
 				05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */,
+				0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */,
 				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,6 @@
 import Foundation
 
 class DailiesList: NSObject, Codable {
-    // put instance variables here
-    // put functions for countring dailiesDone here and call them in DailiesVC
+    // put instance variables here?
+    // put functions for counting dailiesDone here and call them in DailiesVC?
 }
