@@ -25,12 +25,13 @@ class PlayerStatsViewController: UITableViewController {
     }
     
     func updateLabels() {
-        levelLabel.text = String(playerStats.level)
+        levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
         rankLabel.text = playerStats.rank
         streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
     }
     
     func calculateRank() {
+        playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
         if playerStats.level == 1 {
             playerStats.rank = "Novice"
         } else if playerStats.level == 2 {
