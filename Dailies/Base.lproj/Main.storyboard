@@ -344,7 +344,7 @@
                     </tableViewCellContentView>
                 </tableViewCell>
             </objects>
-            <point key="canvasLocation" x="1158.75" y="77.112676056338032"/>
+            <point key="canvasLocation" x="1163" y="79"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4cq-An-ho2">

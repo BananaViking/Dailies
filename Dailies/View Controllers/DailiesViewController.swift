@@ -47,12 +47,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         super.viewDidLoad()
         
         loadDailies()
-
-        for daily in dailies where daily.checked {
-            dailiesDone += 1
-        }
-        print("dailesDone: \(dailiesDone)")
-
+        checkDailiesComplete()
         checkLastLaunch()
         resetDailies()
 
@@ -166,6 +161,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 print("Error decoding daily array.")
             }
         }
+        
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
+        }
+        print("dailesDone from loadDailies: \(dailiesDone)") // WRONG
     }
     
     func resetDailies() {
@@ -176,17 +176,18 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
+        print("dailiesDone from resetDailies: \(dailiesDone)") // CORRECT
     }
     
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
-            playerStats.streak += 1
-            print("streak: \(playerStats.streak)")
+            playerStats.streak = UserDefaults.standard.integer(forKey: "streak") + 1
             UserDefaults.standard.set(playerStats.streak, forKey: "streak")
+            print("streak: \(playerStats.streak)")
         } else {
             playerStats.streak = 0
-            print("streak: \(playerStats.streak)")
             UserDefaults.standard.set(playerStats.streak, forKey: "streak")
+            print("streak: \(playerStats.streak)")
         }
     }
     
@@ -209,13 +210,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if lastLaunchDate == todayDate { // change this back to !=
             var message: String
             
-            checkDailiesComplete()
-            
+            print("dailiesDone from checkLastlaunch before message: \(dailiesDone)") // WRONG
             if dailiesDone == dailies.count {
                 message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak)"
             } else {
                 message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak)"
             }
+            
+            print("dailiesDone from checkLastlaunch after message: \(dailiesDone)") // WRONG
             
             let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
