@@ -54,8 +54,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playerStats.level = 1
         }
         
-        print("level: \(playerStats.level)")
-        
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
@@ -188,6 +186,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
+        let daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         if dailiesDone == dailies.count {
             if playerStats.streak > 0 {
             playerStats.streak -= 1
@@ -199,9 +198,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         } else {
             playerStats.streak = 2 // change to 7 on launch
+            playerStats.daysMissed += 1
         }
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
+        UserDefaults.standard.set(playerStats.daysMissed, forKey: "daysMissed")
+        print("daysMissed: \(daysMissed)")
     }
     
     func checkLastLaunch() {
