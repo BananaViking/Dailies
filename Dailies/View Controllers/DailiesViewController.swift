@@ -228,19 +228,46 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             if gainedLevel == true { // doesnt work
                 calculateRank()
-                title = "Congratulations!"
-                message = "You have reached Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
+                title = "Victory!"
+                message = "You have vanquished the enemy and reached Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
             } else if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all \(dailiesDone) of your dailies. \n\n Next Level: \(playerStats.streak) day"
+                message = "Great job! Yesterday you completed all of your dailies. \n\n Next Level: \(playerStats.streak) day"
                 if playerStats.streak != 1 {
                     message += "s"
                 }
             } else {
-                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Next Level: \(playerStats.streak) days"
+                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today or you will surely be defeated. \n\n Next Level: \(playerStats.streak) days"
             }
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            var imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
+            
+            if playerStats.level == 1 {
+                imageView.image = UIImage(named: "enemy1")
+            } else if playerStats.level == 2 {
+                imageView.image = UIImage(named: "enemy2")
+            } else if playerStats.level == 3 {
+                imageView.image = UIImage(named: "enemy3")
+            } else if playerStats.level == 4 {
+                imageView.image = UIImage(named: "enemy4")
+            } else if playerStats.level == 5 {
+                imageView.image = UIImage(named: "enemy5")
+            } else if playerStats.level == 6 {
+                imageView.image = UIImage(named: "enemy6")
+            } else if playerStats.level == 7 {
+                imageView.image = UIImage(named: "enemy7")
+            } else if playerStats.level == 8 {
+                imageView.image = UIImage(named: "enemy8")
+            } else if playerStats.level == 9 {
+                imageView.image = UIImage(named: "enemy9")
+            } else if playerStats.level > 9 {
+                imageView.image = UIImage(named: "enemy10")
+            }
+            
+            alert.view.addSubview(imageView)
+            
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
             print("after debug warning")
