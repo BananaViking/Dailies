@@ -270,7 +270,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playerStats.rank = "Wizard"
         } else if playerStats.level == 9 {
             playerStats.rank = "Master Wizard"
-        } else if playerStats.level == 10 {
+        } else if playerStats.level > 9 {
             playerStats.rank = "Grandmaster Wizard"
         }
         UserDefaults.standard.set(playerStats.rank, forKey: "rank")
