@@ -11,7 +11,7 @@ import Foundation
 class PlayerStats: NSObject, Codable {
     
     var level = 1
-    var rank = "Novice"
+    var rank = "Neophyte"
     var streak = 2 // change to 7 on launch
     var daysMissed = 0
 }

@@ -253,7 +253,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func calculateRank() {
         playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
         if playerStats.level == 1 {
-            playerStats.rank = "Novice"
+            playerStats.rank = "Neophyte"
         } else if playerStats.level == 2 {
             playerStats.rank = "Apprentice"
         } else if playerStats.level == 3 {
