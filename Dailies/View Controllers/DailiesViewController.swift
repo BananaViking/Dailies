@@ -14,6 +14,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var playerStats = PlayerStats()
     var dailies = [Daily]()
     var dailiesDone = 0
+    var gainedLevel = false
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -53,11 +54,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playerStats.level = 1
         }
         
-        print("level: \(playerStats.level)")
-        
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
+        calculateRank()
         resetDailies()
 
     }
@@ -186,17 +186,24 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
+        let daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         if dailiesDone == dailies.count {
-            playerStats.streak += 1
-            if playerStats.streak == 3 {
+            if playerStats.streak > 0 {
+            playerStats.streak -= 1
+            }
+            if playerStats.streak == 0 { // change to 7 on launch
                 playerStats.level += 1
-                playerStats.streak = 0
+                gainedLevel = true
+                playerStats.streak = 2 // change to 7 on launch
             }
         } else {
-            playerStats.streak = 0
+            playerStats.streak = 2 // change to 7 on launch
+            playerStats.daysMissed += 1
         }
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
+        UserDefaults.standard.set(playerStats.daysMissed, forKey: "daysMissed")
+        print("daysMissed: \(daysMissed)")
     }
     
     func checkLastLaunch() {
@@ -215,23 +222,58 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("lastLaunchDate: \(lastLaunchDate)")
         print("todayDate: \(todayDate)")
         
-        if lastLaunchDate != todayDate { // change this back to !=
+        if lastLaunchDate == todayDate { // change this back to != on launch
             var message: String
+            var title = "Welcome back!"
             
-            if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all \(dailiesDone) of your \(dailies.count) dailies. At this rate you'll become a Grandmaster Wizard before you're 80! \n\n Streak: \(playerStats.streak)"
+            if gainedLevel == true { // doesnt work
+                calculateRank()
+                title = "Congratulations!"
+                message = "You have reached Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
+            } else if dailiesDone == dailies.count {
+                message = "Great job! Yesterday you completed all \(dailiesDone) of your dailies. \n\n Next Level: \(playerStats.streak) day"
+                if playerStats.streak != 1 {
+                    message += "s"
+                }
             } else {
-                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Streak: \(playerStats.streak)"
+                message = "Yesterday you only completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today if you don't want to lose a level. \n\n Next Level: \(playerStats.streak) days"
             }
             
-            let alert = UIAlertController(title: "Welcome back!", message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
             print("after debug warning")
+            gainedLevel = false
         } else {
             print("You have already logged in today.")
         }
+    }
+    
+    func calculateRank() {
+        playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
+        if playerStats.level == 1 {
+            playerStats.rank = "Neophyte"
+        } else if playerStats.level == 2 {
+            playerStats.rank = "Apprentice"
+        } else if playerStats.level == 3 {
+            playerStats.rank = "Initiate"
+        } else if playerStats.level == 4 {
+            playerStats.rank = "Adept"
+        } else if playerStats.level == 5 {
+            playerStats.rank = "Mage"
+        } else if playerStats.level == 6 {
+            playerStats.rank = "Battle Mage"
+        } else if playerStats.level == 7 {
+            playerStats.rank = "Archmage"
+        } else if playerStats.level == 8 {
+            playerStats.rank = "Wizard"
+        } else if playerStats.level == 9 {
+            playerStats.rank = "Master Wizard"
+        } else if playerStats.level > 9 {
+            playerStats.rank = "Grandmaster Wizard"
+        }
+        UserDefaults.standard.set(playerStats.rank, forKey: "rank")
     }
     
     // MARK: - Landscape

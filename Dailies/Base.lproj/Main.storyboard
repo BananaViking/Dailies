@@ -24,7 +24,7 @@
                                     <segue destination="RQ3-lq-D5Q" kind="embed" id="eVP-46-z4Y"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wizard" translatesAutoresizingMaskIntoConstraints="NO" id="Qqw-NQ-VfS">
+                            <imageView userInteractionEnabled="NO" tag="9000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wizard1" translatesAutoresizingMaskIntoConstraints="NO" id="Qqw-NQ-VfS">
                                 <rect key="frame" x="284" y="0.0" width="284" height="320"/>
                             </imageView>
                         </subviews>
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="Player Info" id="xdV-8S-Qlg">
+                            <tableViewSection headerTitle="Quest Info" id="xdV-8S-Qlg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="htn-1p-Xfz">
                                         <rect key="frame" x="0.0" y="55.5" width="284" height="44"/>
@@ -76,7 +76,7 @@
                                                     <rect key="frame" x="71" y="12" width="233" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -101,7 +101,7 @@
                                                     <rect key="frame" x="73" y="12" width="231" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -110,10 +110,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Streaks" id="L0W-IE-BY2">
+                            <tableViewSection id="L0W-IE-BY2">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mko-aI-L0o">
-                                        <rect key="frame" x="0.0" y="199.5" width="284" height="44"/>
+                                        <rect key="frame" x="0.0" y="179.5" width="284" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mko-aI-L0o" id="ZF6-lD-HVa">
                                             <rect key="frame" x="0.0" y="0.0" width="284" height="43.5"/>
@@ -130,14 +130,14 @@
                                                     <rect key="frame" x="113" y="12" width="10" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ve-ar-Khp">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="44" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ve-ar-Khp">
                                                     <rect key="frame" x="127" y="12" width="141" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -154,6 +154,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Player Stats" id="NfJ-Wn-DoX"/>
                     <connections>
+                        <outlet property="daysLabel" destination="0ve-ar-Khp" id="fSp-9Q-V0P"/>
                         <outlet property="levelLabel" destination="59C-DF-xK0" id="VAP-Vx-maD"/>
                         <outlet property="rankLabel" destination="sJM-UT-HKV" id="GoP-E5-EJC"/>
                         <outlet property="streakLabel" destination="4da-eK-kme" id="cxg-9G-aYn"/>
@@ -393,7 +394,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wizard" width="1920" height="1080"/>
+        <image name="wizard1" width="4032" height="3024"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZIa-dn-2fw"/>

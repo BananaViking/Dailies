@@ -16,42 +16,22 @@ class PlayerStatsViewController: UITableViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var daysLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calculateRank()
         updateLabels()
         self.tableView.allowsSelection = false 
     }
     
     func updateLabels() {
         levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
-        rankLabel.text = playerStats.rank
-        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "0")"
-    }
-    
-    func calculateRank() {
-        playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
-        if playerStats.level == 1 {
-            playerStats.rank = "Novice"
-        } else if playerStats.level == 2 {
-            playerStats.rank = "Apprentice"
-        } else if playerStats.level == 3 {
-            playerStats.rank = "Initiate"
-        } else if playerStats.level == 4 {
-            playerStats.rank = "Adept"
-        } else if playerStats.level == 5 {
-            playerStats.rank = "Mage"
-        } else if playerStats.level == 6 {
-            playerStats.rank = "Archmage"
-        } else if playerStats.level == 7 {
-            playerStats.rank = "Wizard"
-        } else if playerStats.level == 8 {
-            playerStats.rank = "Master Wizard"
-        } else if playerStats.level == 9 {
-            playerStats.rank = "Grandmaster Wizard"
-        } else if playerStats.level == 10 {
-            playerStats.rank = "Transcendent"
+        rankLabel.text = "\(UserDefaults.standard.object(forKey: "rank") ?? "Novice")"
+        streakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "3")" // change to 7 on launch
+
+        
+        if streakLabel.text == "1" {
+            daysLabel.text = "day"
         }
     }
     
