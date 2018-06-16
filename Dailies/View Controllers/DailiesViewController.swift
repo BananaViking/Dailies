@@ -47,12 +47,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
-        playerStats.level = UserDefaults.standard.integer(forKey: "level")
-        
         if playerStats.level == 0 {
             playerStats.level = 1
         }
+        
+        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
+        playerStats.level = UserDefaults.standard.integer(forKey: "level")
+        playerStats.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
         loadDailies()
         checkDailiesComplete()
@@ -186,10 +187,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        let daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         if dailiesDone == dailies.count {
             if playerStats.streak > 0 {
             playerStats.streak -= 1
+            playerStats.daysMissed = 0
             }
             if playerStats.streak == 0 { // change to 7 on launch
                 playerStats.level += 1
@@ -199,11 +200,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else {
             playerStats.streak = 2 // change to 7 on launch
             playerStats.daysMissed += 1
+            if playerStats.daysMissed >= 2 {
+                if playerStats.level > 1 {
+                    playerStats.level -= 1
+                }
+            }
         }
+        
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
         UserDefaults.standard.set(playerStats.daysMissed, forKey: "daysMissed")
-        print("daysMissed: \(daysMissed)")
     }
     
     func checkLastLaunch() {
@@ -242,7 +248,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
-            var imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
+            let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
             
             if playerStats.level == 1 {
                 imageView.image = UIImage(named: "enemy1")
