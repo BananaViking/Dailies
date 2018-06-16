@@ -255,27 +255,29 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
             
-            if playerStats.level == 1 {
-                imageView.image = UIImage(named: "enemy1")
-            } else if playerStats.level == 2 {
-                imageView.image = UIImage(named: "enemy2")
-            } else if playerStats.level == 3 {
-                imageView.image = UIImage(named: "enemy3")
-            } else if playerStats.level == 4 {
-                imageView.image = UIImage(named: "enemy4")
-            } else if playerStats.level == 5 {
-                imageView.image = UIImage(named: "enemy5")
-            } else if playerStats.level == 6 {
-                imageView.image = UIImage(named: "enemy6")
-            } else if playerStats.level == 7 {
-                imageView.image = UIImage(named: "enemy7")
-            } else if playerStats.level == 8 {
-                imageView.image = UIImage(named: "enemy8")
-            } else if playerStats.level == 9 {
-                imageView.image = UIImage(named: "enemy9")
-            } else if playerStats.level > 9 {
-                imageView.image = UIImage(named: "enemy10")
-            }
+            imageView.image = UIImage(named: "advisor")
+            
+//            if playerStats.level == 1 {
+//                imageView.image = UIImage(named: "enemy1")
+//            } else if playerStats.level == 2 {
+//                imageView.image = UIImage(named: "enemy2")
+//            } else if playerStats.level == 3 {
+//                imageView.image = UIImage(named: "enemy3")
+//            } else if playerStats.level == 4 {
+//                imageView.image = UIImage(named: "enemy4")
+//            } else if playerStats.level == 5 {
+//                imageView.image = UIImage(named: "enemy5")
+//            } else if playerStats.level == 6 {
+//                imageView.image = UIImage(named: "enemy6")
+//            } else if playerStats.level == 7 {
+//                imageView.image = UIImage(named: "enemy7")
+//            } else if playerStats.level == 8 {
+//                imageView.image = UIImage(named: "enemy8")
+//            } else if playerStats.level == 9 {
+//                imageView.image = UIImage(named: "enemy9")
+//            } else if playerStats.level > 9 {
+//                imageView.image = UIImage(named: "enemy10")
+//            }
             
             alert.view.addSubview(imageView)
             
