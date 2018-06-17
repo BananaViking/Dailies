@@ -15,6 +15,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var dailies = [Daily]()
     var dailiesDone = 0
     var gainedLevel = false
+    var lostLevel = false
     
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -207,6 +208,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if playerStats.daysMissed >= 2 {
                 if playerStats.level > 1 {
                     playerStats.level -= 1
+                    lostLevel = true
                 }
             }
         }
@@ -237,17 +239,40 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             var message: String
             var title = "Welcome back!"
             
-            if gainedLevel == true { // doesnt work
+            if playerStats.level == 1 {
+                title = "Skeleton Quest"
+            } else if playerStats.level == 2 {
+                title = "Goblin Quest"
+            } else if playerStats.level == 3 {
+                title = "Witch Quest"
+            } else if playerStats.level == 4 {
+                title = "Vampire Quest"
+            } else if playerStats.level == 5 {
+                title = "Faceless Mage Quest"
+            } else if playerStats.level == 6 {
+                title = "Vampire Queen Quest"
+            } else if playerStats.level == 7 {
+                title = "Draconian Quest"
+            } else if playerStats.level == 8 {
+                title = "Ice Queen Quest"
+            } else if playerStats.level == 9 {
+                title = "Pyromancer Quest"
+            } else if playerStats.level > 9 {
+                title = "Necromancer Quest"
+            }
+            
+            if gainedLevel == true {
                 calculateRank()
-                title = "Victory!"
-                message = "You have vanquished the enemy and reached Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). \n\n Next Level: \(playerStats.streak) days"
+                message = "You have vanquished the enemy - reaching Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(title) has already begun! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
             } else if dailiesDone == dailies.count {
-                message = "Great job! Yesterday you completed all of your dailies. \n\n Next Level: \(playerStats.streak) day"
-                if playerStats.streak != 1 {
-                    message += "s"
-                }
+                message = "Excellent! Yesterday you completed all of your dailies. Keep it up, and you will complete the \(title) with your head intact! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
+//                if playerStats.streak != 1 {
+//                    message += "s"
+//                }
+            } else if lostLevel == true {
+                message = "You have been defeated - returning to Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
             } else {
-                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today or you will surely be defeated. \n\n Next Level: \(playerStats.streak) days"
+                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today or you will surely be defeated. \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
             }
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
