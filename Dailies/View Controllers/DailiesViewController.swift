@@ -48,6 +48,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let wizardImage = self.view.viewWithTag(600) as! UIImageView
+        wizardImage.image = UIImage(named: "wizard1")
+        
         if playerStats.level == 0 {
             playerStats.level = 1
         }
