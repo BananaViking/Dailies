@@ -11,7 +11,7 @@ import UIKit
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var landscapeVC: LandscapeViewController?
-    var playerStats = PlayerStats()
+    var playerStats = QuestInfo()
     var dailies = [Daily]()
     var dailiesDone = 0
     var gainedLevel = false
@@ -52,9 +52,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
         playerStats.level = UserDefaults.standard.integer(forKey: "level")
         playerStats.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
-        playerStats.highestLevel = UserDefaults.standard.integer(forKey: "highestLevel")
-        
-        
         
         if playerStats.level == 0 {
             playerStats.level = 1
@@ -290,7 +287,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 title = "Ice Queen Quest"
             } else if playerStats.level == 9 {
                 title = "Pyromancer Quest"
-            } else if playerStats.level > 9 {
+            } else if playerStats.level >= 10 {
                 title = "Necromancer Quest"
             }
             
@@ -342,7 +339,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playerStats.rank = "Wizard"
         } else if playerStats.level == 9 {
             playerStats.rank = "Master Wizard"
-        } else if playerStats.level > 9 {
+        } else if playerStats.level >= 10 {
             playerStats.rank = "Grandmaster Wizard"
         }
         UserDefaults.standard.set(playerStats.rank, forKey: "rank")

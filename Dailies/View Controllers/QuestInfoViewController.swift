@@ -8,15 +8,16 @@
 
 import UIKit
 
-class PlayerStatsViewController: UITableViewController {
+class QuestInfoViewController: UITableViewController {
     
     var landscapeVC: LandscapeViewController?
-    var playerStats = PlayerStats()
+    var playerStats = QuestInfo()
 
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var nextLevelStreakLabel: UILabel!
     @IBOutlet weak var daysMissedStreakLabel: UILabel!
+    @IBOutlet weak var questLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class PlayerStatsViewController: UITableViewController {
         rankLabel.text = "\(UserDefaults.standard.object(forKey: "rank") ?? "Novice")"
         nextLevelStreakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "2")" // change to 7 on launch
         daysMissedStreakLabel.text = "\(UserDefaults.standard.object(forKey: "daysMissed") ?? "0")"
+        questLabel.text = "Skeleton Quest"  // link this to a new quest UserDefault
     }
     
     // MARK: - Landscape

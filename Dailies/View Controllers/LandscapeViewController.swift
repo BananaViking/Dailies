@@ -33,7 +33,7 @@ class LandscapeViewController: UIViewController {
             levelImage.image = UIImage(named: "enemy8")
         } else if playerLevel == 9 {
             levelImage.image = UIImage(named: "enemy9")
-        } else if playerLevel > 9 {
+        } else if playerLevel >= 10 {
             levelImage.image = UIImage(named: "enemy10")
         }
     }

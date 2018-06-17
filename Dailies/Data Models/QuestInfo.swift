@@ -8,11 +8,10 @@
 
 import Foundation
 
-class PlayerStats: NSObject, Codable {
+class QuestInfo: NSObject, Codable {
     
     var level = 1
     var rank = "Neophyte"
     var streak = 2 // change to 7 on launch
     var daysMissed = 0
-    var highestLevel = 1
 }
