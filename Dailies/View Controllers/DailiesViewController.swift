@@ -48,23 +48,57 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let wizardImage = self.view.viewWithTag(600) as! UIImageView
-        wizardImage.image = UIImage(named: "wizard1")
-        
-        if playerStats.level == 0 {
-            playerStats.level = 1
-        }
         
         playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
         playerStats.level = UserDefaults.standard.integer(forKey: "level")
         playerStats.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         playerStats.highestLevel = UserDefaults.standard.integer(forKey: "highestLevel")
         
+        
+        
+        if playerStats.level == 0 {
+            playerStats.level = 1
+        }
+        
+        
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
         calculateRank()
         resetDailies()
+        
+        let wizardImage = self.view.viewWithTag(600) as! UIImageView
+        if playerStats.level == 1 {
+            wizardImage.image = UIImage(named: "wizard1")
+            navigationItem.title = "Skeleton Quest"
+        } else if playerStats.level == 2 {
+            wizardImage.image = UIImage(named: "wizard2")
+            navigationItem.title = "Goblin Quest"
+        } else if playerStats.level == 3 {
+            wizardImage.image = UIImage(named: "wizard3")
+            navigationItem.title = "Witch Quest"
+        } else if playerStats.level == 4 {
+            wizardImage.image = UIImage(named: "wizard4")
+            navigationItem.title = "Vampire Quest"
+        } else if playerStats.level == 5 {
+            wizardImage.image = UIImage(named: "wizard5")
+            navigationItem.title = "Faceless Mage Quest"
+        } else if playerStats.level == 6 {
+            wizardImage.image = UIImage(named: "wizard6")
+            navigationItem.title = "Vampire Queen Quest"
+        } else if playerStats.level == 7 {
+            wizardImage.image = UIImage(named: "wizard7")
+            navigationItem.title = "Draconian Quest"
+        } else if playerStats.level == 8 {
+            wizardImage.image = UIImage(named: "wizard8")
+            navigationItem.title = "Ice Queen Quest"
+        } else if playerStats.level == 9 {
+            wizardImage.image = UIImage(named: "wizard9")
+            navigationItem.title = "Pyromancer Quest"
+        } else if playerStats.level > 9 {
+            wizardImage.image = UIImage(named: "wizard10")
+            navigationItem.title = "Necromancer Quest"
+        }
 
     }
     
@@ -266,46 +300,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             if gainedLevel == true {
                 calculateRank()
-                message = "You have vanquished the enemy - reaching Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(title) has already begun! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
+                message = "You have vanquished the enemy - reaching Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(title) has already begun! \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
             } else if dailiesDone == dailies.count {
-                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up, and you will complete the \(title) with your head intact! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
-//                if playerStats.streak != 1 {
-//                    message += "s"
-//                }
+                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up, and you will actually complete the \(title) with your head intact! \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
             } else if lostLevel == true {
-                message = "You have been defeated - returning to Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
+                message = "You have been defeated - returning to Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
             } else {
-                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You'll have to do better today or you will surely be defeated. \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
+                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated. \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
             }
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
-            
             imageView.image = UIImage(named: "advisor")
-            
-//            if playerStats.level == 1 {
-//                imageView.image = UIImage(named: "enemy1")
-//            } else if playerStats.level == 2 {
-//                imageView.image = UIImage(named: "enemy2")
-//            } else if playerStats.level == 3 {
-//                imageView.image = UIImage(named: "enemy3")
-//            } else if playerStats.level == 4 {
-//                imageView.image = UIImage(named: "enemy4")
-//            } else if playerStats.level == 5 {
-//                imageView.image = UIImage(named: "enemy5")
-//            } else if playerStats.level == 6 {
-//                imageView.image = UIImage(named: "enemy6")
-//            } else if playerStats.level == 7 {
-//                imageView.image = UIImage(named: "enemy7")
-//            } else if playerStats.level == 8 {
-//                imageView.image = UIImage(named: "enemy8")
-//            } else if playerStats.level == 9 {
-//                imageView.image = UIImage(named: "enemy9")
-//            } else if playerStats.level > 9 {
-//                imageView.image = UIImage(named: "enemy10")
-//            }
             
             alert.view.addSubview(imageView)
             

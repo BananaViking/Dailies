@@ -16,25 +16,25 @@ class LandscapeViewController: UIViewController {
         
         let levelImage  = self.view.viewWithTag(9000) as! UIImageView
         if playerLevel == 1 {
-            levelImage.image = UIImage(named: "wizard1")
+            levelImage.image = UIImage(named: "enemy1")
         } else if playerLevel == 2 {
-            levelImage.image = UIImage(named: "wizard2")
+            levelImage.image = UIImage(named: "enemy2")
         } else if playerLevel == 3 {
-            levelImage.image = UIImage(named: "wizard3")
+            levelImage.image = UIImage(named: "enemy3")
         } else if playerLevel == 4 {
-            levelImage.image = UIImage(named: "wizard4")
+            levelImage.image = UIImage(named: "enemy4")
         } else if playerLevel == 5 {
-            levelImage.image = UIImage(named: "wizard5")
+            levelImage.image = UIImage(named: "enemy5")
         } else if playerLevel == 6 {
-            levelImage.image = UIImage(named: "wizard6")
+            levelImage.image = UIImage(named: "enemy6")
         } else if playerLevel == 7 {
-            levelImage.image = UIImage(named: "wizard7")
+            levelImage.image = UIImage(named: "enemy7")
         } else if playerLevel == 8 {
-            levelImage.image = UIImage(named: "wizard8")
+            levelImage.image = UIImage(named: "enemy8")
         } else if playerLevel == 9 {
-            levelImage.image = UIImage(named: "wizard9")
+            levelImage.image = UIImage(named: "enemy9")
         } else if playerLevel > 9 {
-            levelImage.image = UIImage(named: "wizard10")
+            levelImage.image = UIImage(named: "enemy10")
         }
     }
 }
