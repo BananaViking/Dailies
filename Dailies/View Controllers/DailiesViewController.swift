@@ -265,7 +265,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 calculateRank()
                 message = "You have vanquished the enemy - reaching Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(title) has already begun! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
             } else if dailiesDone == dailies.count {
-                message = "Excellent! Yesterday you completed all of your dailies. Keep it up, and you will complete the \(title) with your head intact! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
+                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up, and you will complete the \(title) with your head intact! \n\n Days Missed: \(playerStats.daysMissed) days \n Next Level: \(playerStats.streak) days"
 //                if playerStats.streak != 1 {
 //                    message += "s"
 //                }
