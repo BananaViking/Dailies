@@ -310,7 +310,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         UserDefaults.standard.set(player.rank, forKey: "rank")
         UserDefaults.standard.set(player.quest, forKey: "quest")
-        navigationItem.title = player.quest
     }
     
     // MARK: - Landscape
