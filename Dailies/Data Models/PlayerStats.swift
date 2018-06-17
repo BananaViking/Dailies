@@ -14,4 +14,5 @@ class PlayerStats: NSObject, Codable {
     var rank = "Neophyte"
     var streak = 2 // change to 7 on launch
     var daysMissed = 0
+    var highestLevel = 1
 }
