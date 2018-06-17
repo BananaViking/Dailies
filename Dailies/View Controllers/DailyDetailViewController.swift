@@ -242,7 +242,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
             }, completion: { _ in
                 controller.didMove(toParentViewController: self)
             })
-            //            self.navigationItem.title = "Your Kingdom"
             self.navigationController?.isNavigationBarHidden = true
         }
         textField.resignFirstResponder()
@@ -258,7 +257,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
                 controller.view.removeFromSuperview()
                 controller.removeFromParentViewController()
                 self.landscapeVC = nil
-                //                self.navigationItem.title = "Dailies"
                 self.navigationController?.isNavigationBarHidden = false
             })
         }

@@ -50,15 +50,6 @@ class Daily: NSObject, Codable {
             center.add(request)
             
             print("Scheduled: \(request) for dailyID: \(dailyID)")
-            
-            //        let content = UNMutableNotificationContent()
-            //        content.title = "Hello!"
-            //        content.body = "I am a local notification"
-            //        content.sound = UNNotificationSound.default()
-            //
-            //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-            //        let request = UNNotificationRequest(identifier: "MyNotification", content: content, trigger: trigger)
-            //        center.add(request)
         }
     }
     
