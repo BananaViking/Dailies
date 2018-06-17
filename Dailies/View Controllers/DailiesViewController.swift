@@ -233,9 +233,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
             if playerStats.streak == 0 { // change to 7 on launch
                 playerStats.level += 1
-                if playerStats.level > playerStats.highestLevel {
-                    playerStats.highestLevel = playerStats.level
-                }
                 gainedLevel = true
                 playerStats.streak = 2 // change to 7 on launch
             }
@@ -253,7 +250,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(playerStats.streak, forKey: "streak")
         UserDefaults.standard.set(playerStats.level, forKey: "level")
         UserDefaults.standard.set(playerStats.daysMissed, forKey: "daysMissed")
-        UserDefaults.standard.set(playerStats.highestLevel, forKey: "highestLevel")
     }
     
     func checkLastLaunch() {

@@ -17,7 +17,6 @@ class PlayerStatsViewController: UITableViewController {
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var nextLevelStreakLabel: UILabel!
     @IBOutlet weak var daysMissedStreakLabel: UILabel!
-    @IBOutlet weak var highestLevelLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,6 @@ class PlayerStatsViewController: UITableViewController {
         rankLabel.text = "\(UserDefaults.standard.object(forKey: "rank") ?? "Novice")"
         nextLevelStreakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "2")" // change to 7 on launch
         daysMissedStreakLabel.text = "\(UserDefaults.standard.object(forKey: "daysMissed") ?? "0")"
-        highestLevelLabel.text = "\(UserDefaults.standard.object(forKey: "highestLevel") ?? "1")"
     }
     
     // MARK: - Landscape
