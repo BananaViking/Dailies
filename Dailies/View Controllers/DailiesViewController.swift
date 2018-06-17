@@ -11,7 +11,7 @@ import UIKit
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var landscapeVC: LandscapeViewController?
-    var playerStats = PlayerStats()
+    var player = QuestInfo()
     var dailies = [Daily]()
     var dailiesDone = 0
     var gainedLevel = false
@@ -48,57 +48,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        player.quest = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
+        player.level = UserDefaults.standard.integer(forKey: "level")
+        player.streak = UserDefaults.standard.integer(forKey: "streak")
+        player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
-        playerStats.streak = UserDefaults.standard.integer(forKey: "streak")
-        playerStats.level = UserDefaults.standard.integer(forKey: "level")
-        playerStats.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
-        playerStats.highestLevel = UserDefaults.standard.integer(forKey: "highestLevel")
-        
-        
-        
-        if playerStats.level == 0 {
-            playerStats.level = 1
+        if player.level == 0 {
+            player.level = 1
         }
-        
         
         loadDailies()
         checkDailiesComplete()
         checkLastLaunch()
-        calculateRank()
+        calculateLevelInfo()
         resetDailies()
-        
-        let wizardImage = self.view.viewWithTag(600) as! UIImageView
-        if playerStats.level == 1 {
-            wizardImage.image = UIImage(named: "wizard1")
-            navigationItem.title = "Skeleton Quest"
-        } else if playerStats.level == 2 {
-            wizardImage.image = UIImage(named: "wizard2")
-            navigationItem.title = "Goblin Quest"
-        } else if playerStats.level == 3 {
-            wizardImage.image = UIImage(named: "wizard3")
-            navigationItem.title = "Witch Quest"
-        } else if playerStats.level == 4 {
-            wizardImage.image = UIImage(named: "wizard4")
-            navigationItem.title = "Vampire Quest"
-        } else if playerStats.level == 5 {
-            wizardImage.image = UIImage(named: "wizard5")
-            navigationItem.title = "Faceless Mage Quest"
-        } else if playerStats.level == 6 {
-            wizardImage.image = UIImage(named: "wizard6")
-            navigationItem.title = "Vampire Queen Quest"
-        } else if playerStats.level == 7 {
-            wizardImage.image = UIImage(named: "wizard7")
-            navigationItem.title = "Draconian Quest"
-        } else if playerStats.level == 8 {
-            wizardImage.image = UIImage(named: "wizard8")
-            navigationItem.title = "Ice Queen Quest"
-        } else if playerStats.level == 9 {
-            wizardImage.image = UIImage(named: "wizard9")
-            navigationItem.title = "Pyromancer Quest"
-        } else if playerStats.level > 9 {
-            wizardImage.image = UIImage(named: "wizard10")
-            navigationItem.title = "Necromancer Quest"
-        }
 
     }
     
@@ -227,33 +190,29 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func checkDailiesComplete() {
         if dailiesDone == dailies.count {
-            if playerStats.streak > 0 {
-            playerStats.streak -= 1
-            playerStats.daysMissed = 0
+            if player.streak > 0 {
+            player.streak -= 1
+            player.daysMissed = 0
             }
-            if playerStats.streak == 0 { // change to 7 on launch
-                playerStats.level += 1
-                if playerStats.level > playerStats.highestLevel {
-                    playerStats.highestLevel = playerStats.level
-                }
+            if player.streak == 0 { // change to 7 on launch
+                player.level += 1
                 gainedLevel = true
-                playerStats.streak = 2 // change to 7 on launch
+                player.streak = 2 // change to 7 on launch
             }
         } else {
-            playerStats.streak = 2 // change to 7 on launch
-            playerStats.daysMissed += 1
-            if playerStats.daysMissed >= 2 {
-                if playerStats.level > 1 {
-                    playerStats.level -= 1
+            player.streak = 2 // change to 7 on launch
+            player.daysMissed += 1
+            if player.daysMissed >= 2 {
+                if player.level > 1 {
+                    player.level -= 1
                     lostLevel = true
                 }
             }
         }
         
-        UserDefaults.standard.set(playerStats.streak, forKey: "streak")
-        UserDefaults.standard.set(playerStats.level, forKey: "level")
-        UserDefaults.standard.set(playerStats.daysMissed, forKey: "daysMissed")
-        UserDefaults.standard.set(playerStats.highestLevel, forKey: "highestLevel")
+        UserDefaults.standard.set(player.streak, forKey: "streak")
+        UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
     }
     
     func checkLastLaunch() {
@@ -274,39 +233,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             var message: String
-            var title = "Welcome back!"
-            
-            if playerStats.level == 1 {
-                title = "Skeleton Quest"
-            } else if playerStats.level == 2 {
-                title = "Goblin Quest"
-            } else if playerStats.level == 3 {
-                title = "Witch Quest"
-            } else if playerStats.level == 4 {
-                title = "Vampire Quest"
-            } else if playerStats.level == 5 {
-                title = "Faceless Mage Quest"
-            } else if playerStats.level == 6 {
-                title = "Vampire Queen Quest"
-            } else if playerStats.level == 7 {
-                title = "Draconian Quest"
-            } else if playerStats.level == 8 {
-                title = "Ice Queen Quest"
-            } else if playerStats.level == 9 {
-                title = "Pyromancer Quest"
-            } else if playerStats.level > 9 {
-                title = "Necromancer Quest"
-            }
-            
+            let title = player.quest
+            calculateLevelInfo()
+
             if gainedLevel == true {
-                calculateRank()
-                message = "You have vanquished the enemy - reaching Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(title) has already begun! \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
+                message = "You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if dailiesDone == dailies.count {
-                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up, and you will actually complete the \(title) with your head intact! \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
+                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if lostLevel == true {
-                message = "You have been defeated - returning to Level \(playerStats.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
+                message = "You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else {
-                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated. \n\n Days Until Victory: \(playerStats.streak) \n Days Missed: \(playerStats.daysMissed)"
+                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             }
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -326,30 +263,54 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func calculateRank() {
-        playerStats.level = UserDefaults.standard.object(forKey: "level") as! Int
-        if playerStats.level == 1 {
-            playerStats.rank = "Neophyte"
-        } else if playerStats.level == 2 {
-            playerStats.rank = "Apprentice"
-        } else if playerStats.level == 3 {
-            playerStats.rank = "Initiate"
-        } else if playerStats.level == 4 {
-            playerStats.rank = "Adept"
-        } else if playerStats.level == 5 {
-            playerStats.rank = "Mage"
-        } else if playerStats.level == 6 {
-            playerStats.rank = "Battle Mage"
-        } else if playerStats.level == 7 {
-            playerStats.rank = "Archmage"
-        } else if playerStats.level == 8 {
-            playerStats.rank = "Wizard"
-        } else if playerStats.level == 9 {
-            playerStats.rank = "Master Wizard"
-        } else if playerStats.level > 9 {
-            playerStats.rank = "Grandmaster Wizard"
+    func calculateLevelInfo() {
+        player.level = UserDefaults.standard.integer(forKey: "level")
+        let wizardImage = self.view.viewWithTag(600) as! UIImageView
+
+        if player.level == 1 {
+            player.rank = "Neophyte"
+            player.quest = "Skeleton Quest"
+            wizardImage.image = UIImage(named: "wizard1")
+        } else if player.level == 2 {
+            player.rank = "Apprentice"
+            player.quest = "Goblin Quest"
+            wizardImage.image = UIImage(named: "wizard2")
+        } else if player.level == 3 {
+            player.rank = "Initiate"
+            player.quest = "Witch Quest"
+            wizardImage.image = UIImage(named: "wizard3")
+        } else if player.level == 4 {
+            player.rank = "Adept"
+            player.quest = "Vampire Quest"
+            wizardImage.image = UIImage(named: "wizard4")
+        } else if player.level == 5 {
+            player.rank = "Mage"
+            player.quest = "Faceless Mage Quest"
+            wizardImage.image = UIImage(named: "wizard5")
+        } else if player.level == 6 {
+            player.rank = "Battle Mage"
+            player.quest = "Vampire Queen Quest"
+            wizardImage.image = UIImage(named: "wizard6")
+        } else if player.level == 7 {
+            player.rank = "Archmage"
+            player.quest = "Draconian Quest"
+            wizardImage.image = UIImage(named: "wizard7")
+        } else if player.level == 8 {
+            player.rank = "Wizard"
+            player.quest = "Ice Queen Quest"
+            wizardImage.image = UIImage(named: "wizard8")
+        } else if player.level == 9 {
+            player.rank = "Master Wizard"
+            player.quest = "Pyromancer Quest"
+            wizardImage.image = UIImage(named: "wizard9")
+        } else if player.level >= 10 {
+            player.rank = "Grandmaster Wizard"
+            player.quest = "Necromancer Quest"
+            wizardImage.image = UIImage(named: "wizard10")
         }
-        UserDefaults.standard.set(playerStats.rank, forKey: "rank")
+        UserDefaults.standard.set(player.rank, forKey: "rank")
+        UserDefaults.standard.set(player.quest, forKey: "quest")
+        navigationItem.title = player.quest
     }
     
     // MARK: - Landscape
@@ -380,7 +341,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }, completion: { _ in
                 controller.didMove(toParentViewController: self)
             })
-            //            self.navigationItem.title = "Your Kingdom"
             self.navigationController?.isNavigationBarHidden = true
         }
     }
@@ -395,7 +355,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 controller.view.removeFromSuperview()
                 controller.removeFromParentViewController()
                 self.landscapeVC = nil
-                //                self.navigationItem.title = "Dailies"
                 self.navigationController?.isNavigationBarHidden = false
             })
         }

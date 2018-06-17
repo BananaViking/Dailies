@@ -9,12 +9,14 @@
 import UIKit
 
 class LandscapeViewController: UIViewController {
+    
     let playerLevel = UserDefaults.standard.integer(forKey: "level")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let levelImage  = self.view.viewWithTag(9000) as! UIImageView
+        
         if playerLevel == 1 {
             levelImage.image = UIImage(named: "enemy1")
         } else if playerLevel == 2 {
@@ -33,7 +35,7 @@ class LandscapeViewController: UIViewController {
             levelImage.image = UIImage(named: "enemy8")
         } else if playerLevel == 9 {
             levelImage.image = UIImage(named: "enemy9")
-        } else if playerLevel > 9 {
+        } else if playerLevel >= 10 {
             levelImage.image = UIImage(named: "enemy10")
         }
     }
