@@ -235,25 +235,30 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             let title = player.quest
+            let messageTitle = title + " Update:"
             let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
             var message: String
             calculateLevelInfo()
             
             if gainedLevel == true {
+                playSound(forObject: "gainLevel")
                 imageView.image = UIImage(named: "advisor0")
-                message = "You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "\"You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if dailiesDone == dailies.count {
+                playSound(forObject: "completeDailies")
                 imageView.image = UIImage(named: "advisor0")
-                message = "Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "\"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if lostLevel == true {
                 imageView.image = UIImage(named: "advisor1")
-                message = "You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "\"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                playSound(forObject: "loseLevel")
             } else {
                 imageView.image = UIImage(named: "advisor1")
-                message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "\"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                playSound(forObject: "missDailies")
             }
             
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             alert.view.addSubview(imageView)
@@ -349,6 +354,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        playSound(forObject: "landscape")
         guard landscapeVC == nil else { return }
         landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         
@@ -368,6 +374,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+        playSound(forObject: "landscape")
         if let controller = landscapeVC {
             controller.willMove(toParentViewController: nil)
             
