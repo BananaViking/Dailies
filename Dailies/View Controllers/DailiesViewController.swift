@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
     var landscapeVC: LandscapeViewController?
+    var audioPlayer: AVAudioPlayer?
     var player = QuestInfo()
     var dailies = [Daily]()
     var dailiesDone = 0
@@ -254,7 +256,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
-            
             alert.view.addSubview(imageView)
             
             print("before debug warning")
@@ -313,6 +314,25 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         UserDefaults.standard.set(player.rank, forKey: "rank")
         UserDefaults.standard.set(player.quest, forKey: "quest")
+    }
+    
+    func playSound(forObject: String) {
+        guard let url = Bundle.main.url(forResource: forObject, withExtension: "wav") else {
+            print("url not found")
+            return
+        }
+        
+        do {
+            /// this codes for making this app ready to takeover the device audio
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            
+            audioPlayer!.play()
+        } catch let error as NSError {
+            print("error: \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Landscape
