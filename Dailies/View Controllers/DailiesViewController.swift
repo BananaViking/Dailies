@@ -232,25 +232,28 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("todayDate: \(todayDate)")
         
         if lastLaunchDate == todayDate { // change this back to != on launch
-            var message: String
             let title = player.quest
+            let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
+            var message: String
             calculateLevelInfo()
-
+            
             if gainedLevel == true {
+                imageView.image = UIImage(named: "advisor0")
                 message = "You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if dailiesDone == dailies.count {
+                imageView.image = UIImage(named: "advisor0")
                 message = "Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact! \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else if lostLevel == true {
+                imageView.image = UIImage(named: "advisor1")
                 message = "You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             } else {
+                imageView.image = UIImage(named: "advisor1")
                 message = "Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated. \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
             }
             
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
-            let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
-            imageView.image = UIImage(named: "advisor")
             
             alert.view.addSubview(imageView)
             
