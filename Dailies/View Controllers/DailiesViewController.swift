@@ -64,6 +64,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         checkLastLaunch()
         calculateLevelInfo()
         resetDailies()
+        
+        self.tableView.isScrollEnabled = false // put this here because landscapeVC was scrolling up to DailiesVC without it
 
     }
     
@@ -127,6 +129,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if daily.checked {
             label.text = "√"
+            playSound(forObject: "completeDaily")
         } else {
             label.text = ""
         }
