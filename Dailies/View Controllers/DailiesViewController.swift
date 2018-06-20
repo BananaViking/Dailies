@@ -239,8 +239,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if lastLaunchDate == todayDate { // change this back to != on launch
             let title = player.quest
             let messageTitle = title + " Update:"
-            let imageView = UIImageView(frame: CGRect(x: 0, y: -255, width: 270, height: 270))
             var message: String
+            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 196, height: 196)))
+            
+            
             calculateLevelInfo()
             
             if gainedLevel == true {
@@ -261,10 +263,25 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 playSound(forObject: "missDailies")
             }
             
-            let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
-            alert.view.addSubview(imageView)
+            UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.isOpaque, 0.0)
+            defer { UIGraphicsEndImageContext() }
+            let context = UIGraphicsGetCurrentContext()
+            imageView.layer.render(in: context!)
+            let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+            
+            let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "", style: .default, handler: nil)
+            action.setValue(finalImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), forKey: "image")
+            alert .addAction(action)
+            let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert .addAction(action1)
+            
+            self.present(alert, animated: true, completion: nil)
+//            let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//
+//            alert.view.addSubview(imageView)
             
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
