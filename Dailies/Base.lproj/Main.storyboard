@@ -213,8 +213,8 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <imageView key="tableFooterView" userInteractionEnabled="NO" tag="600" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1fI-AF-dRH">
-                            <rect key="frame" x="0.0" y="117.5" width="320" height="480"/>
+                        <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1fI-AF-dRH">
+                            <rect key="frame" x="0.0" y="117.5" width="320" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
