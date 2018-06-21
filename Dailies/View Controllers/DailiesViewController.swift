@@ -20,7 +20,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var lostLevel = false
     
     @IBAction func restartButton(_ sender: UIBarButtonItem) {
-        restartGame()
+        resetGame()
     }
     
     // MARK: - DailyDetailVC Protocols
@@ -71,7 +71,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         resetDailies()
         
         self.tableView.isScrollEnabled = false // put this here because landscapeVC was scrolling up to DailiesVC without it
-
+        
     }
     
     // MARK: - tableView Delegates
@@ -199,23 +199,25 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func checkDailiesComplete() {
-        if dailiesDone == dailies.count {
-            if player.streak > 0 {
-            player.streak -= 1
-            player.daysMissed = 0
-            }
-            if player.streak == 0 { // change to 7 on launch
-                player.level += 1
-                gainedLevel = true
+        if dailies.count > 0 {
+            if dailiesDone == dailies.count {
+                if player.streak > 0 {
+                    player.streak -= 1
+                    player.daysMissed = 0
+                }
+                if player.streak == 0 { // change to 7 on launch
+                    player.level += 1
+                    gainedLevel = true
+                    player.streak = 2 // change to 7 on launch
+                }
+            } else {
                 player.streak = 2 // change to 7 on launch
-            }
-        } else {
-            player.streak = 2 // change to 7 on launch
-            player.daysMissed += 1
-            if player.daysMissed >= 2 {
-                if player.level > 1 {
-                    player.level -= 1
-                    lostLevel = true
+                player.daysMissed += 1
+                if player.daysMissed >= 2 {
+                    if player.level > 1 {
+                        player.level -= 1
+                        lostLevel = true
+                    }
                 }
             }
         }
@@ -248,6 +250,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 imageView.image = UIImage(named: "advisor0")
                 message = "Advisor: \"You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "gainLevel")
+            } else if dailies.count == 0 {
+                imageView.image = UIImage(named: "advisor0")
+                message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, the best way to survive out there is to start small and build on consistent victories.\""
             } else if dailiesDone == dailies.count {
                 imageView.image = UIImage(named: "advisor0")
                 message = "Advisor: \"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
@@ -285,7 +290,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func calculateLevelInfo() {
         player.level = UserDefaults.standard.integer(forKey: "level")
         let wizardImage = self.view.viewWithTag(600) as! UIImageView
-
+        
         if player.level == 1 {
             player.rank = "Neophyte"
             player.quest = "Skeleton Quest"
@@ -331,7 +336,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.quest, forKey: "quest")
     }
     
-    func restartGame() {
+    func resetGame() {
         let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your Dailies and Quest Info.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
