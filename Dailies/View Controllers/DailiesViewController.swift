@@ -248,14 +248,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             if gainedLevel == true {
                 imageView.image = UIImage(named: "advisor0")
-                message = "Advisor: \"You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "gainLevel")
             } else if dailies.count == 0 {
                 imageView.image = UIImage(named: "advisor0")
                 message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
             } else if dailiesDone == dailies.count {
                 imageView.image = UIImage(named: "advisor0")
-                message = "Advisor: \"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "completeDailies")
             } else if lostLevel == true {
                 imageView.image = UIImage(named: "advisor1")
