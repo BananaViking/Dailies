@@ -25,6 +25,7 @@
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
 		05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* DailiesList.swift */; };
 		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 		05C3F4D920C6D8A300C78184 /* DailiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesList.swift; sourceTree = "<group>"; };
 		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				055654E120D8BB1B00EDBFA5 /* landscape.wav */,
 				055654D920D8B76F00EDBFA5 /* loseLevel.wav */,
 				055654E320D8BB6500EDBFA5 /* missDailies.wav */,
+				05DC912320DBF55A005D1954 /* resetGame.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				055654DD20D8B76F00EDBFA5 /* loseLevel.wav in Resources */,
 				0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */,
 				050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */,
+				05DC912420DBF55B005D1954 /* resetGame.wav in Resources */,
 				055654E420D8BB6500EDBFA5 /* missDailies.wav in Resources */,
 				0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */,
 				055654DF20D8B76F00EDBFA5 /* gainLevel.wav in Resources */,
