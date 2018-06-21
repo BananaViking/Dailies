@@ -238,28 +238,27 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             let title = player.quest
-            let messageTitle = title + " Update:"
+            let messageTitle = title + " Update"
             var message: String
-            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 196, height: 196)))
-            
+            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
             
             calculateLevelInfo()
             
             if gainedLevel == true {
                 imageView.image = UIImage(named: "advisor0")
-                message = "\"You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "gainLevel")
             } else if dailiesDone == dailies.count {
                 imageView.image = UIImage(named: "advisor0")
-                message = "\"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "completeDailies")
             } else if lostLevel == true {
                 imageView.image = UIImage(named: "advisor1")
-                message = "\"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "loseLevel")
             } else {
                 imageView.image = UIImage(named: "advisor1")
-                message = "\"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "missDailies")
             }
             
@@ -277,15 +276,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert .addAction(action1)
             
-            self.present(alert, animated: true, completion: nil)
-//            let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//
-//            alert.view.addSubview(imageView)
-            
             print("before debug warning")
             self.present(alert, animated: true, completion: nil)
-            print("after debug warning")
+            print("after debug warning") // I think it's because we are adding an image view to a detached alert view?
+            
             gainedLevel = false
         } else {
             print("You have already logged in today.")
