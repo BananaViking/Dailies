@@ -232,14 +232,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
         let lastLaunchDate = dateFormatter.string(from: lastLaunch)
-        
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        print("lastLaunch: \(lastLaunch)")
-        print("today: \(today)")
-        print("lastLaunchDate: \(lastLaunchDate)")
-        print("todayDate: \(todayDate)")
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             let title = player.quest
@@ -279,10 +274,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             alert .addAction(action)
             let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert .addAction(action1)
-            
-            print("before debug warning")
-            self.present(alert, animated: true, completion: nil)
-            print("after debug warning") // I think it's because we are adding an image view to a detached alert view?
+            self.present(alert, animated: true, completion: nil)  // giving compiler warning because adding an image view to a detached alert view?
             
             gainedLevel = false
         } else {
@@ -346,8 +338,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(0, forKey: "daysMissed")
         
         calculateLevelInfo()
-        
-        
     }
     
     func playSound(forObject: String) {
