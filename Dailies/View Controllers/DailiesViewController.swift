@@ -19,7 +19,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var gainedLevel = false
     var lostLevel = false
     
-    @IBAction func restartButton(_ sender: UIBarButtonItem) {
+    @IBAction func resetButton(_ sender: UIBarButtonItem) {
         resetGame()
     }
     
