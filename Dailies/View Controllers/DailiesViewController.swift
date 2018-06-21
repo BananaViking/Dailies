@@ -19,6 +19,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var gainedLevel = false
     var lostLevel = false
     
+    @IBAction func restartButton(_ sender: UIBarButtonItem) {
+        restartGame()
+    }
+    
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -47,6 +51,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - main overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -215,8 +220,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         }
         
-        UserDefaults.standard.set(player.streak, forKey: "streak")
         UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.streak, forKey: "streak")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
     }
     
@@ -261,7 +266,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "missDailies")
             }
-            
             
             UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.isOpaque, 0.0)
             defer { UIGraphicsEndImageContext() }
@@ -333,6 +337,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         UserDefaults.standard.set(player.rank, forKey: "rank")
         UserDefaults.standard.set(player.quest, forKey: "quest")
+    }
+    
+    func restartGame() {
+        resetDailies()
+        UserDefaults.standard.set(1, forKey: "level")
+        UserDefaults.standard.set("Neophyte", forKey: "rank")
+        UserDefaults.standard.set("Skeleton Quest", forKey: "quest")
+        UserDefaults.standard.set(2, forKey: "streak")  // change to 7 on launch
+        UserDefaults.standard.set(0, forKey: "daysMissed")
     }
     
     func playSound(forObject: String) {

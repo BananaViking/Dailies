@@ -254,6 +254,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dailies" id="vWT-Bg-phV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="1EJ-gP-idu">
+                            <connections>
+                                <action selector="restartButton:" destination="iPf-rK-wpe" id="8ws-P1-4m5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eHd-MC-v17">
                             <connections>
                                 <segue destination="j2u-qg-vi9" kind="show" identifier="AddDaily" id="ejj-h1-8Nv"/>
