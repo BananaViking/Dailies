@@ -252,7 +252,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 playSound(forObject: "gainLevel")
             } else if dailies.count == 0 {
                 imageView.image = UIImage(named: "advisor0")
-                message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, the best way to survive out there is to start small and build on consistent victories.\""
+                message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
             } else if dailiesDone == dailies.count {
                 imageView.image = UIImage(named: "advisor0")
                 message = "Advisor: \"Excellent! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
