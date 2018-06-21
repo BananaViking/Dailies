@@ -340,12 +340,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func restartGame() {
-        resetDailies()
+        resetDailies()  // why is this not clearing the checkmarks? everything else is working.
         UserDefaults.standard.set(1, forKey: "level")
-        UserDefaults.standard.set("Neophyte", forKey: "rank")
-        UserDefaults.standard.set("Skeleton Quest", forKey: "quest")
         UserDefaults.standard.set(2, forKey: "streak")  // change to 7 on launch
         UserDefaults.standard.set(0, forKey: "daysMissed")
+        
+        calculateLevelInfo()
+        
+        
     }
     
     func playSound(forObject: String) {
