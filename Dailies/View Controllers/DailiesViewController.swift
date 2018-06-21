@@ -332,7 +332,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func restartGame() {
-        let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your player stats.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your Dailies and Quest Info.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.playSound(forObject: "resetGame")
@@ -341,6 +341,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             UserDefaults.standard.set(2, forKey: "streak")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
             self.calculateLevelInfo()
+            self.dailies.removeAll()
+            self.saveDailies()
+            self.tableView.reloadData()
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UserDefaults.standard.set(Date(), forKey: "lastLaunch")
         print(UserDefaults.standard.object(forKey: "lastLaunch")!)
-        
+        UserDefaults.standard.synchronize()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UserDefaults.standard.set(Date(), forKey: "lastLaunch")
         print(UserDefaults.standard.object(forKey: "lastLaunch")!)
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: - User Notification Delegates
