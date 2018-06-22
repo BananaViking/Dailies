@@ -388,7 +388,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
-        playSound(forObject: "landscape")
+        playSound(forObject: "rotate")
         guard landscapeVC == nil else { return }
         landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         
@@ -408,7 +408,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
-        playSound(forObject: "landscape")
+        playSound(forObject: "rotate")
         if let controller = landscapeVC {
             controller.willMove(toParentViewController: nil)
             
