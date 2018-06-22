@@ -289,48 +289,48 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func calculateLevelInfo() {
         player.level = UserDefaults.standard.integer(forKey: "level")
-        let wizardImage = self.view.viewWithTag(600) as! UIImageView
+        let playerImageView = self.view.viewWithTag(600) as! UIImageView
         
         if player.level == 1 {
             player.rank = "Neophyte"
             player.quest = "Skeleton Quest"
-            wizardImage.image = UIImage(named: "wizard1")
+            playerImageView.image = UIImage(named: "wizard1")
         } else if player.level == 2 {
             player.rank = "Apprentice"
             player.quest = "Goblin Quest"
-            wizardImage.image = UIImage(named: "wizard2")
+            playerImageView.image = UIImage(named: "wizard2")
         } else if player.level == 3 {
             player.rank = "Initiate"
             player.quest = "Witch Quest"
-            wizardImage.image = UIImage(named: "wizard3")
+            playerImageView.image = UIImage(named: "wizard3")
         } else if player.level == 4 {
             player.rank = "Adept"
             player.quest = "Vampire Quest"
-            wizardImage.image = UIImage(named: "wizard4")
+            playerImageView.image = UIImage(named: "wizard4")
         } else if player.level == 5 {
             player.rank = "Mage"
             player.quest = "Faceless Mage Quest"
-            wizardImage.image = UIImage(named: "wizard5")
+            playerImageView.image = UIImage(named: "wizard5")
         } else if player.level == 6 {
             player.rank = "Battle Mage"
             player.quest = "Vampire Queen Quest"
-            wizardImage.image = UIImage(named: "wizard6")
+            playerImageView.image = UIImage(named: "wizard6")
         } else if player.level == 7 {
             player.rank = "Archmage"
             player.quest = "Draconian Quest"
-            wizardImage.image = UIImage(named: "wizard7")
+            playerImageView.image = UIImage(named: "wizard7")
         } else if player.level == 8 {
             player.rank = "Wizard"
             player.quest = "Ice Queen Quest"
-            wizardImage.image = UIImage(named: "wizard8")
+            playerImageView.image = UIImage(named: "wizard8")
         } else if player.level == 9 {
             player.rank = "Master Wizard"
             player.quest = "Pyromancer Quest"
-            wizardImage.image = UIImage(named: "wizard9")
+            playerImageView.image = UIImage(named: "wizard9")
         } else if player.level >= 10 {
             player.rank = "Grandmaster Wizard"
             player.quest = "Necromancer Quest"
-            wizardImage.image = UIImage(named: "wizard10")
+            playerImageView.image = UIImage(named: "wizard10")
         }
         UserDefaults.standard.set(player.rank, forKey: "rank")
         UserDefaults.standard.set(player.quest, forKey: "quest")

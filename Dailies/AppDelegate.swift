@@ -17,15 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UIApplication.shared.statusBarStyle = .lightContent
-        
         let center = UNUserNotificationCenter.current()
         center.delegate = self
-        
-        // the following commented out code was used before adding the nil coalescing operator to lastLaunch which hopefully makes this unnecessary:
-//        if UserDefaults.standard.object(forKey: "lastLaunch") as? Date == nil {
-//            UserDefaults.standard.set(Date(), forKey: "lastLaunch")
-//        }
-        
         return true
     }
     
