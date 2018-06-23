@@ -237,7 +237,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let todayDate = dateFormatter.string(from: today)
         
         if lastLaunchDate == todayDate { // change this back to != on launch
-            showNewDayMessage()
+            showNewDayMessage()  // don't use function to call another function? make Bool var for isNewDay?
         }
     }
     
