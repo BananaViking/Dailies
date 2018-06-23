@@ -194,7 +194,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
-        saveDailies()
+        saveDailies()  // should this be pulled out of this function and just call it after resetDailies?
     }
     
     func checkDailiesComplete() {
@@ -236,7 +236,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate == todayDate { // change this back to != on launch
+        if lastLaunchDate != todayDate { // change this back to != on launch
             player.isNewDay = true
         }
     }
@@ -344,7 +344,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.playSound(forObject: "resetGame")
-            self.resetDailies()  // why is this not clearing the checkmarks? everything else is working.
+            self.resetDailies()
             UserDefaults.standard.set(1, forKey: "level")
             UserDefaults.standard.set(2, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
