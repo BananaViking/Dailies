@@ -37,10 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        DailiesViewController().checkLastLaunch()  // figure out how to make these fire
+        DailiesViewController().showNewDayMessage()  // figure out how to make these fire
+        print("DAT THING")
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // this is giving a warning in the compiler because on app launch there is already an alert active

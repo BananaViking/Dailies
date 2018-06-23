@@ -71,7 +71,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         resetDailies()
         
         self.tableView.isScrollEnabled = false // put this here because landscapeVC was scrolling up to DailiesVC without it
-        
     }
     
     // MARK: - tableView Delegates
