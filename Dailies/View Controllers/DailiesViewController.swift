@@ -59,7 +59,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
-        if player.level == 0 {
+        if player.level == 0 {  // need to make this better
             player.level = 1
         }
         
@@ -146,18 +146,18 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // gets full path to the Documents folder
-    func documentsDirectory() -> URL {
+    func documentsDirectory() -> URL {  // move to Data Models
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
         return paths[0]
     }
     
-    func dataFilePath() -> URL {
+    func dataFilePath() -> URL {  // move to Data Models
         return documentsDirectory().appendingPathComponent("Dailies.plist")
     }
     
     // takes contents of dailies array, converts to block of binary data, and writes it to a file
-    func saveDailies() {
+    func saveDailies() {  // move to Data Models
         let encoder = PropertyListEncoder()
         
         do {
@@ -169,7 +169,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func loadDailies() {
+    func loadDailies() {  // move to Data Models
         let path = dataFilePath()
         
         if let data = try? Data(contentsOf: path) {
