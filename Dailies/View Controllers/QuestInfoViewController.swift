@@ -12,8 +12,8 @@ class QuestInfoViewController: UITableViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var nextLevelStreakLabel: UILabel!
-    @IBOutlet weak var daysMissedStreakLabel: UILabel!
+    @IBOutlet weak var daysTilLabel: UILabel!
+    @IBOutlet weak var daysMissedLabel: UILabel!
     @IBOutlet weak var questLabel: UILabel!
     
     override func viewDidLoad() {
@@ -25,8 +25,8 @@ class QuestInfoViewController: UITableViewController {
     func updateLabels() {
         levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
         rankLabel.text = "\(UserDefaults.standard.object(forKey: "rank") ?? "Novice")"
-        nextLevelStreakLabel.text = "\(UserDefaults.standard.object(forKey: "streak") ?? "2")" // change to 7 on launch
-        daysMissedStreakLabel.text = "\(UserDefaults.standard.object(forKey: "daysMissed") ?? "0")"
+        daysTilLabel.text = "\(UserDefaults.standard.object(forKey: "daysTil") ?? "2")" // change to 7 on launch
+        daysMissedLabel.text = "\(UserDefaults.standard.object(forKey: "daysMissed") ?? "0")"
         questLabel.text = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
     }
 }

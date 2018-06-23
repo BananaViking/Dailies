@@ -77,6 +77,29 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    // MARK: - function overrides
+    // activates the text field when page is loaded without having to select it first
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textField.becomeFirstResponder()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let dailyToEdit = dailyToEdit {
+            title = "Edit Daily"
+            textField.text = dailyToEdit.text
+            doneBarButton.isEnabled = true
+            shouldRemindSwitch.isOn = dailyToEdit.shouldRemind
+            dueDate = dailyToEdit.dueDate
+        }
+        
+        updateDueDateLabel()
+        
+        self.tableView.isScrollEnabled = false
+    }
+    
     //MARK: - tableView Delegates
     // stops the cell from highlighting when tap just outside the text field
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -137,25 +160,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     // MARK: - Functions
-    // activates the text field when page is loaded without having to select it first
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        textField.becomeFirstResponder()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let dailyToEdit = dailyToEdit {
-            title = "Edit Daily"
-            textField.text = dailyToEdit.text
-            doneBarButton.isEnabled = true
-            shouldRemindSwitch.isOn = dailyToEdit.shouldRemind
-            dueDate = dailyToEdit.dueDate
-        }
-        
-        updateDueDateLabel()
-    }
 
     // disables doneBarButton if textField is empty
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
