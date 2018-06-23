@@ -78,7 +78,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     // MARK: - function overrides
-    
     // activates the text field when page is loaded without having to select it first
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
