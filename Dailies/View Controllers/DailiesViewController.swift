@@ -51,8 +51,50 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - function overrides
+    
+    // my selector that was defined above
+    @objc func willEnterForeground() {
+        print("app willEnterForeground")
+        loadDailies()
+//        checkDailiesComplete()
+        if dailies.count > 0 {  // the checkDailies function minus the part about counting dailies cause it was causing double counts
+            if dailiesDone == dailies.count {
+                if player.daysTil > 0 {
+                    player.daysTil -= 1
+                    player.daysMissed = 0
+                }
+                if player.daysTil == 0 { // change to 7 on launch
+                    player.level += 1
+                    gainedLevel = true
+                    player.daysTil = 2 // change to 7 on launch
+                }
+            } else {
+                player.daysTil = 2 // change to 7 on launch
+                player.daysMissed += 1
+                if player.daysMissed >= 2 {
+                    if player.level > 1 {
+                        player.level -= 1
+                        lostLevel = true
+                    }
+                }
+            }
+        }
+        UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
+        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        print("dailiesDone = \(dailiesDone)")
+        checkLastLaunch()
+        showNewDayMessage()
+        calculateLevelInfo()
+        resetDailies()
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set observer for UIApplicationWillEnterForeground
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
         player.quest = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
         player.level = UserDefaults.standard.integer(forKey: "level")
@@ -166,6 +208,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch {
             print("Error encoding daily array.")
         }
+        print("saveDailies")
     }
     
     func loadDailies() {  // move to Data Models
@@ -181,23 +224,28 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         }
         
-        for daily in dailies where daily.checked {
-            dailiesDone += 1
-        }
+        print("loadDailies")
     }
     
     func resetDailies() {
         for daily in dailies {
-            if daily.checked {
-                daily.checked = false
-            }
+            daily.checked = false
+            print("dailies reset")
         }
         
         dailiesDone = 0
+        print("dailiesDone = \(dailiesDone)")
+        print("resetDailies")
         saveDailies()  // should this be pulled out of this function and just call it after resetDailies?
+        print("saveDailies from resetDailies")
     }
     
     func checkDailiesComplete() {
+        
+        for daily in dailies where daily.checked {
+            dailiesDone += 1
+        }
+        
         if dailies.count > 0 {
             if dailiesDone == dailies.count {
                 if player.daysTil > 0 {
@@ -224,6 +272,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        print("checkDailiesComplete")
+        print("dailiesDone = \(dailiesDone)")
     }
     
     func checkLastLaunch() {
@@ -239,6 +289,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if lastLaunchDate != todayDate { // change this back to != on launch
             player.isNewDay = true
         }
+        print("checkLastLaunch")
     }
     
     func showNewDayMessage() {
@@ -288,6 +339,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             gainedLevel = false
             player.isNewDay = false  // need this?
         }
+        print("showNewDayMessage")
     }
     
     func calculateLevelInfo() {
@@ -337,6 +389,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         UserDefaults.standard.set(player.rank, forKey: "rank")
         UserDefaults.standard.set(player.quest, forKey: "quest")
+        print("calculateLevelInfo")
     }
     
     func resetGame() {
