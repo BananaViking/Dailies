@@ -50,7 +50,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
-    // MARK: - main overrides
+    // MARK: - function overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
