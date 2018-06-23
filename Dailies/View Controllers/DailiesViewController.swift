@@ -93,7 +93,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set observer for UIApplicationWillEnterForeground
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
         player.quest = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
@@ -286,7 +285,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate != todayDate { // change this back to != on launch
+        if lastLaunchDate == todayDate { // change this back to != on launch
             player.isNewDay = true
         }
         print("checkLastLaunch")

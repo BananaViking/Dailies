@@ -17,7 +17,7 @@ class LandscapeViewController: UIViewController {
         
         let enemyImageView = self.view.viewWithTag(9000) as! UIImageView
         
-        if playerLevel == 1 {
+        if playerLevel == 1 {  // this needs to go to Data Models, VC only needs to know what to present, not how to determine what to present
             enemyImageView.image = UIImage(named: "enemy1")
         } else if playerLevel == 2 {
             enemyImageView.image = UIImage(named: "enemy2")
