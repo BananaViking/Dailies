@@ -277,8 +277,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "MM-dd"
+//        dateFormatter.timeStyle = .none
         
         let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
         let lastLaunchDate = dateFormatter.string(from: lastLaunch)
@@ -288,6 +288,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if lastLaunchDate == todayDate { // change this back to != on launch
             player.isNewDay = true
         }
+        
+        let lastDay = lastLaunchDate.suffix(2)
+        let todayDay = todayDate.suffix(2)
+        let daysGone = Int(todayDay)! - Int(lastDay)!
+        print("lastLaunchDate: \(lastLaunchDate), todayDate: \(todayDate), lastDay: \(lastDay), todayDay: \(todayDay), daysGone: \(daysGone)")
+
+        
         print("checkLastLaunch")
     }
     
