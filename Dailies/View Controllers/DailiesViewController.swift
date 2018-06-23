@@ -57,7 +57,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         player.quest = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
         player.level = UserDefaults.standard.integer(forKey: "level")
-        player.streak = UserDefaults.standard.integer(forKey: "streak")
+        player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
         if player.level == 0 {
@@ -201,17 +201,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func checkDailiesComplete() {
         if dailies.count > 0 {
             if dailiesDone == dailies.count {
-                if player.streak > 0 {
-                    player.streak -= 1
+                if player.daysTil > 0 {
+                    player.daysTil -= 1
                     player.daysMissed = 0
                 }
-                if player.streak == 0 { // change to 7 on launch
+                if player.daysTil == 0 { // change to 7 on launch
                     player.level += 1
                     gainedLevel = true
-                    player.streak = 2 // change to 7 on launch
+                    player.daysTil = 2 // change to 7 on launch
                 }
             } else {
-                player.streak = 2 // change to 7 on launch
+                player.daysTil = 2 // change to 7 on launch
                 player.daysMissed += 1
                 if player.daysMissed >= 2 {
                     if player.level > 1 {
@@ -223,7 +223,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         UserDefaults.standard.set(player.level, forKey: "level")
-        UserDefaults.standard.set(player.streak, forKey: "streak")
+        UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
     }
     
@@ -248,22 +248,22 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             if gainedLevel == true {
                 imageView.image = UIImage(named: "advisor0")
-                message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "gainLevel")
             } else if dailies.count == 0 {
                 imageView.image = UIImage(named: "advisor0")
                 message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
             } else if dailiesDone == dailies.count {
                 imageView.image = UIImage(named: "advisor0")
-                message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "completeDailies")
             } else if lostLevel == true {
                 imageView.image = UIImage(named: "advisor1")
-                message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "loseLevel")
             } else {
                 imageView.image = UIImage(named: "advisor1")
-                message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.streak) \n Days Missed: \(player.daysMissed)"
+                message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
                 playSound(forObject: "missDailies")
             }
             
@@ -343,7 +343,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             self.playSound(forObject: "resetGame")
             self.resetDailies()  // why is this not clearing the checkmarks? everything else is working.
             UserDefaults.standard.set(1, forKey: "level")
-            UserDefaults.standard.set(2, forKey: "streak")  // change to 7 on launch
+            UserDefaults.standard.set(2, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
             self.calculateLevelInfo()
             self.dailies.removeAll()

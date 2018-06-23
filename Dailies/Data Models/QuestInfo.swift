@@ -13,6 +13,6 @@ class QuestInfo: NSObject, Codable {
     var quest = "Skeleton Quest"
     var level = 1
     var rank = "Neophyte"
-    var streak = 2 // change to 7 on launch
+    var daysTil = 2 // change to 7 on launch
     var daysMissed = 0
 }
