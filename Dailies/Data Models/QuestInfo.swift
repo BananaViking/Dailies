@@ -15,4 +15,5 @@ class QuestInfo: NSObject, Codable {
     var rank = "Neophyte"
     var daysTil = 2 // change to 7 on launch
     var daysMissed = 0
+    var isNewDay = false
 }
