@@ -236,7 +236,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate != todayDate { // change this back to != on launch
+        if lastLaunchDate == todayDate { // change this back to != on launch
             player.isNewDay = true
         }
     }
