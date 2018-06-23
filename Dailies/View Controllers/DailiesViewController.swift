@@ -57,6 +57,32 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("app willEnterForeground")
         loadDailies()
 //        checkDailiesComplete()
+        if dailies.count > 0 {  // the checkDailies function minus the part about counting dailies cause it was causing double counts
+            if dailiesDone == dailies.count {
+                if player.daysTil > 0 {
+                    player.daysTil -= 1
+                    player.daysMissed = 0
+                }
+                if player.daysTil == 0 { // change to 7 on launch
+                    player.level += 1
+                    gainedLevel = true
+                    player.daysTil = 2 // change to 7 on launch
+                }
+            } else {
+                player.daysTil = 2 // change to 7 on launch
+                player.daysMissed += 1
+                if player.daysMissed >= 2 {
+                    if player.level > 1 {
+                        player.level -= 1
+                        lostLevel = true
+                    }
+                }
+            }
+        }
+        UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
+        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        print("dailiesDone = \(dailiesDone)")
         checkLastLaunch()
         showNewDayMessage()
         calculateLevelInfo()
