@@ -278,8 +278,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                     lostLevel = true
                 }
             }
-        }  // do I need to write daysMissed and daysGone (and player.level?) to UserDefaults here?
+        }  // do I need to write daysMissed and daysGone (and player.level?) to UserDefaults here? seems like it's working.
         
+        UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         print("daysMissed: \(player.daysMissed)")
         print("lastLaunch: \(lastLaunch) \ntoday: \(today) \ndaysGone: \(daysGone)")
         print("checkLastLaunch")
