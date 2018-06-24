@@ -206,7 +206,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func resetDailies() {
         for daily in dailies {
             daily.checked = false
-            print("dailies reset")
         }
         
         dailiesDone = 0
@@ -268,7 +267,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
-        player.daysMissed += daysGone // need to put a minus 1 here or somewhere?
+        if daysGone > 1 {
+            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone
+        }
+        
         if player.daysMissed >= 2 {
             for _ in 1...player.daysMissed {
                 if player.level > 1 {
