@@ -52,7 +52,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // MARK: - function overrides
-    
     // my selector that was defined above
     @objc func willEnterForeground() {
         print("app willEnterForeground")
@@ -61,6 +60,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("dailiesDone = \(dailiesDone)")
         checkLastLaunch()
         showNewDayMessage()
+        print("should have just shown newDayMessage")
         calculateLevelInfo()
         resetDailies()
         self.tableView.reloadData()
@@ -216,7 +216,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func countCheckedDailies() {
-        
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
@@ -262,7 +261,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate == todayDate { // change this back to != on launch
+        if lastLaunchDate != todayDate { // change this back to != on launch
             player.isNewDay = true
         }
         
@@ -272,19 +271,21 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         if player.daysMissed >= 2 {
-            for _ in 1...player.daysMissed {
+            print("daysMissed: \(player.daysMissed)")
+            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
                 if player.level > 1 {
                     player.level -= 1
                     lostLevel = true
+                    print("level lost")
                 }
             }
-        }  // do I need to write daysMissed and daysGone (and player.level?) to UserDefaults here? seems like it's working.
+        }
         
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         print("daysMissed: \(player.daysMissed)")
-        print("lastLaunch: \(lastLaunch) \ntoday: \(today) \ndaysGone: \(daysGone)")
-        print("checkLastLaunch")
+        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone)")
+        print("checked LastLaunch")
     }
     
     func showNewDayMessage() {
