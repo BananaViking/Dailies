@@ -191,7 +191,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // takes contents of dailies array, converts to block of binary data, and writes it to a file
-    func saveDailies() {  // move to Data Models
+    func saveDailies() {  // move to Data Models? does this only need to be called when app exits?
         let encoder = PropertyListEncoder()
         
         do {
@@ -239,6 +239,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                     player.level += 1
                     gainedLevel = true
                     player.daysTil = 2 // change to 7 on launch
+                    print("gained level")
                 }
             } else { // this is bad because only using it for one specific case, but else catches anything else
                 player.daysMissed += 1
@@ -246,6 +247,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 if player.daysMissed >= 2 && player.level > 1 {
                     player.level -= 1
                     lostLevel = true
+                    print("lost level")
                 }
             }
         }
