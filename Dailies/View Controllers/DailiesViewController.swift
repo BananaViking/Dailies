@@ -61,7 +61,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         checkLastLaunch()
         showNewDayMessage()
         print("should have just shown newDayMessage")
-        calculateLevelInfo()
+        player.calculateLevelInfo()
+        updatePlayerImage()
         resetDailies()
         self.tableView.reloadData()
     }
@@ -85,7 +86,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         processCheckedDailies()
         checkLastLaunch()
         showNewDayMessage()
-        calculateLevelInfo()
+        player.calculateLevelInfo()
+        updatePlayerImage()
         resetDailies()
         
         self.tableView.isScrollEnabled = false // put this here because landscapeVC was scrolling up to DailiesVC without it
@@ -221,7 +223,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func processCheckedDailies() {
+    func processCheckedDailies() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
         if dailies.count > 0 {
             if dailiesDone == dailies.count {
                 if player.daysTil > 0 {
@@ -233,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                     gainedLevel = true
                     player.daysTil = 2 // change to 7 on launch
                 }
-            } else {
+            } else { // this is bad because only using it for one specific case, but else catches anything else
                 player.daysTil = 2 // change to 7 on launch
                 player.daysMissed += 1
                 if player.daysMissed >= 2 {
@@ -261,13 +263,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate != todayDate { // change this back to != on launch
+        if lastLaunchDate == todayDate { // change this back to != on launch
             player.isNewDay = true
         }
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
         if daysGone > 1 {
-            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone
+            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
         }
         
         if player.daysMissed >= 2 {
@@ -295,7 +297,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             var message: String
             let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
             
-            calculateLevelInfo()
+            player.calculateLevelInfo()
             
             if gainedLevel == true {
                 imageView.image = UIImage(named: "advisor0")
@@ -338,56 +340,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("showNewDayMessage")
     }
     
-    func calculateLevelInfo() {
-        player.level = UserDefaults.standard.integer(forKey: "level")
-        let playerImageView = self.view.viewWithTag(600) as! UIImageView
-        
-        if player.level == 1 {
-            player.rank = "Neophyte"
-            player.quest = "Skeleton Quest"
-            playerImageView.image = UIImage(named: "wizard1")
-        } else if player.level == 2 {
-            player.rank = "Apprentice"
-            player.quest = "Goblin Quest"
-            playerImageView.image = UIImage(named: "wizard2")
-        } else if player.level == 3 {
-            player.rank = "Initiate"
-            player.quest = "Witch Quest"
-            playerImageView.image = UIImage(named: "wizard3")
-        } else if player.level == 4 {
-            player.rank = "Adept"
-            player.quest = "Vampire Quest"
-            playerImageView.image = UIImage(named: "wizard4")
-        } else if player.level == 5 {
-            player.rank = "Mage"
-            player.quest = "Faceless Mage Quest"
-            playerImageView.image = UIImage(named: "wizard5")
-        } else if player.level == 6 {
-            player.rank = "Battle Mage"
-            player.quest = "Vampire Queen Quest"
-            playerImageView.image = UIImage(named: "wizard6")
-        } else if player.level == 7 {
-            player.rank = "Archmage"
-            player.quest = "Draconian Quest"
-            playerImageView.image = UIImage(named: "wizard7")
-        } else if player.level == 8 {
-            player.rank = "Wizard"
-            player.quest = "Ice Queen Quest"
-            playerImageView.image = UIImage(named: "wizard8")
-        } else if player.level == 9 {
-            player.rank = "Master Wizard"
-            player.quest = "Pyromancer Quest"
-            playerImageView.image = UIImage(named: "wizard9")
-        } else if player.level >= 10 {
-            player.rank = "Grandmaster Wizard"
-            player.quest = "Necromancer Quest"
-            playerImageView.image = UIImage(named: "wizard10")
-        }
-        UserDefaults.standard.set(player.rank, forKey: "rank")
-        UserDefaults.standard.set(player.quest, forKey: "quest")
-        print("calculateLevelInfo")
-    }
-    
     func resetGame() {
         let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your Dailies and Quest Info.", preferredStyle: .alert)
         
@@ -397,7 +349,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             UserDefaults.standard.set(1, forKey: "level")
             UserDefaults.standard.set(2, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
-            self.calculateLevelInfo()
+            self.player.calculateLevelInfo()
             self.dailies.removeAll()
             self.saveDailies()
             self.tableView.reloadData()
@@ -424,6 +376,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch let error as NSError {
             print("error: \(error.localizedDescription)")
         }
+    }
+    
+    func updatePlayerImage() {
+        let playerImageView = self.view.viewWithTag(600) as! UIImageView
+        playerImageView.image = UIImage(named: player.playerImage)
     }
     
     // MARK: - Landscape
