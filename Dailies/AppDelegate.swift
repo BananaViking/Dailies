@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func saveDailiesList() {
-        print("savedDailiesList")
+        print("savedDailiesList (doesn't do anything yet)")
     }
     
     // MARK: - User Notification Delegates

@@ -24,6 +24,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         resetGame()
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -51,6 +54,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - function overrides
     // my selector that was defined above
     @objc func willEnterForeground() {
@@ -96,6 +102,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         self.tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - tableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailies.count
@@ -149,6 +158,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     func configureCheckmark(for cell: UITableViewCell,
                             with daily: Daily) {
@@ -213,7 +225,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             dailiesDone += 1
         }
         print("countedCheckedDailies")
-        print("dailiesDone = \(dailiesDone)")
+        print("dailiesDone: \(dailiesDone)")
     }
     
     func processCheckedDailies() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
@@ -243,7 +255,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
         print("processedCheckedDailies")
-        print("dailiesDone = \(dailiesDone)")
+        print("dailiesDone: \(dailiesDone)")
     }
     
     func resetDailies() {
@@ -254,7 +266,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         dailiesDone = 0
         
         print("resetDailies")
-        print("dailiesDone = \(dailiesDone)")
+        print("dailiesDone: \(dailiesDone)")
     }
     
     func checkLastLaunch() {
@@ -388,6 +400,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("updatedPlayerImage")
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Landscape
     // landscape transition
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -437,6 +452,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Navigation
     // tells DailyDetailDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
