@@ -54,16 +54,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // MARK: - function overrides
     // my selector that was defined above
     @objc func willEnterForeground() {
-        print("app willEnterForeground")
+        print("app willEnterForeground called")
+        
         loadDailies()
+        countCheckedDailies()
         processCheckedDailies()
-        print("dailiesDone = \(dailiesDone)")
-        checkLastLaunch()
-        showNewDayMessage()
-        print("should have just shown newDayMessage")
+        resetDailies()
         player.calculateLevelInfo()
         updatePlayerImage()
-        resetDailies()
+        checkLastLaunch()
+        showNewDayMessage()
+        
         self.tableView.reloadData()
     }
     
@@ -84,13 +85,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         loadDailies()
         countCheckedDailies()
         processCheckedDailies()
-        checkLastLaunch()
-        showNewDayMessage()
+        resetDailies()
         player.calculateLevelInfo()
         updatePlayerImage()
-        resetDailies()
+        checkLastLaunch()
+        showNewDayMessage()
         
-        self.tableView.isScrollEnabled = false // put this here because landscapeVC was scrolling up to DailiesVC without it
+        self.tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
     // MARK: - tableView Delegates
@@ -186,7 +187,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch {
             print("Error encoding daily array.")
         }
-        print("saveDailies")
+        print("savedDailies")
     }
     
     func loadDailies() {  // move to Data Models
@@ -202,25 +203,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
         }
         
-        print("loadDailies")
-    }
-    
-    func resetDailies() {
-        for daily in dailies {
-            daily.checked = false
-        }
-        
-        dailiesDone = 0
-        print("dailiesDone = \(dailiesDone)")
-        print("resetDailies")
-        saveDailies()  // should this be pulled out of this function and just call it after resetDailies?
-        print("saveDailies from resetDailies")
+        print("loadedDailies")
     }
     
     func countCheckedDailies() {
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
+        print("countedCheckedDailies")
+        print("dailiesDone = \(dailiesDone)")
     }
     
     func processCheckedDailies() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
@@ -250,8 +241,21 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
-        print("checkDailiesComplete")
+        print("processedCheckedDailies")
         print("dailiesDone = \(dailiesDone)")
+    }
+    
+    func resetDailies() {
+        for daily in dailies {
+            daily.checked = false
+        }
+        
+        dailiesDone = 0
+        
+        print("resetDailies")
+        print("dailiesDone = \(dailiesDone)")
+        saveDailies()  // should this be pulled out of this function and just call it after resetDailies?
+        print("savedDailies from resetDailies")
     }
     
     func checkLastLaunch() {
@@ -285,9 +289,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
-        print("daysMissed: \(player.daysMissed)")
-        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone)")
+        
         print("checked LastLaunch")
+        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone)")
+        print("daysMissed: \(player.daysMissed)")
     }
     
     func showNewDayMessage() {
@@ -337,7 +342,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             gainedLevel = false
             player.isNewDay = false  // need this?
         }
-        print("showNewDayMessage")
+        print("showedNewDayMessage")
     }
     
     func resetGame() {
@@ -357,6 +362,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+        
+        print("resetGame")
     }
     
     func playSound(forObject: String) {
@@ -381,6 +388,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func updatePlayerImage() {
         let playerImageView = self.view.viewWithTag(600) as! UIImageView
         playerImageView.image = UIImage(named: player.playerImage)
+        
+        print("updatedPlayerImage")
     }
     
     // MARK: - Landscape
