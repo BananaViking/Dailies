@@ -59,11 +59,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         loadDailies()
         countCheckedDailies()
         processCheckedDailies()
-        resetDailies()
         player.calculateLevelInfo()
         updatePlayerImage()
         checkLastLaunch()
         showNewDayMessage()
+        resetDailies()
+        saveDailies()
         
         self.tableView.reloadData()
     }
@@ -85,11 +86,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         loadDailies()
         countCheckedDailies()
         processCheckedDailies()
-        resetDailies()
         player.calculateLevelInfo()
         updatePlayerImage()
         checkLastLaunch()
         showNewDayMessage()
+        resetDailies()
+        saveDailies()
         
         self.tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
@@ -227,13 +229,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                     player.daysTil = 2 // change to 7 on launch
                 }
             } else { // this is bad because only using it for one specific case, but else catches anything else
-                player.daysTil = 2 // change to 7 on launch
                 player.daysMissed += 1
-                if player.daysMissed >= 2 {
-                    if player.level > 1 {
-                        player.level -= 1
-                        lostLevel = true
-                    }
+                player.daysTil = 2 // change to 7 on launch
+                if player.daysMissed >= 2 && player.level > 1 {
+                    player.level -= 1
+                    lostLevel = true
                 }
             }
         }
@@ -241,6 +241,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        
         print("processedCheckedDailies")
         print("dailiesDone = \(dailiesDone)")
     }
@@ -254,8 +255,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         print("resetDailies")
         print("dailiesDone = \(dailiesDone)")
-        saveDailies()  // should this be pulled out of this function and just call it after resetDailies?
-        print("savedDailies from resetDailies")
     }
     
     func checkLastLaunch() {
@@ -272,12 +271,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
+        
         if daysGone > 1 {
             player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
         }
         
         if player.daysMissed >= 2 {
-            print("daysMissed: \(player.daysMissed)")
             for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
                 if player.level > 1 {
                     player.level -= 1
@@ -290,9 +289,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
-        print("checked LastLaunch")
-        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone)")
-        print("daysMissed: \(player.daysMissed)")
+        print("checkedLastLaunch")
+        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone) \ndaysMissed: \(player.daysMissed)")
     }
     
     func showNewDayMessage() {
@@ -301,8 +299,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let messageTitle = title + " Update"
             var message: String
             let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
-            
-            player.calculateLevelInfo()
             
             if gainedLevel == true {
                 imageView.image = UIImage(named: "advisor0")
