@@ -33,8 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         saveDailiesList()
         
-        print("savedDailiesList")
-        
         UserDefaults.standard.set(Date(), forKey: "lastLaunch")
         UserDefaults.standard.synchronize()
         
@@ -61,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         saveDailiesList()
         
-        print("savedDailiesList")
-        
         UserDefaults.standard.set(Date(), forKey: "lastLaunch")
         UserDefaults.standard.synchronize()
         
@@ -70,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func saveDailiesList() {
-        
+        print("savedDailiesList")
     }
     
     // MARK: - User Notification Delegates
