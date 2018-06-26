@@ -24,7 +24,7 @@
                                     <segue destination="RQ3-lq-D5Q" kind="embed" id="eVP-46-z4Y"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" tag="9000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enemy1" translatesAutoresizingMaskIntoConstraints="NO" id="Qqw-NQ-VfS">
+                            <imageView userInteractionEnabled="NO" tag="9000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qqw-NQ-VfS">
                                 <rect key="frame" x="284" y="0.0" width="284" height="320"/>
                             </imageView>
                         </subviews>
@@ -122,7 +122,7 @@
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Novice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJM-UT-HKV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Neophyte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJM-UT-HKV">
                                                     <rect key="frame" x="73" y="12" width="231" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -442,9 +442,6 @@
             <point key="canvasLocation" x="-278" y="77"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="enemy1" width="4032" height="3024"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZIa-dn-2fw"/>
     </inferredMetricsTieBreakers>

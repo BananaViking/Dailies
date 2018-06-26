@@ -18,11 +18,11 @@ class QuestInfo: NSObject, Codable {
     
     var daysTil = 2 // change to 7 on launch
     var daysMissed = 0
-    var isNewDay = false
+    var isNewDay = true
     
     
     func calculateLevelInfo() {
-        level = UserDefaults.standard.integer(forKey: "level")
+//        level = UserDefaults.standard.integer(forKey: "level")
         
         switch level {
         case 1:
@@ -76,9 +76,10 @@ class QuestInfo: NSObject, Codable {
             playerImage = "wizard10"
             enemyImage = "enemy10"
         default:
-            print("calculateLevelInfo error")
+            print("error")
         }
 
+        // do I need these UserDefaults here?
         UserDefaults.standard.set(quest, forKey: "quest")
         UserDefaults.standard.set(rank, forKey: "rank")
         UserDefaults.standard.set(playerImage, forKey: "playerImage")
