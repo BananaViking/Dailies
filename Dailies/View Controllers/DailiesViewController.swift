@@ -67,7 +67,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if player.isNewDay == true {
 //            loadDailies()  // don't need to load them if they're already loaded right?
-            countCheckedDailies()
+//            countCheckedDailies()
             processCheckedDailies()
             player.calculateLevelInfo()
             updatePlayerImage()
@@ -178,14 +178,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // gets full path to the Documents folder
-    func documentsDirectory() -> URL {  // move to Data Models
+    func getDocumentsDirectory() -> URL {  // move to Data Models
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
         return paths[0]
     }
     
-    func dataFilePath() -> URL {  // move to Data Models
-        return documentsDirectory().appendingPathComponent("Dailies.plist")
+    func getDataFilePath() -> URL {  // move to Data Models
+        return getDocumentsDirectory().appendingPathComponent("Dailies.plist")
     }
     
     // takes contents of dailies array, converts to block of binary data, and writes it to a file
@@ -195,7 +195,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         do {
             let data = try encoder.encode(dailies)
             
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+            try data.write(to: getDataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
             print("Error encoding daily array.")
         }
@@ -203,7 +203,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func loadDailies() {  // move to Data Models
-        let path = dataFilePath()
+        let path = getDataFilePath()
         
         if let data = try? Data(contentsOf: path) {
             let decoder = PropertyListDecoder()
