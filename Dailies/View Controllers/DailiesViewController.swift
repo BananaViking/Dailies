@@ -218,6 +218,43 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("loadedDailies")
     }
     
+    func checkLastLaunch() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd"
+        
+        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
+        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
+        let today = Date()
+        let todayDate = dateFormatter.string(from: today)
+        
+        if lastLaunchDate == todayDate { // change this back to != on launch
+            player.isNewDay = true
+        }
+        
+        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
+        
+        if daysGone > 1 {
+            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
+        }
+        
+        if player.daysMissed >= 2 {
+            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
+                if player.level > 1 {
+                    player.level -= 1
+                    lostLevel = true
+                    print("level lost")
+                }
+            }
+        }
+        
+        UserDefaults.standard.set(player.level, forKey: "level")
+        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        
+        print("checkedLastLaunch")
+        print("isNewDay: \(player.isNewDay)")
+        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone) \ndaysMissed: \(player.daysMissed)")
+    }
+    
     func countCheckedDailies() {
         for daily in dailies where daily.checked {
             dailiesDone += 1
@@ -258,52 +295,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("dailiesDone: \(dailiesDone)")
     }
     
-    func resetDailies() {
-        for daily in dailies {
-            daily.checked = false
-        }
+    func updatePlayerImage() {
+        let playerImageView = self.view.viewWithTag(600) as! UIImageView
+        playerImageView.image = UIImage(named: player.playerImage)
         
-        dailiesDone = 0
-        
-        print("resetDailies")
-        print("dailiesDone: \(dailiesDone)")
-    }
-    
-    func checkLastLaunch() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd"
-        
-        let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
-        let lastLaunchDate = dateFormatter.string(from: lastLaunch)
-        let today = Date()
-        let todayDate = dateFormatter.string(from: today)
-        
-        if lastLaunchDate == todayDate { // change this back to != on launch
-            player.isNewDay = true
-        }
-        
-        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
-        
-        if daysGone > 1 {
-            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
-        }
-        
-        if player.daysMissed >= 2 {
-            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
-                if player.level > 1 {
-                    player.level -= 1
-                    lostLevel = true
-                    print("level lost")
-                }
-            }
-        }
-        
-        UserDefaults.standard.set(player.level, forKey: "level")
-        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
-        
-        print("checkedLastLaunch")
-        print("isNewDay: \(player.isNewDay)")
-        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \ndaysGone: \(daysGone) \ndaysMissed: \(player.daysMissed)")
+        print("updatedPlayerImage")
     }
     
     func showNewDayMessage() {
@@ -351,6 +347,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("showedNewDayMessage")
     }
     
+    func resetDailies() {
+        for daily in dailies {
+            daily.checked = false
+        }
+        
+        dailiesDone = 0
+        
+        print("resetDailies")
+        print("dailiesDone: \(dailiesDone)")
+    }
+    
     func resetGame() {
         let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your Dailies and Quest Info.", preferredStyle: .alert)
         
@@ -389,13 +396,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch let error as NSError {
             print("error: \(error.localizedDescription)")
         }
-    }
-    
-    func updatePlayerImage() {
-        let playerImageView = self.view.viewWithTag(600) as! UIImageView
-        playerImageView.image = UIImage(named: player.playerImage)
-        
-        print("updatedPlayerImage")
     }
     
     
