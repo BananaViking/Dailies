@@ -84,6 +84,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
+        // settings these properties to UD in viewDidLoad will overwrite the initial values, need to create a setupFirstLaunch() function to handle initial values and game introduction/instructions
+        player.level = UserDefaults.standard.integer(forKey: "level")
+        player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")  // newly added
+        player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
+        
         loadDailies()
         checkLastLaunch()
         
@@ -264,6 +269,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func processCheckedDailies() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
+        
         if dailies.count > 0 {  // solve this a different way?
             if dailiesDone == dailies.count && player.daysTil > 1 {  // refactored this and changed daysTil > 0 to > 1
                 player.daysTil -= 1
