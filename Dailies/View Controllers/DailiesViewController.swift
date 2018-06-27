@@ -260,23 +260,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             dailiesDone += 1
         }
         print("countedCheckedDailies")
-        print("dailiesDone: \(dailiesDone)")
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil)")
     }
     
     func processCheckedDailies() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
-        if dailies.count > 0 {
-            if dailiesDone == dailies.count {
-                if player.daysTil > 0 {
-                    player.daysTil -= 1
-                    player.daysMissed = 0
-                }
-                if player.daysTil == 0 { // change to 7 on launch
-                    player.level += 1
-                    gainedLevel = true
-                    player.daysTil = 2 // change to 7 on launch
-                    print("gained level")
-                }
-            } else { // this is bad because only using it for one specific case, but else catches anything else
+        if dailies.count > 0 {  // solve this a different way?
+            if dailiesDone == dailies.count && player.daysTil > 1 {  // refactored this and changed daysTil > 0 to > 1
+                player.daysTil -= 1
+                player.daysMissed = 0
+            } else if dailiesDone == dailies.count && player.daysTil == 1 { // change to 7 on launch, refactored this and changed daysTil == 0 to == 1
+                player.level += 1
+                gainedLevel = true
+                player.daysTil = 2 // change to 7 on launch
+                print("gained level")
+            } else if dailiesDone != dailies.count { // this is bad because only using it for one specific case, but else catches anything else
                 player.daysMissed += 1
                 player.daysTil = 2 // change to 7 on launch
                 if player.daysMissed >= 2 && player.level > 1 {
@@ -292,7 +289,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
         print("processedCheckedDailies")
-        print("dailiesDone: \(dailiesDone)")
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil)")
     }
     
     func updatePlayerImage() {

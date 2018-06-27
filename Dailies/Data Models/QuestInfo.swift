@@ -22,7 +22,7 @@ class QuestInfo: NSObject, Codable {
     
     
     func calculateLevelInfo() {
-//        level = UserDefaults.standard.integer(forKey: "level")
+        level = UserDefaults.standard.integer(forKey: "level")
         
         switch level {
         case 1:
