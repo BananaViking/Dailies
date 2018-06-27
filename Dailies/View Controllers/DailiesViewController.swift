@@ -107,7 +107,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             saveDailies()
         }
             
-        self.tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
+        tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
     
@@ -299,7 +299,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
-        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel), lostLevel: \(lostLevel)")
         print("processedCheckedDailies")
     }
     
@@ -317,23 +317,23 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         var message: String
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
         
-        if gainedLevel == true {
-            imageView.image = UIImage(named: "advisor0")
+        if gainedLevel == true {  // rewrite this as switch statement
+            imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "gainLevel")
         } else if dailies.count == 0 {
-            imageView.image = UIImage(named: "advisor0")
+            imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
         } else if dailiesDone == dailies.count {
-            imageView.image = UIImage(named: "advisor0")
+            imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "completeDailies")
         } else if lostLevel == true {
-            imageView.image = UIImage(named: "advisor1")
+            imageView.image = UIImage(named: "advisorMad")
             message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "loseLevel")
         } else {
-            imageView.image = UIImage(named: "advisor1")
+            imageView.image = UIImage(named: "advisorMad")
             message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "missDailies")
         }
@@ -352,7 +352,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         alert .addAction(action1)
         self.present(alert, animated: true, completion: nil)  // giving compiler warning because adding an image view to a detached alert view?
         
-        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel), lostLevel: \(lostLevel)")
         print("showedNewDayMessage")
     }
     
@@ -364,7 +364,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         dailiesDone = 0
         gainedLevel = false  // newly added
         
-        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel), lostLevel: \(lostLevel)")
         print("resetDailies")
     }
     
