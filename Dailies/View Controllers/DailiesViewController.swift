@@ -89,6 +89,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")  // newly added
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
+        if player.level == 0 {  // need to add setupFirstLaunch() (runFirstLaunch?) and get rid of this
+            player.level = 1
+            player.daysTil = 2
+        }
+        
         loadDailies()
         checkLastLaunch()
         
@@ -294,8 +299,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
         print("processedCheckedDailies")
-        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil)")
     }
     
     func updatePlayerImage() {
@@ -347,6 +352,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         alert .addAction(action1)
         self.present(alert, animated: true, completion: nil)  // giving compiler warning because adding an image view to a detached alert view?
         
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
         print("showedNewDayMessage")
     }
     
@@ -356,9 +362,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
+        gainedLevel = false  // newly added
         
+        print("dailiesDone: \(dailiesDone), daysTil: \(player.daysTil), gainedLevel: \(gainedLevel)")
         print("resetDailies")
-        print("dailiesDone: \(dailiesDone)")
     }
     
     func resetGame() {
