@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4820D98E1F00096906 /* completeDaily.wav */; };
 		050A8B4B20D98F5700096906 /* completeDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4A20D98F5700096906 /* completeDailies.wav */; };
+		0543339920E47531005FE1D8 /* newLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339820E47531005FE1D8 /* newLaunch.wav */; };
+		0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339C20E47731005FE1D8 /* deleteDaily.wav */; };
+		0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339E20E47742005FE1D8 /* uncheckDaily.wav */; };
+		054333A120E4788B005FE1D8 /* addDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 054333A020E4788B005FE1D8 /* addDaily.wav */; };
+		054333B720E537B2005FE1D8 /* DailiesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */; };
 		0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB520CC65C300059761 /* LandscapeViewController.swift */; };
 		0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */; };
 		0553BEBA20CC71B100059761 /* QuestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB920CC71B100059761 /* QuestInfo.swift */; };
@@ -28,9 +33,26 @@
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		054333B920E537B2005FE1D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0569D83A20BF5C1100D733C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0569D84120BF5C1100D733C9;
+			remoteInfo = Dailies;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		050A8B4820D98E1F00096906 /* completeDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDaily.wav; sourceTree = "<group>"; };
 		050A8B4A20D98F5700096906 /* completeDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDailies.wav; sourceTree = "<group>"; };
+		0543339820E47531005FE1D8 /* newLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = newLaunch.wav; sourceTree = "<group>"; };
+		0543339C20E47731005FE1D8 /* deleteDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteDaily.wav; sourceTree = "<group>"; };
+		0543339E20E47742005FE1D8 /* uncheckDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = uncheckDaily.wav; sourceTree = "<group>"; };
+		054333A020E4788B005FE1D8 /* addDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addDaily.wav; sourceTree = "<group>"; };
+		054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailiesUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesUnitTests.swift; sourceTree = "<group>"; };
+		054333B820E537B2005FE1D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0553BEB520CC65C300059761 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoViewController.swift; sourceTree = "<group>"; };
 		0553BEB920CC71B100059761 /* QuestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfo.swift; sourceTree = "<group>"; };
@@ -53,6 +75,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		054333B120E537B1005FE1D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0569D83F20BF5C1100D733C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,16 +93,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054333B520E537B2005FE1D8 /* DailiesUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */,
+				054333B820E537B2005FE1D8 /* Info.plist */,
+			);
+			path = DailiesUnitTests;
+			sourceTree = "<group>";
+		};
 		055654E020D8B77A00EDBFA5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				054333A020E4788B005FE1D8 /* addDaily.wav */,
 				050A8B4A20D98F5700096906 /* completeDailies.wav */,
 				050A8B4820D98E1F00096906 /* completeDaily.wav */,
+				0543339C20E47731005FE1D8 /* deleteDaily.wav */,
 				055654DB20D8B76F00EDBFA5 /* gainLevel.wav */,
 				055654D920D8B76F00EDBFA5 /* loseLevel.wav */,
 				055654E320D8BB6500EDBFA5 /* missDailies.wav */,
+				0543339820E47531005FE1D8 /* newLaunch.wav */,
 				05DC912320DBF55A005D1954 /* resetGame.wav */,
 				05DC912A20DD9A0D005D1954 /* rotate.wav */,
+				0543339E20E47742005FE1D8 /* uncheckDaily.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -83,6 +125,7 @@
 			children = (
 				0569D84420BF5C1100D733C9 /* Dailies */,
 				055654E020D8B77A00EDBFA5 /* Sounds */,
+				054333B520E537B2005FE1D8 /* DailiesUnitTests */,
 				0569D84320BF5C1100D733C9 /* Products */,
 				05C5A7EE20C72206008B5439 /* Frameworks */,
 			);
@@ -92,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				0569D84220BF5C1100D733C9 /* Dailies.app */,
+				054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +186,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		054333B320E537B1005FE1D8 /* DailiesUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 054333BD20E537B2005FE1D8 /* Build configuration list for PBXNativeTarget "DailiesUnitTests" */;
+			buildPhases = (
+				054333B020E537B1005FE1D8 /* Sources */,
+				054333B120E537B1005FE1D8 /* Frameworks */,
+				054333B220E537B1005FE1D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				054333BA20E537B2005FE1D8 /* PBXTargetDependency */,
+			);
+			name = DailiesUnitTests;
+			productName = DailiesUnitTests;
+			productReference = 054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0569D84120BF5C1100D733C9 /* Dailies */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0569D85420BF5C1200D733C9 /* Build configuration list for PBXNativeTarget "Dailies" */;
@@ -165,10 +227,14 @@
 		0569D83A20BF5C1100D733C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Banana Viking";
 				TargetAttributes = {
+					054333B320E537B1005FE1D8 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 0569D84120BF5C1100D733C9;
+					};
 					0569D84120BF5C1100D733C9 = {
 						CreatedOnToolsVersion = 9.3.1;
 					};
@@ -188,24 +254,36 @@
 			projectRoot = "";
 			targets = (
 				0569D84120BF5C1100D733C9 /* Dailies */,
+				054333B320E537B1005FE1D8 /* DailiesUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		054333B220E537B1005FE1D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0569D84020BF5C1100D733C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				050A8B4B20D98F5700096906 /* completeDailies.wav in Resources */,
 				055654DD20D8B76F00EDBFA5 /* loseLevel.wav in Resources */,
+				054333A120E4788B005FE1D8 /* addDaily.wav in Resources */,
 				05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */,
 				0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */,
+				0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */,
+				0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */,
 				050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */,
 				05DC912420DBF55B005D1954 /* resetGame.wav in Resources */,
 				055654E420D8BB6500EDBFA5 /* missDailies.wav in Resources */,
 				0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */,
 				055654DF20D8B76F00EDBFA5 /* gainLevel.wav in Resources */,
+				0543339920E47531005FE1D8 /* newLaunch.wav in Resources */,
 				0569D84B20BF5C1100D733C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +291,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		054333B020E537B1005FE1D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054333B720E537B2005FE1D8 /* DailiesUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0569D83E20BF5C1100D733C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,6 +315,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		054333BA20E537B2005FE1D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0569D84120BF5C1100D733C9 /* Dailies */;
+			targetProxy = 054333B920E537B2005FE1D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0569D84920BF5C1100D733C9 /* Main.storyboard */ = {
@@ -250,6 +344,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		054333BB20E537B2005FE1D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7YNF79H478;
+				INFOPLIST_FILE = DailiesUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bananaviking.DailiesUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dailies.app/Dailies";
+			};
+			name = Debug;
+		};
+		054333BC20E537B2005FE1D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7YNF79H478;
+				INFOPLIST_FILE = DailiesUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bananaviking.DailiesUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dailies.app/Dailies";
+			};
+			name = Release;
+		};
 		0569D85220BF5C1200D733C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,6 +541,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		054333BD20E537B2005FE1D8 /* Build configuration list for PBXNativeTarget "DailiesUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054333BB20E537B2005FE1D8 /* Debug */,
+				054333BC20E537B2005FE1D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0569D83D20BF5C1100D733C9 /* Build configuration list for PBXProject "Dailies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
