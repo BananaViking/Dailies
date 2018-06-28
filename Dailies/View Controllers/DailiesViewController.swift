@@ -62,13 +62,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // MARK: - function overrides
     // my selector that was defined above
     @objc func willEnterForeground() {
-        print("willEnterForeground called: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("willEnterForeground called")
 
         checkLastLaunch()
         
         if player.isNewDay == true {
-//            loadDailies()  // don't need to load them if they're already loaded right?
-//            countCheckedDailies()
             processDay()
             player.calculateLevelInfo()
             updatePlayerImage()
@@ -78,7 +76,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             
             self.tableView.reloadData()
         }
-        print("appEnteredForeground: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("appEnteredForeground")
     }
     
     override func viewDidLoad() {
@@ -88,7 +86,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         // settings these properties to UD in viewDidLoad will overwrite the initial values, need to create a setupFirstLaunch() function to handle initial values and game introduction/instructions
         player.level = UserDefaults.standard.integer(forKey: "level")
-        player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")  // newly added
+        player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
         if player.level == 0 {  // need to add setupFirstLaunch() (runFirstLaunch?) and get rid of this
@@ -139,11 +137,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if daily.checked {
                 dailiesDone += 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
-            } else {
-                if dailiesDone > 0 {
-                    dailiesDone -= 1
-                    print("\(dailiesDone) out of \(dailies.count) completed.")
-                }
+            } else if dailiesDone > 0 {  // newly refactored. need the dailiesDone > 0 here?
+                dailiesDone -= 1
+                print("\(dailiesDone) out of \(dailies.count) completed.")
             }
         }
         
@@ -213,7 +209,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch {
             print("Error encoding daily array.")
         }
-        print("savedDailies: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("savedDailies")
     }
     
     func loadDailies() {  // move to Data Models
@@ -228,8 +224,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 print("Error decoding daily array.")
             }
         }
-        
-        print("loadedDailies: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("loadedDailies")
     }
     
     func checkLastLaunch() {
@@ -249,12 +244,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
         
+        // do these UserDefaults need to be set here?
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
-        print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \nisNewDay: \(player.isNewDay) \ndaysGone: \(daysGone) \ndaysMissed: \(player.daysMissed)")
-        print("checkedLastLaunch: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
-        
+        print("checkedLastLaunch")
     }
     
     func processDaysGone() {  // need to add this to the call stack in viewDidLoad and willEnterForeground
@@ -278,14 +272,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         for daily in dailies where daily.checked {
             dailiesDone += 1
         }
-        
-        print("countedCheckedDailies: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("countedCheckedDailies")
     }
     
     func processDay() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
-        
-        print("processDay called: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
-        
         
         if dailiesDone == dailies.count && dailies.count > 0 {
             perfectDay = true
@@ -301,14 +291,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
-            print("gained level")
         case false:
             player.daysMissed += 1
             player.daysTil = 2 // change to 7 on launch
             if player.daysMissed >= 2 && player.level > 1 {
                 player.level -= 1
                 lostLevel = true
-                print("level lost from countCheckedDailies. level: \(player.level)")
             }
         default:
             print("Error processing day")
@@ -318,7 +306,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
-        print("processedDay: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("processedDay")
     }
     
     func updatePlayerImage() {
@@ -328,9 +316,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("updatedPlayerImage")
     }
     
-    func showNewDayMessage() {
+    func showNewDayMessage() {  // refactor this mess
         
-        print("showNewDayMessage called: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("showNewDayMessage called")
         
         let title = player.quest
         let messageTitle = title + " Update"
@@ -359,8 +347,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playSound(forObject: "missDailies")
         }
         
-        lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day?
-        
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.isOpaque, 0.0)
         defer { UIGraphicsEndImageContext() }
         let context = UIGraphicsGetCurrentContext()
@@ -375,7 +361,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         alert .addAction(action1)
         self.present(alert, animated: true, completion: nil)  // giving compiler warning because adding an image view to a detached alert view?
         
-        print("showedNewDayMessage: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("showedNewDayMessage")
     }
     
     func resetDailies() {
@@ -384,9 +370,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         dailiesDone = 0
-        gainedLevel = false  // newly added
+        gainedLevel = false
+        lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day?
         
-        print("resetDailies: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel), perfectDay: \(perfectDay)")
+        print("resetDailies")
     }
     
     func resetGame() {
