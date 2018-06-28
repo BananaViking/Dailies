@@ -366,6 +366,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             UserDefaults.standard.set(2, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
             self.player.calculateLevelInfo()
+            self.updatePlayerImage()
             self.dailies.removeAll()
             self.saveDailies()
             self.tableView.reloadData()
