@@ -243,27 +243,29 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
         
-        // code below was looping through making you lose more and more levels than supposed to the more days you missed
-//        if daysGone > 1 {
-//            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
-//        }
-//
-//        if player.daysMissed >= 2 {
-//            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
-//                if player.level > 1 {
-//                    player.level -= 1
-//                    lostLevel = true
-//                    print("level lost from checkLastLaunch. level: \(player.level)")
-//                }
-//            }
-//        }
-        
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
         print("lastLaunchDate: \(lastLaunchDate) \ntodayDate: \(todayDate) \nisNewDay: \(player.isNewDay) \ndaysGone: \(daysGone) \ndaysMissed: \(player.daysMissed)")
         print("checkedLastLaunch: dailiesDone: \(dailiesDone) of \(dailies.count), daysMissed: \(player.daysMissed), lostLevel: \(lostLevel), gainedLevel: \(gainedLevel)")
         
+    }
+    
+    func processDaysGone() {  // need to add this to the call stack in viewDidLoad and willEnterForeground
+        // code below was looping through making you lose more and more levels than supposed to the more days you missed
+        //        if daysGone > 1 {
+        //            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
+        //        }
+        //
+        //        if player.daysMissed >= 2 {
+        //            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
+        //                if player.level > 1 {
+        //                    player.level -= 1
+        //                    lostLevel = true
+        //                    print("level lost from checkLastLaunch. level: \(player.level)")
+        //                }
+        //            }
+        //        }
     }
     
     func countCheckedDailies() {
