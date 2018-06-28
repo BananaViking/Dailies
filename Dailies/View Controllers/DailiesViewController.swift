@@ -26,7 +26,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
@@ -106,10 +105,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             resetDailies()
             saveDailies()
         }
-            
+        
         tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
-    
     
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +164,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     func configureCheckmark(for cell: UITableViewCell,
@@ -178,7 +175,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playSound(forObject: "completeDaily")
         } else {
             label.text = ""
-//            playSound(forObject: "uncheckDaily")  // plays the sound when resetDailies gets called as well
+            // playSound(forObject: "uncheckDaily")  // plays the sound when resetDailies gets called as well
         }
     }
     
@@ -242,30 +239,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.isNewDay = false
         }
         
-        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
+        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0  // don't use this for anything til have a tavern
         
         // do these UserDefaults need to be set here?
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
         
         print("checkedLastLaunch")
-    }
-    
-    func processDaysGone() {  // need to add this to the call stack in viewDidLoad and willEnterForeground
-        // code below was looping through making you lose more and more levels than supposed to the more days you missed
-        //        if daysGone > 1 {
-        //            player.daysMissed += daysGone - 1 // need to put a minus 1 here or somewhere? gives -1 if 0 daysGone so added surrounding if clause
-        //        }
-        //
-        //        if player.daysMissed >= 2 {
-        //            for _ in 1..<player.daysMissed {  // ..< because you don't lose a level for first day Missed
-        //                if player.level > 1 {
-        //                    player.level -= 1
-        //                    lostLevel = true
-        //                    print("level lost from checkLastLaunch. level: \(player.level)")
-        //                }
-        //            }
-        //        }
     }
     
     func countCheckedDailies() {
@@ -417,7 +397,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Landscape
     // landscape transition
@@ -467,7 +446,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             })
         }
     }
-    
     
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
