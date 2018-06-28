@@ -40,6 +40,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        playSound(forObject: "addDaily")
         saveDailies()
     }
     
@@ -163,6 +164,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
         print("\(dailiesDone) out of \(dailies.count) completed.")
+        playSound(forObject: "deleteDaily")
         saveDailies()
     }
     
@@ -179,6 +181,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playSound(forObject: "completeDaily")
         } else {
             label.text = ""
+//            playSound(forObject: "uncheckDaily")  // plays the sound when resetDailies gets called as well
         }
     }
     
@@ -239,6 +242,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if lastLaunchDate == todayDate { // change this back to != on launch
             player.isNewDay = true
+        } else {
+            player.isNewDay = false
         }
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
@@ -330,6 +335,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else if dailies.count == 0 {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
+            playSound(forObject: "newLaunch")
         } else if dailiesDone == dailies.count {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
