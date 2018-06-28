@@ -316,24 +316,24 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("updatedPlayerImage")
     }
     
-    func showNewDayMessage() {  // refactor this mess
+    func showNewDayMessage() {
         
         print("showNewDayMessage called")
         
         let title = player.quest
         let messageTitle = title + " Update"
-        var message: String
+        var message = ""
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
         
-        if gainedLevel == true {  // rewrite this as switch statement
-            imageView.image = UIImage(named: "advisorHappy")
-            message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
-            playSound(forObject: "gainLevel")
-        } else if dailies.count == 0 {
+        if dailies.count == 0 {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
             playSound(forObject: "newLaunch")
-        } else if dailiesDone == dailies.count {
+        } else if gainedLevel == true {  // rewrite this as switch statement
+            imageView.image = UIImage(named: "advisorHappy")
+            message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            playSound(forObject: "gainLevel")
+        } else if perfectDay == true {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "completeDailies")
@@ -341,7 +341,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             imageView.image = UIImage(named: "advisorMad")
             message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "loseLevel")
-        } else {
+        } else if perfectDay == false {
             imageView.image = UIImage(named: "advisorMad")
             message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "missDailies")
