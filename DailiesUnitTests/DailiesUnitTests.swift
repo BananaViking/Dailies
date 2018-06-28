@@ -24,21 +24,16 @@ class DailiesUnitTests: XCTestCase {
         super.tearDown()
     }
     
-    func testRank() {
+    func testCalculateLevelInfo() {
         UserDefaults.standard.set(10, forKey: "level")
         player.calculateLevelInfo()
+        XCTAssert(player.quest == "Necromancer Quest", "calculateLevelInfo not working for rank.")
         XCTAssert(player.rank == "Grandmaster Wizard", "calculateLevelInfo not working for rank.")
-    }
-    
-    func testEnemyImage() {
-        UserDefaults.standard.set(7, forKey: "level")
-        player.calculateLevelInfo()
-        XCTAssert(player.enemyImage == "enemy7", "calculateLevelInfo not working for enemyImage")
+        XCTAssert(player.playerImage == "wizard10", "calculateLevelInfo not working for rank.")
+        XCTAssert(player.enemyImage == "enemy10", "calculateLevelInfo not working for enemyImage")
     }
     
     func testLoseLevel() {
-        player.daysMissed = 1
-        
         
     }
     
