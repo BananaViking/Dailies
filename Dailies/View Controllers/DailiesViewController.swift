@@ -125,9 +125,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             daily.toggleChecked()
             configureCheckmark(for: cell, with: daily)
             if daily.checked {
+                playSound(forObject: "completeDaily")
                 dailiesDone += 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
-            } else if dailiesDone > 0 {  // newly refactored. need the dailiesDone > 0 here?
+            } else if dailiesDone > 0 {  // need the dailiesDone > 0 here?
+//                playSound(forObject: "uncheckDaily")  // add this back if want the noise
                 dailiesDone -= 1
                 print("\(dailiesDone) out of \(dailies.count) completed.")
             }
@@ -163,10 +165,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if daily.checked {
             label.text = "√"
-            playSound(forObject: "completeDaily")
         } else {
             label.text = ""
-            // playSound(forObject: "uncheckDaily")  // plays the sound when resetDailies gets called as well
         }
     }
     
