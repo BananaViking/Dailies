@@ -264,6 +264,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.daysMissed = 0
         case true where player.daysTil == 1:
             player.level += 1
+            if player.level == 11 {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let VictoryViewController = storyBoard.instantiateViewController(withIdentifier: "victoryViewController")  //as! VictoryViewController (need this?)
+                self.present(VictoryViewController, animated: true, completion: nil)
+            }
             gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
         case false where dailies.count == 0:

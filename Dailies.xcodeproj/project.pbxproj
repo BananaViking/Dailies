@@ -32,6 +32,7 @@
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
 		05EBC04F20E6A30500AB3146 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC04E20E6A30500AB3146 /* firstLaunch.wav */; };
 		05EBC05320E6D0E300AB3146 /* noDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC05220E6D0E300AB3146 /* noDailies.wav */; };
+		05EBC05520E6DC3F00AB3146 /* VictoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
 		05EBC04E20E6A30500AB3146 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = firstLaunch.wav; sourceTree = "<group>"; };
 		05EBC05220E6D0E300AB3146 /* noDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = noDailies.wav; sourceTree = "<group>"; };
+		05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				059510EA20C053320014D80D /* DailyDetailViewController.swift */,
 				0553BEB520CC65C300059761 /* LandscapeViewController.swift */,
 				0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */,
+				05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0553BEBA20CC71B100059761 /* QuestInfo.swift in Sources */,
+				05EBC05520E6DC3F00AB3146 /* VictoryViewController.swift in Sources */,
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
 				0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
