@@ -56,7 +56,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - function overrides
     // my selector that was defined above
@@ -99,7 +98,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             resetDailies()
             saveDailies()
         }
-        tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
+        //tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
     
