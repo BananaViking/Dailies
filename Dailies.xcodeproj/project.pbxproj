@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4820D98E1F00096906 /* completeDaily.wav */; };
 		050A8B4B20D98F5700096906 /* completeDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4A20D98F5700096906 /* completeDailies.wav */; };
-		0543339920E47531005FE1D8 /* newLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339820E47531005FE1D8 /* newLaunch.wav */; };
 		0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339C20E47731005FE1D8 /* deleteDaily.wav */; };
 		0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339E20E47742005FE1D8 /* uncheckDaily.wav */; };
 		054333A120E4788B005FE1D8 /* addDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 054333A020E4788B005FE1D8 /* addDaily.wav */; };
@@ -31,6 +30,7 @@
 		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
+		05EBC04F20E6A30500AB3146 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC04E20E6A30500AB3146 /* firstLaunch.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 /* Begin PBXFileReference section */
 		050A8B4820D98E1F00096906 /* completeDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDaily.wav; sourceTree = "<group>"; };
 		050A8B4A20D98F5700096906 /* completeDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDailies.wav; sourceTree = "<group>"; };
-		0543339820E47531005FE1D8 /* newLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = newLaunch.wav; sourceTree = "<group>"; };
 		0543339C20E47731005FE1D8 /* deleteDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteDaily.wav; sourceTree = "<group>"; };
 		0543339E20E47742005FE1D8 /* uncheckDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = uncheckDaily.wav; sourceTree = "<group>"; };
 		054333A020E4788B005FE1D8 /* addDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addDaily.wav; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
+		05EBC04E20E6A30500AB3146 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = firstLaunch.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +109,10 @@
 				050A8B4A20D98F5700096906 /* completeDailies.wav */,
 				050A8B4820D98E1F00096906 /* completeDaily.wav */,
 				0543339C20E47731005FE1D8 /* deleteDaily.wav */,
+				05EBC04E20E6A30500AB3146 /* firstLaunch.wav */,
 				055654DB20D8B76F00EDBFA5 /* gainLevel.wav */,
 				055654D920D8B76F00EDBFA5 /* loseLevel.wav */,
 				055654E320D8BB6500EDBFA5 /* missDailies.wav */,
-				0543339820E47531005FE1D8 /* newLaunch.wav */,
 				05DC912320DBF55A005D1954 /* resetGame.wav */,
 				05DC912A20DD9A0D005D1954 /* rotate.wav */,
 				0543339E20E47742005FE1D8 /* uncheckDaily.wav */,
@@ -277,13 +277,13 @@
 				05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */,
 				0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */,
 				0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */,
+				05EBC04F20E6A30500AB3146 /* firstLaunch.wav in Resources */,
 				0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */,
 				050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */,
 				05DC912420DBF55B005D1954 /* resetGame.wav in Resources */,
 				055654E420D8BB6500EDBFA5 /* missDailies.wav in Resources */,
 				0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */,
 				055654DF20D8B76F00EDBFA5 /* gainLevel.wav in Resources */,
-				0543339920E47531005FE1D8 /* newLaunch.wav in Resources */,
 				0569D84B20BF5C1100D733C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

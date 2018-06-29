@@ -20,7 +20,6 @@ class QuestInfo: NSObject, Codable {
     var daysMissed = 0
     var isNewDay = true
     
-    
     func calculateLevelInfo() {
         level = UserDefaults.standard.integer(forKey: "level")
         

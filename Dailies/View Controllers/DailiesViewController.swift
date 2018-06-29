@@ -88,11 +88,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
-        if player.level == 0 {  // need to add setupFirstLaunch() (runFirstLaunch?) and get rid of this
-            player.level = 1
-            player.daysTil = 2
-        }
-        
+        setupFirstLaunch()
         loadDailies()
         checkLastLaunch()
         
@@ -224,6 +220,19 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("loadedDailies")
     }
     
+    func setupFirstLaunch() {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore == false {
+            print("HELLLOOOOO!!!! WELCOME TO HABIT QUEST DOG!")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            if player.level == 0 {
+                player.level = 1
+                player.daysTil = 2
+            }
+            playSound(forObject: "firstLaunch")
+        }
+    }
+    
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd"
@@ -271,6 +280,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
+        case false where dailies.count == 0:
+            print("no dailies")
         case false:
             player.daysMissed += 1
             player.daysTil = 2 // change to 7 on launch
@@ -308,7 +319,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if dailies.count == 0 {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
-            playSound(forObject: "newLaunch")
         } else if gainedLevel == true {  // rewrite this as switch statement
             imageView.image = UIImage(named: "advisorHappy")
             message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
