@@ -19,7 +19,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var perfectDay = false
     var gainedLevel = false
     var lostLevel = false
-    var daysGone = 0
+    var launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
     
     @IBAction func resetButton(_ sender: UIBarButtonItem) {
         resetGame()
@@ -62,7 +62,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // my selector that was defined above
     @objc func willEnterForeground() {
         print("willEnterForeground called")
-
+        setupFirstLaunch()
         checkLastLaunch()
         
         if player.isNewDay == true {
@@ -72,7 +72,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             showNewDayMessage()
             resetDailies()
             saveDailies()
-            
             self.tableView.reloadData()
         }
         print("appEnteredForeground")
@@ -83,7 +82,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
-        // settings these properties to UD in viewDidLoad will overwrite the initial values, need to create a setupFirstLaunch() function to handle initial values and game introduction/instructions
         player.level = UserDefaults.standard.integer(forKey: "level")
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
@@ -101,7 +99,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             resetDailies()
             saveDailies()
         }
-        
         tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
@@ -162,8 +159,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
-    func configureCheckmark(for cell: UITableViewCell,
-                            with daily: Daily) {
+    func configureCheckmark(for cell: UITableViewCell, with daily: Daily) {
         let label = cell.viewWithTag(1001) as! UILabel
         
         if daily.checked {
@@ -183,7 +179,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // gets full path to the Documents folder
     func getDocumentsDirectory() -> URL {  // move to Data Models
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        
         return paths[0]
     }
     
@@ -221,22 +216,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func setupFirstLaunch() {
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        print("launched before: \(launchedBefore)")
         if launchedBefore == false {
-            print("HELLLOOOOO!!!! WELCOME TO HABIT QUEST DOG!")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
             if player.level == 0 {
                 player.level = 1
                 player.daysTil = 2
             }
-            playSound(forObject: "firstLaunch")
         }
     }
     
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd"
-        
+
         let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
         let lastLaunchDate = dateFormatter.string(from: lastLaunch)
         let today = Date()
@@ -247,13 +240,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else {
             player.isNewDay = false
         }
-        
-        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0  // don't use this for anything til have a tavern
-        
-        // do these UserDefaults need to be set here?
-        UserDefaults.standard.set(player.level, forKey: "level")
-        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
-        
         print("checkedLastLaunch")
     }
     
@@ -265,7 +251,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func processDay() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
-        
         if dailiesDone == dailies.count && dailies.count > 0 {
             perfectDay = true
         } else {
@@ -292,7 +277,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         default:
             print("Error processing day")
         }
-        
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
@@ -308,32 +292,35 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func showNewDayMessage() {
-        
-        print("showNewDayMessage called")
-        
         let title = player.quest
-        let messageTitle = title + " Update"
+        var messageTitle = title + " Update"
         var message = ""
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
         
-        if dailies.count == 0 {
+        if launchedBefore == false {
             imageView.image = UIImage(named: "advisorHappy")
-            message = "Advisor: \"Add some Dailies when you are ready to begin your quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.\""
+            messageTitle = "A New Beginning"
+            message = "Maya: \"Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins. Good luck!\""
+            playSound(forObject: "firstLaunch")
+        } else if dailies.count == 0 {
+            imageView.image = UIImage(named: "advisorMad")
+            message = "Maya: \"You must add at least one Daily before returning to your quest. Hurry up before it's too late!\""
+            playSound(forObject: "noDailies")
         } else if gainedLevel == true {  // rewrite this as switch statement
             imageView.image = UIImage(named: "advisorHappy")
-            message = "Advisor: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            message = "Maya: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "gainLevel")
         } else if perfectDay == true {
             imageView.image = UIImage(named: "advisorHappy")
-            message = "Advisor: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            message = "Maya: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "completeDailies")
         } else if lostLevel == true {
             imageView.image = UIImage(named: "advisorMad")
-            message = "Advisor: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            message = "Maya: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "loseLevel")
         } else if perfectDay == false {
             imageView.image = UIImage(named: "advisorMad")
-            message = "Advisor: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            message = "Maya: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "missDailies")
         }
         

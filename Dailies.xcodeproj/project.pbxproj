@@ -31,6 +31,7 @@
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
 		05EBC04F20E6A30500AB3146 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC04E20E6A30500AB3146 /* firstLaunch.wav */; };
+		05EBC05120E6AC3C00AB3146 /* noDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC05020E6AC3B00AB3146 /* noDailies.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
 		05EBC04E20E6A30500AB3146 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = firstLaunch.wav; sourceTree = "<group>"; };
+		05EBC05020E6AC3B00AB3146 /* noDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = noDailies.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				055654DB20D8B76F00EDBFA5 /* gainLevel.wav */,
 				055654D920D8B76F00EDBFA5 /* loseLevel.wav */,
 				055654E320D8BB6500EDBFA5 /* missDailies.wav */,
+				05EBC05020E6AC3B00AB3146 /* noDailies.wav */,
 				05DC912320DBF55A005D1954 /* resetGame.wav */,
 				05DC912A20DD9A0D005D1954 /* rotate.wav */,
 				0543339E20E47742005FE1D8 /* uncheckDaily.wav */,
@@ -273,6 +276,7 @@
 			files = (
 				050A8B4B20D98F5700096906 /* completeDailies.wav in Resources */,
 				055654DD20D8B76F00EDBFA5 /* loseLevel.wav in Resources */,
+				05EBC05120E6AC3C00AB3146 /* noDailies.wav in Resources */,
 				054333A120E4788B005FE1D8 /* addDaily.wav in Resources */,
 				05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */,
 				0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */,
