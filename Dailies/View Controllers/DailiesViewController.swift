@@ -290,8 +290,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
+        player.daysMissed += daysGone // need to put a minus 1 here or somewhere?
+        if player.daysMissed >= 2 {
+            for _ in 1...player.daysMissed {
+                if player.level > 1 {
+                    player.level -= 1
+                    lostLevel = true
+                }
+            }
+        }  // do I need to write daysMissed and daysGone to UserDefaults here?
         
-
+        print("daysMissed: \(player.daysMissed)")
         print("lastLaunch: \(lastLaunch) \ntoday: \(today) \ndaysGone: \(daysGone)")
         print("checkLastLaunch")
     }
