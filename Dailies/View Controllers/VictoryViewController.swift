@@ -14,7 +14,6 @@ class VictoryViewController: UIViewController {
     
     @IBAction func resetGame(_ sender: UIButton) {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        vc.resetGame()
         vc.playSound(forObject: "resetGame")
         vc.resetDailies()
         UserDefaults.standard.set(1, forKey: "level")
@@ -24,6 +23,6 @@ class VictoryViewController: UIViewController {
         //        vc.updatePlayerImage()
         vc.dailies.removeAll()
         vc.saveDailies()
-        //       vc.tableView.reloadData()
+        vc.tableView.reloadData()
     }
 }
