@@ -81,7 +81,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
-        UserDefaults.standard.set(10, forKey: "level")
         player.level = UserDefaults.standard.integer(forKey: "level")
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
@@ -104,8 +103,17 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         //tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        updatePlayerImage()  // to update the image after winning the game and resetting
+    override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
+        let isFreshWin = UserDefaults.standard.bool(forKey: "isFreshWin")
+        if isFreshWin == true {
+            resetDailies()
+            player.calculateLevelInfo()
+            updatePlayerImage()
+            dailies.removeAll()
+            saveDailies()
+            tableView.reloadData()
+            UserDefaults.standard.set(false, forKey: "isFreshWin")
+        }
     }
     
     
