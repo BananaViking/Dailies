@@ -100,7 +100,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             resetDailies()
             saveDailies()
         }
-        //tableView.isScrollEnabled = false // landscapeVC was scrolling up showing DailiesVC underneath without it
     }
     
     override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
@@ -237,6 +236,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 player.level = 1
                 player.daysTil = 2
             }
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let VictoryViewController = storyBoard.instantiateViewController(withIdentifier: "firstLauchViewController")
+            self.present(VictoryViewController, animated: true, completion: nil)
         }
     }
     
