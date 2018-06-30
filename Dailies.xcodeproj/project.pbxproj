@@ -27,6 +27,8 @@
 		0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84C20BF5C1200D733C9 /* Assets.xcassets */; };
 		0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */; };
 		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
+		058CF49620E81E16002E86EE /* GameRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF49520E81E16002E86EE /* GameRulesViewController.swift */; };
+		058CF49820E81E31002E86EE /* GameMechanicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF49720E81E31002E86EE /* GameMechanicsViewController.swift */; };
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
 		0599149920E8193B00FDCE2B /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599149820E8193B00FDCE2B /* DefeatViewController.swift */; };
 		05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* DailiesList.swift */; };
@@ -73,6 +75,8 @@
 		0569D84F20BF5C1200D733C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0569D85120BF5C1200D733C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		058CF49520E81E16002E86EE /* GameRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesViewController.swift; sourceTree = "<group>"; };
+		058CF49720E81E31002E86EE /* GameMechanicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMechanicsViewController.swift; sourceTree = "<group>"; };
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 		0599149820E8193B00FDCE2B /* DefeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
 		05C3F4D920C6D8A300C78184 /* DailiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesList.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				051D25DC20E816B900689BF6 /* DailyMessageViewController.swift */,
 				05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */,
 				0599149820E8193B00FDCE2B /* DefeatViewController.swift */,
+				058CF49520E81E16002E86EE /* GameRulesViewController.swift */,
+				058CF49720E81E31002E86EE /* GameMechanicsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -325,7 +331,9 @@
 				0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				051D25DD20E816B900689BF6 /* DailyMessageViewController.swift in Sources */,
+				058CF49620E81E16002E86EE /* GameRulesViewController.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
+				058CF49820E81E31002E86EE /* GameMechanicsViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* FirstLaunchViewController.swift in Sources */,
 				05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */,
 				0599149920E8193B00FDCE2B /* DefeatViewController.swift in Sources */,
