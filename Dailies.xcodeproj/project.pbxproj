@@ -28,6 +28,7 @@
 		0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */; };
 		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
+		0599149920E8193B00FDCE2B /* DefeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599149820E8193B00FDCE2B /* DefeatViewController.swift */; };
 		05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* DailiesList.swift */; };
 		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
@@ -73,6 +74,7 @@
 		0569D85120BF5C1200D733C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
+		0599149820E8193B00FDCE2B /* DefeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefeatViewController.swift; sourceTree = "<group>"; };
 		05C3F4D920C6D8A300C78184 /* DailiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesList.swift; sourceTree = "<group>"; };
 		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				052F82D120E811CD00E43426 /* FirstLaunchViewController.swift */,
 				051D25DC20E816B900689BF6 /* DailyMessageViewController.swift */,
 				05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */,
+				0599149820E8193B00FDCE2B /* DefeatViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* FirstLaunchViewController.swift in Sources */,
 				05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */,
+				0599149920E8193B00FDCE2B /* DefeatViewController.swift in Sources */,
 				0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */,
 				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
 			);

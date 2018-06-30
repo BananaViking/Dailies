@@ -432,6 +432,10 @@
                                     <action selector="startGameButton:" destination="znQ-vS-MIo" eventType="touchUpInside" id="aXJ-oV-aDx"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="advisorHappy" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-mt-vpi">
+                                <rect key="frame" x="40" y="71" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Rbo-jU-z7t"/>
@@ -503,6 +507,37 @@
             </objects>
             <point key="canvasLocation" x="1052" y="-627"/>
         </scene>
+        <!--Defeat View Controller-->
+        <scene sceneID="36K-lD-sn9">
+            <objects>
+                <viewController storyboardIdentifier="defeatViewController" id="eM9-i5-S09" customClass="DefeatViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LOW-Wp-qZJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU DIED!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRl-hd-Cwy">
+                                <rect key="frame" x="114" y="246" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acc-sV-FQa">
+                                <rect key="frame" x="128" y="407" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Try Again">
+                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="d1U-er-f4A"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmm-dI-0n9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1773" y="-623"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4cq-An-ho2">
             <objects>
@@ -531,6 +566,9 @@
             <point key="canvasLocation" x="-279" y="76"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="advisorHappy" width="4032" height="3024"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZIa-dn-2fw"/>
     </inferredMetricsTieBreakers>
