@@ -463,6 +463,10 @@
                                     <action selector="dismissDailyMessageVC:" destination="T3r-gq-ywm" eventType="touchUpInside" id="Q7s-v7-Nvg"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="advisorHappy" translatesAutoresizingMaskIntoConstraints="NO" id="dMd-hh-ORF">
+                                <rect key="frame" x="40" y="69" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="l34-Pd-iO2"/>
@@ -498,6 +502,10 @@
                                     <action selector="resetGame:" destination="Oki-pb-5Yd" eventType="touchUpInside" id="isg-qX-lqS"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wizard10" translatesAutoresizingMaskIntoConstraints="NO" id="cJJ-0E-XUd">
+                                <rect key="frame" x="40" y="72" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="52L-G3-d6J"/>
@@ -532,6 +540,10 @@
                                     <action selector="dismissDefeatVC:" destination="eM9-i5-S09" eventType="touchUpInside" id="Jq6-AV-ckn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enemy10" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-P6-m5J">
+                                <rect key="frame" x="40" y="67" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="d1U-er-f4A"/>
@@ -571,6 +583,8 @@
     </scenes>
     <resources>
         <image name="advisorHappy" width="4032" height="3024"/>
+        <image name="enemy10" width="4032" height="3024"/>
+        <image name="wizard10" width="4032" height="3024"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZIa-dn-2fw"/>
