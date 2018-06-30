@@ -444,7 +444,7 @@
         <!--Daily Message View Controller-->
         <scene sceneID="LwA-mk-8tt">
             <objects>
-                <viewController id="T3r-gq-ywm" customClass="DailyMessageViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dailyMessageViewController" id="T3r-gq-ywm" customClass="DailyMessageViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gsP-ds-Ppf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,6 +455,9 @@
                                 <state key="normal" title="OK">
                                     <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="dismissDailyMessageVC:" destination="T3r-gq-ywm" eventType="touchUpInside" id="Q7s-v7-Nvg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -525,7 +528,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eh0-Qa-TK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="77"/>
+            <point key="canvasLocation" x="-279" y="76"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

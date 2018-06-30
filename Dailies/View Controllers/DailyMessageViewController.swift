@@ -10,4 +10,7 @@ import UIKit
 
 class DailyMessageViewController: UIViewController {
     
+    @IBAction func dismissDailyMessageVC(_ sender: UIButton) {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
 }
