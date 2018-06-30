@@ -238,8 +238,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let VictoryViewController = storyBoard.instantiateViewController(withIdentifier: "firstLauchViewController")
-            self.present(VictoryViewController, animated: true, completion: nil)
+            let FirstLaunchViewController = storyBoard.instantiateViewController(withIdentifier: "firstLaunchViewController")
+            self.present(FirstLaunchViewController, animated: true, completion: nil)
         }
     }
     

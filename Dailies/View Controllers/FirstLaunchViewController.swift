@@ -10,5 +10,8 @@ import UIKit
 
 class FirstLaunchViewController: UIViewController {
     
+    @IBAction func startGameButton(_ sender: UIButton) {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
     
 }

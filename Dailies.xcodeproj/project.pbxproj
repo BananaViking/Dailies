@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4820D98E1F00096906 /* completeDaily.wav */; };
 		050A8B4B20D98F5700096906 /* completeDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 050A8B4A20D98F5700096906 /* completeDailies.wav */; };
+		051D25DD20E816B900689BF6 /* DailyMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D25DC20E816B900689BF6 /* DailyMessageViewController.swift */; };
 		052F82D220E811CD00E43426 /* FirstLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F82D120E811CD00E43426 /* FirstLaunchViewController.swift */; };
 		0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339C20E47731005FE1D8 /* deleteDaily.wav */; };
 		0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339E20E47742005FE1D8 /* uncheckDaily.wav */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		050A8B4820D98E1F00096906 /* completeDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDaily.wav; sourceTree = "<group>"; };
 		050A8B4A20D98F5700096906 /* completeDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDailies.wav; sourceTree = "<group>"; };
+		051D25DC20E816B900689BF6 /* DailyMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMessageViewController.swift; sourceTree = "<group>"; };
 		052F82D120E811CD00E43426 /* FirstLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchViewController.swift; sourceTree = "<group>"; };
 		0543339C20E47731005FE1D8 /* deleteDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteDaily.wav; sourceTree = "<group>"; };
 		0543339E20E47742005FE1D8 /* uncheckDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = uncheckDaily.wav; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				0553BEB520CC65C300059761 /* LandscapeViewController.swift */,
 				0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */,
 				052F82D120E811CD00E43426 /* FirstLaunchViewController.swift */,
+				051D25DC20E816B900689BF6 /* DailyMessageViewController.swift */,
 				05EBC05420E6DC3F00AB3146 /* VictoryViewController.swift */,
 			);
 			path = "View Controllers";
@@ -318,6 +321,7 @@
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
 				0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
+				051D25DD20E816B900689BF6 /* DailyMessageViewController.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* FirstLaunchViewController.swift in Sources */,
 				05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */,
