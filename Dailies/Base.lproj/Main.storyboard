@@ -528,6 +528,9 @@
                                 <state key="normal" title="Try Again">
                                     <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="dismissDefeatVC:" destination="eM9-i5-S09" eventType="touchUpInside" id="Jq6-AV-ckn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
