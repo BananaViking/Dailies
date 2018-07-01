@@ -308,6 +308,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func updatePlayerImage() {
         if let playerImageView = self.view.viewWithTag(600) as? UIImageView {
+            playerImageView.layer.cornerRadius = 8
             playerImageView.image = UIImage(named: player.playerImage)
         }
         

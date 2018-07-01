@@ -14,4 +14,10 @@ class FirstLaunchViewController: UIViewController {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        if let advisorImageView = self.view.viewWithTag(43) as? UIImageView {
+            advisorImageView.layer.cornerRadius = 20    
+            advisorImageView.image = UIImage(named: "advisorHappy")
+        }
+    }
 }
