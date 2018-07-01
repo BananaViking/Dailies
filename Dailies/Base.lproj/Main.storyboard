@@ -414,15 +414,15 @@
             </objects>
             <point key="canvasLocation" x="1054" y="77"/>
         </scene>
-        <!--First Launch View Controller-->
+        <!--Message View Controller-->
         <scene sceneID="eAN-np-hbE">
             <objects>
-                <viewController storyboardIdentifier="firstLaunchViewController" id="znQ-vS-MIo" customClass="FirstLaunchViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageViewController" id="znQ-vS-MIo" customClass="MessageViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQF-DK-74v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" tag="43" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-mt-vpi">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-mt-vpi">
                                 <rect key="frame" x="20" y="20" width="280" height="235"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scroll" translatesAutoresizingMaskIntoConstraints="NO" id="SC1-k6-GdG">
@@ -431,38 +431,37 @@
                                     <constraint firstAttribute="height" constant="235" id="m25-o3-I8d"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFe-bq-v6w">
-                                <rect key="frame" x="107" y="518" width="106" height="30"/>
-                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFe-bq-v6w">
+                                <rect key="frame" x="106.5" y="518" width="107" height="30"/>
+                                <color key="backgroundColor" red="0.89803922179999995" green="0.88627451660000001" blue="0.81960785390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OrH-Gj-ogS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="9" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Start Game">
+                                <state key="normal" title="Button Title">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="startGameButton:" destination="znQ-vS-MIo" eventType="touchUpInside" id="aXJ-oV-aDx"/>
+                                    <action selector="dismissMessageButton:" destination="znQ-vS-MIo" eventType="touchUpInside" id="36f-IL-Tye"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rA9-5t-9JI">
-                                <rect key="frame" x="57" y="295" width="207" height="184"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="11" contentMode="scaleToFill" text="ksdajfhkjshdfkjhasdkfjhasdkjfhaskdjhfk sdfhaksjdhf ksjdhf ksajdhf kasjdhf ksajhdf ksadjhf " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rA9-5t-9JI">
+                                <rect key="frame" x="55" y="312" width="209" height="159"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rA9-5t-9JI" firstAttribute="centerY" secondItem="SC1-k6-GdG" secondAttribute="centerY" id="1UI-Bj-NTR"/>
+                            <constraint firstItem="rA9-5t-9JI" firstAttribute="centerY" secondItem="SC1-k6-GdG" secondAttribute="centerY" constant="5" id="1UI-Bj-NTR"/>
                             <constraint firstItem="nFe-bq-v6w" firstAttribute="centerX" secondItem="hDf-mt-vpi" secondAttribute="centerX" id="2lj-Tt-Zmm"/>
                             <constraint firstItem="SC1-k6-GdG" firstAttribute="leading" secondItem="hDf-mt-vpi" secondAttribute="leading" id="6Xy-vc-Phe"/>
-                            <constraint firstItem="nFe-bq-v6w" firstAttribute="top" secondItem="rA9-5t-9JI" secondAttribute="bottom" constant="39" id="9zi-zs-qJj"/>
+                            <constraint firstItem="nFe-bq-v6w" firstAttribute="top" secondItem="rA9-5t-9JI" secondAttribute="bottom" constant="47" id="9zi-zs-qJj"/>
                             <constraint firstItem="hDf-mt-vpi" firstAttribute="top" secondItem="Rbo-jU-z7t" secondAttribute="top" id="Omq-kz-f4r"/>
                             <constraint firstItem="nFe-bq-v6w" firstAttribute="centerX" secondItem="SC1-k6-GdG" secondAttribute="centerX" id="SDK-Nl-IC9"/>
-                            <constraint firstItem="rA9-5t-9JI" firstAttribute="leading" secondItem="Rbo-jU-z7t" secondAttribute="leading" constant="57" id="TrT-9U-pG3"/>
+                            <constraint firstItem="rA9-5t-9JI" firstAttribute="leading" secondItem="Rbo-jU-z7t" secondAttribute="leading" constant="55" id="TrT-9U-pG3"/>
                             <constraint firstItem="SC1-k6-GdG" firstAttribute="leading" secondItem="Rbo-jU-z7t" secondAttribute="leading" constant="20" id="gIS-zD-85K"/>
                             <constraint firstItem="SC1-k6-GdG" firstAttribute="top" secondItem="hDf-mt-vpi" secondAttribute="bottom" constant="14" id="jrA-hC-OH1"/>
                             <constraint firstItem="rA9-5t-9JI" firstAttribute="centerX" secondItem="SC1-k6-GdG" secondAttribute="centerX" id="kxX-CJ-GSY"/>
@@ -475,167 +474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAX-Xt-Rwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1983.75" y="-204.92957746478874"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="iHi-zH-OPh">
-            <objects>
-                <viewController id="DRb-bi-qy1" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tUS-hj-c6X">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFc-3T-uTC">
-                                <rect key="frame" x="121" y="528" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Start Game">
-                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startGameButton:" destination="znQ-vS-MIo" eventType="touchUpInside" id="ZYf-Xv-8Ya"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LpN-NG-MVD">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-ny-c1D">
-                                <rect key="frame" x="0.0" y="369" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="2Pn-QR-lQu"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AJU-ZE-nwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2700" y="-202.81690140845072"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="e89-9k-gEg">
-            <objects>
-                <viewController id="iFq-Fv-Pra" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="g6C-aH-ZIy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="rsX-gK-7lW"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uvh-d6-QdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3420" y="-201"/>
-        </scene>
-        <!--Daily Message View Controller-->
-        <scene sceneID="LwA-mk-8tt">
-            <objects>
-                <viewController storyboardIdentifier="dailyMessageViewController" id="T3r-gq-ywm" customClass="DailyMessageViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gsP-ds-Ppf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtv-jS-9XF">
-                                <rect key="frame" x="145" y="432" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="OK">
-                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissDailyMessageVC:" destination="T3r-gq-ywm" eventType="touchUpInside" id="Q7s-v7-Nvg"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="advisorHappy" translatesAutoresizingMaskIntoConstraints="NO" id="dMd-hh-ORF">
-                                <rect key="frame" x="40" y="69" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="l34-Pd-iO2"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="afd-81-ymA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1984" y="541"/>
-        </scene>
-        <!--Victory View Controller-->
-        <scene sceneID="kjz-5a-aoK">
-            <objects>
-                <viewController storyboardIdentifier="victoryViewController" id="Oki-pb-5Yd" customClass="VictoryViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mpf-nK-oKY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU WIN!!!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nem-PG-8PO">
-                                <rect key="frame" x="115" y="254" width="90" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7e-Pc-dtu">
-                                <rect key="frame" x="122" y="414" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start Again">
-                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetGame:" destination="Oki-pb-5Yd" eventType="touchUpInside" id="isg-qX-lqS"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wizard10" translatesAutoresizingMaskIntoConstraints="NO" id="cJJ-0E-XUd">
-                                <rect key="frame" x="40" y="72" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="52L-G3-d6J"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JxP-O2-Crl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3420" y="541"/>
-        </scene>
-        <!--Defeat View Controller-->
-        <scene sceneID="36K-lD-sn9">
-            <objects>
-                <viewController storyboardIdentifier="defeatViewController" id="eM9-i5-S09" customClass="DefeatViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LOW-Wp-qZJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU DIED!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRl-hd-Cwy">
-                                <rect key="frame" x="114" y="246" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acc-sV-FQa">
-                                <rect key="frame" x="128" y="407" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Try Again">
-                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissDefeatVC:" destination="eM9-i5-S09" eventType="touchUpInside" id="Jq6-AV-ckn"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" tag="77" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enemy10" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-P6-m5J">
-                                <rect key="frame" x="40" y="67" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="d1U-er-f4A"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fmm-dI-0n9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2700" y="541"/>
+            <point key="canvasLocation" x="391.875" y="-600"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4cq-An-ho2">
@@ -666,10 +505,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="advisorHappy" width="4032" height="3024"/>
-        <image name="enemy10" width="4032" height="3024"/>
         <image name="scroll" width="600" height="405"/>
-        <image name="wizard10" width="4032" height="3024"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZIa-dn-2fw"/>

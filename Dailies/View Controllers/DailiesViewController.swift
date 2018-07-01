@@ -238,8 +238,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let FirstLaunchViewController = storyBoard.instantiateViewController(withIdentifier: "firstLaunchViewController")
-            self.present(FirstLaunchViewController, animated: true, completion: nil)
+            let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
+            self.present(MessageViewController, animated: true, completion: nil)
         }
     }
     
@@ -282,7 +282,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             if player.level == 11 {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let VictoryViewController = storyBoard.instantiateViewController(withIdentifier: "victoryViewController")  //as! VictoryViewController (need this?)
+                let VictoryViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")  //as! VictoryViewController (need this?)
                 self.present(VictoryViewController, animated: true, completion: nil)
             }
             gainedLevel = true
