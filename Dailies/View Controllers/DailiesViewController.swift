@@ -104,6 +104,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if beatGame == true || lostGame == true {
             UserDefaults.standard.set(1, forKey: "level")
             UserDefaults.standard.set(0, forKey: "daysMissed")
+            player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
             player.calculateLevelInfo()
             updatePlayerImage()
             resetDailies()
