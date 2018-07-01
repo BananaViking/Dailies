@@ -99,10 +99,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
         let beatGame = UserDefaults.standard.bool(forKey: "beatGame")
-        let loseGame = UserDefaults.standard.bool(forKey: "loseGame")
+        let lostGame = UserDefaults.standard.bool(forKey: "lostGame")
         
-        if beatGame == true || loseGame == true {
+        if beatGame == true || lostGame == true {
             UserDefaults.standard.set(1, forKey: "level")
+            UserDefaults.standard.set(0, forKey: "daysMissed")
             player.calculateLevelInfo()
             updatePlayerImage()
             resetDailies()
