@@ -83,7 +83,7 @@ class QuestInfo: NSObject, Codable {
             print("error")
         }
 
-        // do I need these UserDefaults here?
+        // these are needed unless you call calculateLevelInfo EVERY time you need to access one of these values
         UserDefaults.standard.set(quest, forKey: "quest")
         UserDefaults.standard.set(rank, forKey: "rank")
         UserDefaults.standard.set(playerImage, forKey: "playerImage")

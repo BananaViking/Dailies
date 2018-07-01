@@ -16,13 +16,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var player = QuestInfo()
     var dailies = [Daily]()
     
-//    var launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-//    var dailiesDone = 0
-//    var perfectDay = UserDefaults.standard.bool(forKey: "perfectDay")
-//    var gainedLevel = UserDefaults.standard.bool(forKey: "gainedLevel")
-//    var lostLevel = UserDefaults.standard.bool(forKey: "lostLevel")
-    
-    
     @IBAction func resetButton(_ sender: UIBarButtonItem) {
         resetGame()
     }
@@ -235,7 +228,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("launched before: \(player.launchedBefore)")
         if player.launchedBefore == false {
             if player.level == 0 {
-                player.level = 1
+                UserDefaults.standard.set(1, forKey: "level")
                 player.daysTil = 2
             }
             
