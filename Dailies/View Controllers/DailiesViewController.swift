@@ -15,11 +15,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var audioPlayer: AVAudioPlayer?
     var player = QuestInfo()
     var dailies = [Daily]()
-    var dailiesDone = 0
-    var perfectDay = false
-    var gainedLevel = false
-    var lostLevel = false
-    var launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+    
+//    var launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//    var dailiesDone = 0
+//    var perfectDay = UserDefaults.standard.bool(forKey: "perfectDay")
+//    var gainedLevel = UserDefaults.standard.bool(forKey: "gainedLevel")
+//    var lostLevel = UserDefaults.standard.bool(forKey: "lostLevel")
+    
     
     @IBAction func resetButton(_ sender: UIBarButtonItem) {
         resetGame()
@@ -140,12 +142,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             configureCheckmark(for: cell, with: daily)
             if daily.checked {
                 playSound(forObject: "completeDaily")
-                dailiesDone += 1
-                print("\(dailiesDone) out of \(dailies.count) completed.")
-            } else if dailiesDone > 0 {  // need the dailiesDone > 0 here?
+                player.dailiesDone += 1
+                print("\(player.dailiesDone) out of \(dailies.count) completed.")
+            } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
 //                playSound(forObject: "uncheckDaily")  // add this back if want the noise
-                dailiesDone -= 1
-                print("\(dailiesDone) out of \(dailies.count) completed.")
+                player.dailiesDone -= 1
+                print("\(player.dailiesDone) out of \(dailies.count) completed.")
             }
         }
         
@@ -158,15 +160,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         let daily = dailies[indexPath.row]
         if daily.checked {
-            if dailiesDone > 0 {
-                dailiesDone -= 1
+            if player.dailiesDone > 0 {
+                player.dailiesDone -= 1
             }
         }
         dailies.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        print("\(dailiesDone) out of \(dailies.count) completed.")
+        print("\(player.dailiesDone) out of \(dailies.count) completed.")
         playSound(forObject: "deleteDaily")
         saveDailies()
     }
@@ -229,9 +231,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func setupFirstLaunch() {
-        launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        print("launched before: \(launchedBefore)")
-        if launchedBefore == false {
+        player.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        print("launched before: \(player.launchedBefore)")
+        if player.launchedBefore == false {
             if player.level == 0 {
                 player.level = 1
                 player.daysTil = 2
@@ -262,19 +264,19 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func countCheckedDailies() {
         for daily in dailies where daily.checked {
-            dailiesDone += 1
+            player.dailiesDone += 1
         }
         print("countedCheckedDailies")
     }
     
     func processDay() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
-        if dailiesDone == dailies.count && dailies.count > 0 {
-            perfectDay = true
+        if player.dailiesDone == dailies.count && dailies.count > 0 {
+            player.perfectDay = true
         } else {
-            perfectDay = false
+            player.perfectDay = false
         }
         
-        switch perfectDay {
+        switch player.perfectDay {
         case true where player.daysTil > 1:
             player.daysTil -= 1
             player.daysMissed = 0
@@ -285,7 +287,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
                 self.present(MessageViewController, animated: true, completion: nil)
             }
-            gainedLevel = true
+            player.gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
         case false where dailies.count == 0:
             print("no dailies")
@@ -294,7 +296,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.daysTil = 2 // change to 7 on launch
             if player.daysMissed >= 2 && player.level > 1 {
                 player.level -= 1
-                lostLevel = true
+                player.lostLevel = true
             }
         default:
             print("Error processing day")
@@ -321,7 +323,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         var message = ""
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
         
-        if launchedBefore == false {
+        if player.launchedBefore == false {
             imageView.image = UIImage(named: "advisorHappy")
             messageTitle = "A New Beginning"
             message = "Maya: \"Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins. Good luck!\""
@@ -330,21 +332,21 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             imageView.image = UIImage(named: "advisorMad")
             message = "Maya: \"You must add at least one Daily before returning to your quest. Hurry up before it's too late!\""
             playSound(forObject: "noDailies")
-        } else if gainedLevel == true {  // rewrite this as switch statement
+        } else if player.gainedLevel == true {  // rewrite this as switch statement
             imageView.image = UIImage(named: "advisorHappy")
             message = "Maya: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "gainLevel")
-        } else if perfectDay == true {
+        } else if player.perfectDay == true {
             imageView.image = UIImage(named: "advisorHappy")
             message = "Maya: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "completeDailies")
-        } else if lostLevel == true {
+        } else if player.lostLevel == true {
             imageView.image = UIImage(named: "advisorMad")
             message = "Maya: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "loseLevel")
-        } else if perfectDay == false {
+        } else if player.perfectDay == false {
             imageView.image = UIImage(named: "advisorMad")
-            message = "Maya: \"Yesterday you completed \(dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
+            message = "Maya: \"Yesterday you completed \(player.dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
             playSound(forObject: "missDailies")
         }
         
@@ -370,9 +372,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             daily.checked = false
         }
         
-        dailiesDone = 0
-        gainedLevel = false
-        lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day?
+        player.dailiesDone = 0
+        player.gainedLevel = false
+        player.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day?
         
         print("resetDailies")
     }

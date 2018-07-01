@@ -16,9 +16,14 @@ class QuestInfo: NSObject, Codable {
     var playerImage = "wizard1"
     var enemyImage = "enemy1"
     
+    var launchedBefore = false
+    var isNewDay = true
+    var dailiesDone = 0
     var daysTil = 2 // change to 7 on launch
     var daysMissed = 0
-    var isNewDay = true
+    var perfectDay = false
+    var gainedLevel = false
+    var lostLevel = false
     
     func calculateLevelInfo() {
         level = UserDefaults.standard.integer(forKey: "level")
