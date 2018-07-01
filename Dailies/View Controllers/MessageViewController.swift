@@ -35,6 +35,10 @@ class MessageViewController: UIViewController {
             imageView.image = UIImage(named: "wizard10")
             textView.text = "You have defeated the necromancer and saved the world. Go have a beer. You earned it."
             dismissMessageButton.setTitle("DRINK BEER", for: .normal)
+        } else if lostGame == true {
+            imageView.image = UIImage(named: "enemy10")
+            textView.text = "You have been defeated by the necromancer and his minions as the world plunges into eternal darkness."
+            dismissMessageButton.setTitle("TRY NOT TO FUCK IT UP THIS TIME", for: .normal)
         }
     }
 }

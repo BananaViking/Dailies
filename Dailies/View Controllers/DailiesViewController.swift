@@ -99,7 +99,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
         let beatGame = UserDefaults.standard.bool(forKey: "beatGame")
-        if beatGame == true {
+        let loseGame = UserDefaults.standard.bool(forKey: "loseGame")
+        
+        if beatGame == true || loseGame == true {
             UserDefaults.standard.set(1, forKey: "level")
             player.calculateLevelInfo()
             updatePlayerImage()
@@ -108,6 +110,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             saveDailies()
             tableView.reloadData()
             UserDefaults.standard.set(false, forKey: "beatGame")
+            UserDefaults.standard.set(false, forKey: "lostGame")
         }
     }
     
@@ -289,8 +292,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         case false:
             player.daysMissed += 1
             player.daysTil = 2 // change to 7 on launch
-            if player.daysMissed >= 2 && player.level > 1 {
+            if player.daysMissed >= 2 && player.level > 0 {
                 player.level -= 1
+                if player.level == 0 {
+                    UserDefaults.standard.set(true, forKey: "lostGame")
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
+                    self.present(MessageViewController, animated: true, completion: nil)
+                }
                 player.lostLevel = true
             }
         default:
