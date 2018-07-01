@@ -98,15 +98,16 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
-        let isFreshWin = UserDefaults.standard.bool(forKey: "isFreshWin")
-        if isFreshWin == true {
-            resetDailies()
+        let beatGame = UserDefaults.standard.bool(forKey: "beatGame")
+        if beatGame == true {
+            UserDefaults.standard.set(1, forKey: "level")
             player.calculateLevelInfo()
             updatePlayerImage()
+            resetDailies()
             dailies.removeAll()
             saveDailies()
             tableView.reloadData()
-            UserDefaults.standard.set(false, forKey: "isFreshWin")
+            UserDefaults.standard.set(false, forKey: "beatGame")
         }
     }
     
@@ -276,6 +277,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         case true where player.daysTil == 1:
             player.level += 1
             if player.level == 11 {
+                UserDefaults.standard.set(true, forKey: "beatGame")
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
                 self.present(MessageViewController, animated: true, completion: nil)

@@ -25,6 +25,10 @@ class QuestInfo: NSObject, Codable {
     var gainedLevel = false
     var lostLevel = false
     
+    // need these or just keep up with them in UserDefaults?
+    var beatGame = false
+    var lostGame = false
+    
     func calculateLevelInfo() {
         level = UserDefaults.standard.integer(forKey: "level")
         
