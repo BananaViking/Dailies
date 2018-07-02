@@ -235,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if player.launchedBefore == false {
             if player.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
-                player.daysTil = 2
+                player.daysTil = 2  // changed to 7 in launch
             }
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -268,7 +268,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("countedCheckedDailies")
     }
     
-    func processDay() {  // refactor this to get away from all the nested ifs. too hard to understand at a glance.
+    func processDay() {  
         if player.dailiesDone == dailies.count && dailies.count > 0 {
             player.perfectDay = true
         } else {
