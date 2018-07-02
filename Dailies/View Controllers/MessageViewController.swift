@@ -32,7 +32,7 @@ class MessageViewController: UIViewController {
             textView.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. You have a much better chance of surviving if you start small and build on wins."
             dismissMessageButton.setTitle("Start Game", for: .normal)
         } else if beatGame == true {
-            imageView.image = UIImage(named: "wizard10")
+            imageView.image = UIImage(named: "beatGame")
             textView.text = "You have defeated the necromancer and saved the world. Go have a beer. You earned it."
             dismissMessageButton.setTitle("DRINK BEER", for: .normal)
         } else if lostGame == true {
