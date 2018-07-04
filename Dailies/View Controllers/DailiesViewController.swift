@@ -290,7 +290,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             if player.level == 11 {
                 UserDefaults.standard.set(true, forKey: "beatGame")
-                presentMessageVC()
+//                presentMessageVC()
             }
             player.gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
@@ -303,9 +303,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 player.level -= 1
                 if player.level == 0 {
                     UserDefaults.standard.set(true, forKey: "lostGame")
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
-                    self.present(MessageViewController, animated: true, completion: nil)
+//                    presentMessageVC()
                 }
                 player.lostLevel = true
             }
