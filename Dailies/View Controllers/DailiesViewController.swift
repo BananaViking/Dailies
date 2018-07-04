@@ -114,6 +114,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             tableView.reloadData()
             UserDefaults.standard.set(false, forKey: "beatGame")
             UserDefaults.standard.set(false, forKey: "lostGame")
+            playSound(forObject: "resetGame")
         }
     }
     
