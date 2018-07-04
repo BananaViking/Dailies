@@ -36,6 +36,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
         playSound(forObject: "addDaily")
+        UserDefaults.standard.set(false, forKey: "noDailies")
         saveDailies()
     }
     
@@ -165,6 +166,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         dailies.remove(at: indexPath.row)
         
+        if dailies.count == 0 {
+            UserDefaults.standard.set(true, forKey: "noDailies")
+        }
+        
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
         print("\(player.dailiesDone) out of \(dailies.count) completed.")
@@ -229,6 +234,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("loadedDailies")
     }
     
+    func presentMessageVC() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
+        self.present(MessageViewController, animated: true, completion: nil)
+    }
+    
     func setupFirstLaunch() {
         player.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         print("launched before: \(player.launchedBefore)")
@@ -238,9 +249,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 player.daysTil = 2  // changed to 7 in launch
             }
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
-            self.present(MessageViewController, animated: true, completion: nil)
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
+//            self.present(MessageViewController, animated: true, completion: nil)
         }
     }
     
@@ -324,52 +335,18 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func showNewDayMessage() {
-        let title = player.quest
-        var messageTitle = title + " Update"
-        var message = ""
-        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 246, height: 246)))
-        
-        if player.launchedBefore == false {
-            imageView.image = UIImage(named: "advisorHappy")
-            messageTitle = "A New Beginning"
-            message = "Maya: \"Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on consistent wins. Good luck!\""
-            playSound(forObject: "firstLaunch")
-        } else if dailies.count == 0 {
-            imageView.image = UIImage(named: "advisorMad")
-            message = "Maya: \"You must add at least one Daily before returning to your quest. Hurry up before it's too late!\""
-            playSound(forObject: "noDailies")
-        } else if player.gainedLevel == true {  // rewrite this as switch statement
-            imageView.image = UIImage(named: "advisorHappy")
-            message = "Maya: \"Victory! You have vanquished the enemy - reaching Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). There is no time to rest, however, as the \(player.quest) has already begun!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
-            playSound(forObject: "gainLevel")
+        if dailies.count == 0 {
+            UserDefaults.standard.set(true, forKey: "noDailies")
+        } else if player.gainedLevel == true {
+            UserDefaults.standard.set(true, forKey: "gainLevel")
         } else if player.perfectDay == true {
-            imageView.image = UIImage(named: "advisorHappy")
-            message = "Maya: \"Well done! Yesterday you completed all of your Dailies. Keep it up and you will actually complete the \(title) with your head intact!\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
-            playSound(forObject: "completeDailies")
+            UserDefaults.standard.set(true, forKey: "completeDailies")
         } else if player.lostLevel == true {
-            imageView.image = UIImage(named: "advisorMad")
-            message = "Maya: \"You have been defeated - returning to Level \(player.level) and the rank of \(UserDefaults.standard.object(forKey: "rank")!). If you can't keep up, perhaps you should set a reminder, drop a Daily, or make it easier.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
-            playSound(forObject: "loseLevel")
+            UserDefaults.standard.set(true, forKey: "loseLevel")
         } else if player.perfectDay == false {
-            imageView.image = UIImage(named: "advisorMad")
-            message = "Maya: \"Yesterday you completed \(player.dailiesDone) of your \(dailies.count) dailies. You must do better today or you will surely be defeated.\" \n\n Days Until Victory: \(player.daysTil) \n Days Missed: \(player.daysMissed)"
-            playSound(forObject: "missDailies")
+            UserDefaults.standard.set(true, forKey: "missDailies")
         }
-        
-        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, imageView.isOpaque, 0.0)
-        defer { UIGraphicsEndImageContext() }
-        let context = UIGraphicsGetCurrentContext()
-        imageView.layer.render(in: context!)
-        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        let alert = UIAlertController(title: messageTitle, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "", style: .default, handler: nil)
-        action.setValue(finalImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), forKey: "image")
-        alert .addAction(action)
-        let action1 = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert .addAction(action1)
-        self.present(alert, animated: true, completion: nil)  // giving compiler warning because adding an image view to a detached alert view?
-        
+        presentMessageVC()
         print("showedNewDayMessage")
     }
     
@@ -397,6 +374,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             self.player.calculateLevelInfo()
             self.updatePlayerImage()
             self.dailies.removeAll()
+            UserDefaults.standard.set(true, forKey: "noDailies")
             self.saveDailies()
             self.tableView.reloadData()
         }))
