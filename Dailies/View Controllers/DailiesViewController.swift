@@ -248,10 +248,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 UserDefaults.standard.set(1, forKey: "level")
                 player.daysTil = 2  // changed to 7 in launch
             }
-            
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
-//            self.present(MessageViewController, animated: true, completion: nil)
         }
     }
     
@@ -294,9 +290,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             if player.level == 11 {
                 UserDefaults.standard.set(true, forKey: "beatGame")
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
-                self.present(MessageViewController, animated: true, completion: nil)
+                presentMessageVC()
             }
             player.gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
@@ -334,7 +328,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("updatedPlayerImage")
     }
     
-    func showNewDayMessage() {
+    func showNewDayMessage() {  // need to make sure these get set back to their proper values
         if dailies.count == 0 {
             UserDefaults.standard.set(true, forKey: "noDailies")
         } else if player.gainedLevel == true {
