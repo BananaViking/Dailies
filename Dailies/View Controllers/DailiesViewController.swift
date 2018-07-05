@@ -77,7 +77,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
-        UserDefaults.standard.set(10, forKey: "level")
         player.level = UserDefaults.standard.integer(forKey: "level")
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
