@@ -339,7 +339,14 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else if player.perfectDay == false {
             UserDefaults.standard.set(true, forKey: "missDailies")
         }
+        
         presentMessageVC()
+        
+        UserDefaults.standard.set(false, forKey: "gainLevel")
+        UserDefaults.standard.set(false, forKey: "completeDailies")
+        UserDefaults.standard.set(false, forKey: "loseLevel")
+        UserDefaults.standard.set(false, forKey: "missDailies")
+
         print("showedNewDayMessage")
     }
     
