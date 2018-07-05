@@ -215,9 +215,9 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1fI-AF-dRH">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hQb-jK-YsI">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="daily" id="7VE-Bn-VA2">
@@ -514,6 +514,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eh0-Qa-TK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-279" y="76"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dBi-u8-v6z">
+            <objects>
+                <viewController id="fOT-Ak-iGx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eiJ-5h-Rdj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="der-Zy-bA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
