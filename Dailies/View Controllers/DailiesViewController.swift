@@ -291,7 +291,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.level += 1
             if player.level == 11 {
                 UserDefaults.standard.set(true, forKey: "beatGame")
-//                presentMessageVC()
             }
             player.gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
@@ -304,7 +303,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 player.level -= 1
                 if player.level == 0 {
                     UserDefaults.standard.set(true, forKey: "lostGame")
-//                    presentMessageVC()
                 }
                 player.lostLevel = true
             }
@@ -327,7 +325,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("updatedPlayerImage")
     }
     
-    func showNewDayMessage() {  // need to make sure these get set back to their proper values
+    func showNewDayMessage() {
         if dailies.count == 0 {
             UserDefaults.standard.set(true, forKey: "noDailies")
         } else if player.gainedLevel == true {
@@ -356,8 +354,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
         
         player.dailiesDone = 0
-        player.gainedLevel = false
-        player.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day?
+        player.gainedLevel = false  // still need this now with UserDefault resets at end of showNewDayMessage?
+        player.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day? // still need this now with UserDefault resets at end of showNewDayMessage?
         
         print("resetDailies")
     }
