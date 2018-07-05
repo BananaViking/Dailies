@@ -12,8 +12,6 @@ class MessageViewController: UIViewController {
     
     let dailiesVC = DailiesViewController()
     
-    
-    
     @IBAction func dismissMessageButton(_ sender: UIButton) {
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }

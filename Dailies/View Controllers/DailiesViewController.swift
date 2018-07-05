@@ -237,8 +237,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func presentMessageVC() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let MessageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
-        self.present(MessageViewController, animated: true, completion: nil)
+        let messageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
+        messageViewController.modalTransitionStyle = .crossDissolve
+        self.present(messageViewController, animated: true, completion: nil)
     }
     
     func setupFirstLaunch() {
@@ -295,7 +296,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.gainedLevel = true
             player.daysTil = 2 // change to 7 on launch
         case false where dailies.count == 0:
-            print("no dailies")
+            print("dailies.count: \(dailies.count)")
         case false:
             player.daysMissed += 1
             player.daysTil = 2 // change to 7 on launch
