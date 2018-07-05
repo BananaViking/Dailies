@@ -46,12 +46,12 @@ class MessageViewController: UIViewController {
             imageView.image = UIImage(named: "beatGame")
             textView.text = "You have defeated the necromancer and saved the world. Go have a beer. You earned it."
             dismissMessageButton.setTitle("DRINK BEER", for: .normal)
-            dailiesVC.playSound(forObject: "firstLaunch")
+            dailiesVC.playSound(forObject: "beatGame")
         } else if lostGame == true {
             imageView.image = UIImage(named: "lostGame")
             textView.text = "You have been killed by the necromancer and his minions. Now the world will surely plunge into eternal darkness."
             dismissMessageButton.setTitle("TRY NOT TO FUCK IT UP THIS TIME", for: .normal)
-            dailiesVC.playSound(forObject: "loseLevel")
+            dailiesVC.playSound(forObject: "lostGame")
         } else if noDailies == true {
             imageView.image = UIImage(named: "advisorMad")
             textView.text = "You must add at least one Daily before returning to your quest. Hurry up before it's too late!"
