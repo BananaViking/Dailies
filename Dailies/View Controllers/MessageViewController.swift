@@ -79,5 +79,9 @@ class MessageViewController: UIViewController {
             dailiesVC.playSound(forObject: "missDailies")
         }
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }
 
