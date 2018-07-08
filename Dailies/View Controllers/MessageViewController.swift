@@ -52,7 +52,7 @@ class MessageViewController: UIViewController {
             dailiesVC.playSound(forObject: "lostGame")
         } else if noDailies == true {
             imageView.image = UIImage(named: "advisorMad")
-            messageLabel.text = "You must add at least one Daily before returning to your quest. Hurry up before it's too late!"
+            messageLabel.text = "You must add at least one Daily before returning to your quest. Hurry up before it's too late! 2 You must add at least one Daily before returning to your quest. Hurry up before it's too late! 3 You must add at least one Daily before returning to your quest. Hurry up before it's too late!"
             dismissMessageButton.setTitle("OK", for: .normal)
             dailiesVC.playSound(forObject: "noDailies")
         } else if gainLevel == true {
