@@ -37,18 +37,18 @@ class MessageViewController: UIViewController {
         
         if launchedBefore == false {  // check to make sure you need ALL the UD resets even if you need SOME
             imageView.image = UIImage(named: "advisorHappy")
-            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. You have a much better chance of surviving if you start small and build on wins."
+            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on wins."
             dismissMessageButton.setTitle("Start Game", for: .normal)
             dailiesVC.playSound(forObject: "firstLaunch")
         } else if beatGame == true {
             imageView.image = UIImage(named: "beatGame")
-            messageLabel.text = "You have defeated the necromancer and saved the world. Go have a beer. You earned it."
-            dismissMessageButton.setTitle("DRINK BEER", for: .normal)
+            messageLabel.text = "After many hard fought battles, you have finally defeated the necromancer and all of his minions. Peace has been restored to the land. Sleep well tonight adventurer; you have earned it."
+            dismissMessageButton.setTitle("Start a New Game", for: .normal)
             dailiesVC.playSound(forObject: "beatGame")
         } else if lostGame == true {
             imageView.image = UIImage(named: "lostGame")
-            messageLabel.text = "You have been killed by the necromancer and his minions. Now the world will surely plunge into eternal darkness."
-            dismissMessageButton.setTitle("TRY NOT TO FUCK IT UP THIS TIME", for: .normal)
+            messageLabel.text = "You have been defeated by the necromancer and his minions. The world will surely plunge into eternal darkness. If only you could have been stronger..."
+            dismissMessageButton.setTitle("Try Again", for: .normal)
             dailiesVC.playSound(forObject: "lostGame")
         } else if noDailies == true {
             imageView.image = UIImage(named: "advisorMad")
