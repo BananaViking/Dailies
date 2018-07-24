@@ -25,6 +25,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     var dueDate = Date()
     var datePickerVisible = false
     
+    
     // MARK: - Actions
     @IBAction func cancel() {
         delegate?.dailyDetailViewControllerDidCancel(self)
@@ -100,6 +101,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         
         self.tableView.isScrollEnabled = false
     }
+    
     
     //MARK: - tableView Delegates
     // stops the cell from highlighting when tap just outside the text field
