@@ -30,7 +30,6 @@
 		05B1F21C20EDC17300D677B4 /* lostGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21B20EDC17300D677B4 /* lostGame.wav */; };
 		05B1F21E20EDC1FD00D677B4 /* beatGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21D20EDC1FD00D677B4 /* beatGame.wav */; };
 		05B1F22220EDC38A00D677B4 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F22120EDC38A00D677B4 /* firstLaunch.wav */; };
-		05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C3F4D920C6D8A300C78184 /* DailiesList.swift */; };
 		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
@@ -75,7 +74,6 @@
 		05B1F21B20EDC17300D677B4 /* lostGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lostGame.wav; sourceTree = "<group>"; };
 		05B1F21D20EDC1FD00D677B4 /* beatGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beatGame.wav; sourceTree = "<group>"; };
 		05B1F22120EDC38A00D677B4 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = firstLaunch.wav; path = "../../MyApps Resources/HabitQuest Resources/Sounds/firstLaunch.wav"; sourceTree = "<group>"; };
-		05C3F4D920C6D8A300C78184 /* DailiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesList.swift; sourceTree = "<group>"; };
 		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				0569D85820BF63B200D733C9 /* Daily.swift */,
-				05C3F4D920C6D8A300C78184 /* DailiesList.swift */,
 				0553BEB920CC71B100059761 /* QuestInfo.swift */,
 			);
 			path = "Data Models";
@@ -324,7 +321,6 @@
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* MessageViewController.swift in Sources */,
-				05C3F4DA20C6D8A300C78184 /* DailiesList.swift in Sources */,
 				0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */,
 				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
 			);
