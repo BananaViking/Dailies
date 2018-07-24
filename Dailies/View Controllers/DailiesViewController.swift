@@ -239,7 +239,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let messageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
         messageViewController.modalTransitionStyle = .crossDissolve
-        self.present(messageViewController, animated: true, completion: nil)
+        self.parent?.present(messageViewController, animated: true, completion: nil)
     }
     
     func setupFirstLaunch() {
