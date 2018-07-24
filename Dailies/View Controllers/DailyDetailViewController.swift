@@ -69,6 +69,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    
     // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
@@ -77,8 +78,8 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    
     // MARK: - function overrides
-    // activates the text field when page is loaded without having to select it first
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
@@ -159,8 +160,8 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
+    
     // MARK: - Functions
-
     // disables doneBarButton if textField is empty
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text!
@@ -217,8 +218,8 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         hideDatePicker()
     }
     
-    // MARK: - Landscape
     
+    // MARK: - Landscape
     // landscape transition
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)

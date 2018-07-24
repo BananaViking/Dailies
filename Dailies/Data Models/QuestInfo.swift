@@ -92,7 +92,5 @@ class QuestInfo: NSObject, Codable {
         UserDefaults.standard.set(rank, forKey: "rank")
         UserDefaults.standard.set(playerImage, forKey: "playerImage")
         UserDefaults.standard.set(enemyImage, forKey: "enemyImage")
-        
-        print("calculatedLevelInfo")
     }
 }
