@@ -21,7 +21,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -52,11 +51,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - function overrides
     // my selector that was defined above
     @objc func willEnterForeground() {
-        print("willEnterForeground called")
         setupFirstLaunch()
         checkLastLaunch()
         
@@ -69,7 +66,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             saveDailies()
             self.tableView.reloadData()
         }
-        print("appEnteredForeground")
     }
     
     override func viewDidLoad() {
@@ -119,7 +115,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - tableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailies.count
@@ -144,11 +139,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             if daily.checked {
                 playSound(forObject: "completeDaily")
                 player.dailiesDone += 1
-                print("\(player.dailiesDone) out of \(dailies.count) completed.")
             } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
 //                playSound(forObject: "uncheckDaily")  // add this back if want the noise
                 player.dailiesDone -= 1
-                print("\(player.dailiesDone) out of \(dailies.count) completed.")
             }
         }
         
@@ -173,13 +166,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        print("\(player.dailiesDone) out of \(dailies.count) completed.")
         playSound(forObject: "deleteDaily")
         saveDailies()
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     func configureCheckmark(for cell: UITableViewCell, with daily: Daily) {
         let label = cell.viewWithTag(1001) as! UILabel
@@ -217,7 +208,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } catch {
             print("Error encoding daily array.")
         }
-        print("savedDailies")
     }
     
     func loadDailies() {  // move to Data Models
@@ -232,7 +222,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 print("Error decoding daily array.")
             }
         }
-        print("loadedDailies")
     }
     
     func presentMessageVC() {  // getting the unbalanced calls error in llvm because we are doing modal messageVC presentation in viewDidLoad instead of viewDidAppear
@@ -244,7 +233,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func setupFirstLaunch() {
         player.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        print("launched before: \(player.launchedBefore)")
         if player.launchedBefore == false {
             if player.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
@@ -267,14 +255,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else {
             player.isNewDay = false
         }
-        print("checkedLastLaunch")
     }
     
     func countCheckedDailies() {
         for daily in dailies where daily.checked {
             player.dailiesDone += 1
         }
-        print("countedCheckedDailies")
     }
     
     func processDay() {  
@@ -313,8 +299,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(player.level, forKey: "level")
         UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
         UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
-        
-        print("processedDay")
     }
     
     func updatePlayerImage() {
@@ -322,8 +306,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playerImageView.layer.cornerRadius = 8
             playerImageView.image = UIImage(named: player.playerImage)
         }
-        
-        print("updatedPlayerImage")
     }
     
     func showNewDayMessage() {
@@ -345,8 +327,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         UserDefaults.standard.set(false, forKey: "completeDailies")
         UserDefaults.standard.set(false, forKey: "loseLevel")
         UserDefaults.standard.set(false, forKey: "missDailies")
-
-        print("showedNewDayMessage")
     }
     
     func resetDailies() {
@@ -357,8 +337,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         player.dailiesDone = 0
         player.gainedLevel = false  // still need this now with UserDefault resets at end of showNewDayMessage?
         player.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day? // still need this now with UserDefault resets at end of showNewDayMessage?
-        
-        print("resetDailies")
     }
     
     func resetGame() {
@@ -380,8 +358,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        
-        print("resetGame")
     }
     
     func playSound(forObject: String) {
@@ -399,7 +375,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Landscape
     // landscape transition
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -450,7 +425,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // MARK: - Navigation
     // tells DailyDetailDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
