@@ -235,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         print("loadedDailies")
     }
     
-    func presentMessageVC() {
+    func presentMessageVC() {  // getting the unbalanced calls error in llvm because we are doing modal messageVC presentation in viewDidLoad instead of viewDidAppear
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let messageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
         messageViewController.modalTransitionStyle = .crossDissolve
