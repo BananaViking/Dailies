@@ -51,8 +51,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     
-    // MARK: - function overrides
-    // my selector that was defined above
+    // MARK: - Function Overrides
     @objc func willEnterForeground() {
         setupFirstLaunch()
         checkLastLaunch()
@@ -188,12 +187,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     // gets full path to the Documents folder
-    func getDocumentsDirectory() -> URL {  // move to Data Models
+    func getDocumentsDirectory() -> URL {  // move to Data Models?
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
-    func getDataFilePath() -> URL {  // move to Data Models
+    func getDataFilePath() -> URL {  // move to Data Models?
         return getDocumentsDirectory().appendingPathComponent("Dailies.plist")
     }
     
@@ -210,7 +209,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func loadDailies() {  // move to Data Models
+    func loadDailies() {  // move to Data Models?
         let path = getDataFilePath()
         
         if let data = try? Data(contentsOf: path) {
@@ -236,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if player.launchedBefore == false {
             if player.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
-                player.daysTil = 2  // changed to 7 in launch
+                player.daysTil = 7  // change to 7 in launch
             }
         }
     }
@@ -250,7 +249,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate == todayDate { // change this back to != on launch
+        if lastLaunchDate != todayDate { // change this back to != on launch
             player.isNewDay = true
         } else {
             player.isNewDay = false
@@ -280,12 +279,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 UserDefaults.standard.set(true, forKey: "beatGame")
             }
             player.gainedLevel = true
-            player.daysTil = 2 // change to 7 on launch
+            player.daysTil = 7 // change to 7 on launch
         case false where dailies.count == 0:
             print("dailies.count: \(dailies.count)")
         case false:
             player.daysMissed += 1
-            player.daysTil = 2 // change to 7 on launch
+            player.daysTil = 7 // change to 7 on launch
             if player.daysMissed >= 2 && player.level > 0 {
                 player.level -= 1
                 if player.level == 0 {
@@ -346,7 +345,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             self.playSound(forObject: "resetGame")
             self.resetDailies()
             UserDefaults.standard.set(1, forKey: "level")
-            UserDefaults.standard.set(2, forKey: "daysTil")  // change to 7 on launch
+            UserDefaults.standard.set(7, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
             self.player.calculateLevelInfo()
             self.updatePlayerImage()

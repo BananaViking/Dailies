@@ -17,7 +17,6 @@ class MessageViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         let noDailies = UserDefaults.standard.bool(forKey: "noDailies")
         let gainLevel = UserDefaults.standard.bool(forKey: "gainLevel")

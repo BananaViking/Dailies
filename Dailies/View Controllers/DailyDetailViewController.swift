@@ -80,7 +80,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     
-    // MARK: - function overrides
+    // MARK: - Function Overrides
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         textField.becomeFirstResponder()
