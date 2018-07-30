@@ -19,7 +19,7 @@ class QuestInfo: NSObject, Codable {
     var launchedBefore = false
     var isNewDay = true
     var dailiesDone = 0
-    var daysTil = 7 // change to 7 on launch
+    var daysTil = 3 // change to 7 on launch
     var daysMissed = 0
     var perfectDay = false
     var gainedLevel = false

@@ -235,7 +235,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if player.launchedBefore == false {
             if player.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
-                player.daysTil = 7  // change to 7 in launch
+                player.daysTil = 3  // change to 7 in launch
             }
         }
     }
@@ -279,12 +279,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 UserDefaults.standard.set(true, forKey: "beatGame")
             }
             player.gainedLevel = true
-            player.daysTil = 7 // change to 7 on launch
+            player.daysTil = 3 // change to 7 on launch
         case false where dailies.count == 0:
             print("dailies.count: \(dailies.count)")
         case false:
             player.daysMissed += 1
-            player.daysTil = 7 // change to 7 on launch
+            player.daysTil = 3 // change to 7 on launch
             if player.daysMissed >= 2 && player.level > 0 {
                 player.level -= 1
                 if player.level == 0 {
@@ -345,7 +345,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             self.playSound(forObject: "resetGame")
             self.resetDailies()
             UserDefaults.standard.set(1, forKey: "level")
-            UserDefaults.standard.set(7, forKey: "daysTil")  // change to 7 on launch
+            UserDefaults.standard.set(3, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
             self.player.calculateLevelInfo()
             self.updatePlayerImage()

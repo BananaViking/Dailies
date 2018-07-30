@@ -25,7 +25,7 @@ class QuestInfoViewController: UITableViewController {
     func updateLabels() {
         levelLabel.text = "\(UserDefaults.standard.object(forKey: "level") ?? "1")"
         rankLabel.text = "\(UserDefaults.standard.object(forKey: "rank") ?? "Novice")"
-        daysTilLabel.text = "\(UserDefaults.standard.object(forKey: "daysTil") ?? "7")" // change to 7 on launch
+        daysTilLabel.text = "\(UserDefaults.standard.object(forKey: "daysTil") ?? "3")" // change to 7 on launch
         daysMissedLabel.text = "\(UserDefaults.standard.object(forKey: "daysMissed") ?? "0")"
         questLabel.text = UserDefaults.standard.object(forKey: "quest") as? String ?? "Skeleton Quest"
     }
