@@ -29,11 +29,13 @@
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
 		05B1F21C20EDC17300D677B4 /* lostGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21B20EDC17300D677B4 /* lostGame.wav */; };
 		05B1F21E20EDC1FD00D677B4 /* beatGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21D20EDC1FD00D677B4 /* beatGame.wav */; };
-		05B1F22220EDC38A00D677B4 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F22120EDC38A00D677B4 /* firstLaunch.wav */; };
 		05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C5A7EF20C72206008B5439 /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		05CD4DA9211C956800FA01B4 /* firstLaunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05CD4DA8211C956800FA01B4 /* firstLaunch.wav */; };
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
 		05EBC05320E6D0E300AB3146 /* noDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC05220E6D0E300AB3146 /* noDailies.wav */; };
+		214735A3699B5D20048514ED /* Pods_Dailies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */; };
+		70F11F40B736408A7F5C12A2 /* Pods_DailiesUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,11 +75,17 @@
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 		05B1F21B20EDC17300D677B4 /* lostGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lostGame.wav; sourceTree = "<group>"; };
 		05B1F21D20EDC1FD00D677B4 /* beatGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beatGame.wav; sourceTree = "<group>"; };
-		05B1F22120EDC38A00D677B4 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = firstLaunch.wav; path = "../../MyApps Resources/HabitQuest Resources/Sounds/firstLaunch.wav"; sourceTree = "<group>"; };
 		05C5A7EF20C72206008B5439 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		05CD4DA8211C956800FA01B4 /* firstLaunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = firstLaunch.wav; path = "../../../../MyApps Resources/HabitQuest Resources/Sounds/firstLaunch.wav"; sourceTree = "<group>"; };
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
 		05EBC05220E6D0E300AB3146 /* noDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = noDailies.wav; sourceTree = "<group>"; };
+		147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailiesUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailiesUnitTests/Pods-DailiesUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dailies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dailies/Pods-Dailies.debug.xcconfig"; sourceTree = "<group>"; };
+		6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dailies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dailies/Pods-Dailies.release.xcconfig"; sourceTree = "<group>"; };
+		96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailiesUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailiesUnitTests/Pods-DailiesUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailiesUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dailies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F11F40B736408A7F5C12A2 /* Pods_DailiesUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */,
+				214735A3699B5D20048514ED /* Pods_Dailies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +126,7 @@
 				050A8B4A20D98F5700096906 /* completeDailies.wav */,
 				050A8B4820D98E1F00096906 /* completeDaily.wav */,
 				0543339C20E47731005FE1D8 /* deleteDaily.wav */,
-				05B1F22120EDC38A00D677B4 /* firstLaunch.wav */,
+				05CD4DA8211C956800FA01B4 /* firstLaunch.wav */,
 				055654DB20D8B76F00EDBFA5 /* gainLevel.wav */,
 				055654D920D8B76F00EDBFA5 /* loseLevel.wav */,
 				05B1F21B20EDC17300D677B4 /* lostGame.wav */,
@@ -133,10 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				0569D84420BF5C1100D733C9 /* Dailies */,
-				055654E020D8B77A00EDBFA5 /* Sounds */,
 				054333B520E537B2005FE1D8 /* DailiesUnitTests */,
 				0569D84320BF5C1100D733C9 /* Products */,
 				05C5A7EE20C72206008B5439 /* Frameworks */,
+				4E3150F8F020B8A9BC32D938 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,18 +162,16 @@
 		0569D84420BF5C1100D733C9 /* Dailies */ = {
 			isa = PBXGroup;
 			children = (
-				0569D84920BF5C1100D733C9 /* Main.storyboard */,
-				0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */,
-				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
-				0569D85120BF5C1200D733C9 /* Info.plist */,
 				0569D84520BF5C1100D733C9 /* AppDelegate.swift */,
-				0569D85A20BF63B800D733C9 /* Data Models */,
-				0569D85720BF5CE800D733C9 /* View Controllers */,
+				0569D85120BF5C1200D733C9 /* Info.plist */,
+				0569D85A20BF63B800D733C9 /* Model */,
+				05EAA98D211C92DB0096F29D /* View */,
+				0569D85720BF5CE800D733C9 /* Controller */,
 			);
 			path = Dailies;
 			sourceTree = "<group>";
 		};
-		0569D85720BF5CE800D733C9 /* View Controllers */ = {
+		0569D85720BF5CE800D733C9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				0569D84720BF5C1100D733C9 /* DailiesViewController.swift */,
@@ -172,24 +180,48 @@
 				0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */,
 				052F82D120E811CD00E43426 /* MessageViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		0569D85A20BF63B800D733C9 /* Data Models */ = {
+		0569D85A20BF63B800D733C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				0569D85820BF63B200D733C9 /* Daily.swift */,
 				0553BEB920CC71B100059761 /* QuestInfo.swift */,
+				055654E020D8B77A00EDBFA5 /* Sounds */,
 			);
-			path = "Data Models";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		05C5A7EE20C72206008B5439 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				05C5A7EF20C72206008B5439 /* PassKit.framework */,
+				E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */,
+				A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05EAA98D211C92DB0096F29D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
+				0569D84920BF5C1100D733C9 /* Main.storyboard */,
+				0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E3150F8F020B8A9BC32D938 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */,
+				6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */,
+				147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */,
+				96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 054333BD20E537B2005FE1D8 /* Build configuration list for PBXNativeTarget "DailiesUnitTests" */;
 			buildPhases = (
+				D85180780A2B1FAB6DF38A86 /* [CP] Check Pods Manifest.lock */,
 				054333B020E537B1005FE1D8 /* Sources */,
 				054333B120E537B1005FE1D8 /* Frameworks */,
 				054333B220E537B1005FE1D8 /* Resources */,
@@ -217,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0569D85420BF5C1200D733C9 /* Build configuration list for PBXNativeTarget "Dailies" */;
 			buildPhases = (
+				0FF55CF39D1ACDD07C9C51CC /* [CP] Check Pods Manifest.lock */,
 				0569D83E20BF5C1100D733C9 /* Sources */,
 				0569D83F20BF5C1100D733C9 /* Frameworks */,
 				0569D84020BF5C1100D733C9 /* Resources */,
+				12FBC11EDDC65F71516B86ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -292,7 +327,7 @@
 				050A8B4920D98E1F00096906 /* completeDaily.wav in Resources */,
 				05DC912420DBF55B005D1954 /* resetGame.wav in Resources */,
 				055654E420D8BB6500EDBFA5 /* missDailies.wav in Resources */,
-				05B1F22220EDC38A00D677B4 /* firstLaunch.wav in Resources */,
+				05CD4DA9211C956800FA01B4 /* firstLaunch.wav in Resources */,
 				0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */,
 				055654DF20D8B76F00EDBFA5 /* gainLevel.wav in Resources */,
 				05B1F21E20EDC1FD00D677B4 /* beatGame.wav in Resources */,
@@ -301,6 +336,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FF55CF39D1ACDD07C9C51CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dailies-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		12FBC11EDDC65F71516B86ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Dailies/Pods-Dailies-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dailies/Pods-Dailies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D85180780A2B1FAB6DF38A86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DailiesUnitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		054333B020E537B1005FE1D8 /* Sources */ = {
@@ -358,6 +450,7 @@
 /* Begin XCBuildConfiguration section */
 		054333BB20E537B2005FE1D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -379,6 +472,7 @@
 		};
 		054333BC20E537B2005FE1D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -514,6 +608,7 @@
 		};
 		0569D85520BF5C1200D733C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -533,6 +628,7 @@
 		};
 		0569D85620BF5C1200D733C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

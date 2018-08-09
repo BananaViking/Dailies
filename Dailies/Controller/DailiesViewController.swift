@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SwiftyUserDefaults
 
 class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
     
