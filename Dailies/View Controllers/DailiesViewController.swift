@@ -363,11 +363,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         guard let url = Bundle.main.url(forResource: forObject, withExtension: "wav") else { return }
         
         do {
-            /// this codes for making this app ready to takeover the device audio
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-            audioPlayer!.play()
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            guard let audioPlayer = audioPlayer else { return }
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
         } catch let error as NSError {
             print("error: \(error.localizedDescription)")
         }
