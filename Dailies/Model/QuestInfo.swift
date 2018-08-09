@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 class QuestInfo: NSObject, Codable {
     

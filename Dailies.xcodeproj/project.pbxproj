@@ -206,9 +206,9 @@
 		05EAA98D211C92DB0096F29D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
 				0569D84920BF5C1100D733C9 /* Main.storyboard */,
 				0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */,
+				0569D84C20BF5C1200D733C9 /* Assets.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";
