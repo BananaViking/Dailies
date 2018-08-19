@@ -11,9 +11,7 @@ import UserNotifications
 
 protocol DailyDetailViewControllerDelegate: class {
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController)
-    
     func dailyDetailViewController(_ controller: DailyDetailViewController, didFinishAdding daily: Daily)
-    
     func dailyDetailViewController(_ controller: DailyDetailViewController, didFinishEditing daily: Daily)
 }
 

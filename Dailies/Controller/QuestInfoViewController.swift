@@ -20,7 +20,7 @@ class QuestInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
-        self.tableView.allowsSelection = false 
+        tableView.allowsSelection = false 
     }
     
     func updateLabels() {

@@ -44,7 +44,6 @@ class Daily: NSObject, Codable {
             let calendar = Calendar(identifier: .gregorian)
             let components = calendar.dateComponents([.hour, .minute], from: dueDate)
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-            
             let request = UNNotificationRequest(identifier: "\(dailyID)", content: content, trigger: trigger)
             let center = UNUserNotificationCenter.current()
             center.add(request)

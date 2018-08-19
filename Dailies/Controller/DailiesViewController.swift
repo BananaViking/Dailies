@@ -58,7 +58,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
         let daily = dailies[indexPath.row]
-        
         configureText(for: cell, with: daily)
         configureCheckmark(for: cell, with: daily)
         
@@ -111,7 +110,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
                                                name: .UIApplicationWillEnterForeground,
                                                object: nil)
-        
         player.level = UserDefaults.standard.integer(forKey: "level")
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
@@ -197,10 +195,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // takes contents of dailies array, converts to block of binary data, and writes it to a file
     func saveDailies() {  // move to Data Models? does this only need to be called when app exits?
         let encoder = PropertyListEncoder()
-        
         do {
             let data = try encoder.encode(dailies)
-            
             try data.write(to: getDataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
             print("Error encoding daily array.")
@@ -212,7 +208,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         
         if let data = try? Data(contentsOf: path) {
             let decoder = PropertyListDecoder()
-            
             do {
                 dailies = try decoder.decode([Daily].self, from: data)
             } catch {
@@ -317,7 +312,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         } else if player.perfectDay == false {
             UserDefaults.standard.set(true, forKey: "missDailies")
         }
-        
         presentMessageVC()
         
         UserDefaults.standard.set(false, forKey: "gainLevel")
@@ -426,7 +420,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDaily" {
             let controller = segue.destination as! DailyDetailViewController
-            
             controller.delegate = self 
         } else if segue.identifier == "EditDaily" {
             let controller = segue.destination as! DailyDetailViewController
