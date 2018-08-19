@@ -21,7 +21,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         resetGame()
     }
     
-    
     // MARK: - DailyDetailVC Protocols
     func dailyDetailViewControllerDidCancel(_ controller: DailyDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -51,12 +50,69 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         saveDailies()
     }
     
+    // MARK: - tableView Delegates
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dailies.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
+        let daily = dailies[indexPath.row]
+        
+        configureText(for: cell, with: daily)
+        configureCheckmark(for: cell, with: daily)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            let daily = dailies[indexPath.row]
+            daily.toggleChecked()
+            configureCheckmark(for: cell, with: daily)
+            if daily.checked {
+                playSound(forObject: "completeDaily")
+                player.dailiesDone += 1
+            } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
+                //                playSound(forObject: "uncheckDaily")  // add this back if want the noise
+                player.dailiesDone -= 1
+            }
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        saveDailies()
+    }
+    
+    // enables swipe to delete rows
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        
+        let daily = dailies[indexPath.row]
+        if daily.checked {
+            if player.dailiesDone > 0 {
+                player.dailiesDone -= 1
+            }
+        }
+        dailies.remove(at: indexPath.row)
+        
+        if dailies.count == 0 {
+            UserDefaults.standard.set(true, forKey: "noDailies")
+        }
+        
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+        playSound(forObject: "deleteDaily")
+        saveDailies()
+    }
     
     // MARK: - Function Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
         
         player.level = UserDefaults.standard.integer(forKey: "level")
         player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
@@ -98,63 +154,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             playSound(forObject: "resetGame")
         }
     }
-    
-    
-    // MARK: - tableView Delegates
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dailies.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "daily", for: indexPath)
-        let daily = dailies[indexPath.row]
-        
-        configureText(for: cell, with: daily)
-        configureCheckmark(for: cell, with: daily)
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if let cell = tableView.cellForRow(at: indexPath) {
-            let daily = dailies[indexPath.row]
-            daily.toggleChecked()
-            configureCheckmark(for: cell, with: daily)
-            if daily.checked {
-                playSound(forObject: "completeDaily")
-                player.dailiesDone += 1
-            } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
-//                playSound(forObject: "uncheckDaily")  // add this back if want the noise
-                player.dailiesDone -= 1
-            }
-        }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        saveDailies()
-    }
-    
-    // enables swipe to delete rows
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let daily = dailies[indexPath.row]
-        if daily.checked {
-            if player.dailiesDone > 0 {
-                player.dailiesDone -= 1
-            }
-        }
-        dailies.remove(at: indexPath.row)
-        
-        if dailies.count == 0 {
-            UserDefaults.standard.set(true, forKey: "noDailies")
-        }
-        
-        let indexPaths = [indexPath]
-        tableView.deleteRows(at: indexPaths, with: .automatic)
-        playSound(forObject: "deleteDaily")
-        saveDailies()
-    }
-    
     
     // MARK: - Functions
     @objc func willEnterForeground() {
@@ -228,7 +227,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let messageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
         messageViewController.modalTransitionStyle = .crossDissolve
-        self.parent?.present(messageViewController, animated: true, completion: nil)
+        parent?.present(messageViewController, animated: true, completion: nil)
     }
     
     func setupFirstLaunch() {
@@ -340,7 +339,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func resetGame() {
-        let alert = UIAlertController(title: "Are you sure you want to reset the game?", message: "This will remove all of your Dailies and Quest Info.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Are you sure you want to reset the game?",
+                                      message: "This will remove all of your Dailies and Quest Info.",
+                                      preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.playSound(forObject: "resetGame")
@@ -357,7 +358,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     func playSound(forObject: String) {
@@ -372,7 +373,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             print("error: \(error.localizedDescription)")
         }
     }
-    
     
     // MARK: - Landscape
     // landscape transition
@@ -389,8 +389,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
         playSound(forObject: "rotate")
-        guard landscapeVC == nil else { return }
-        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+//        guard landscapeVC == nil else { return }
+        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController //changed storyboard! to ? and commented out above line
         
         if let controller = landscapeVC {
             controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
@@ -403,7 +403,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             }, completion: { _ in
                 controller.didMove(toParentViewController: self)
             })
-            self.navigationController?.isNavigationBarHidden = true
+            navigationController?.isNavigationBarHidden = true
         }
     }
     
@@ -423,7 +423,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    
     // MARK: - Navigation
     // tells DailyDetailDailyVC that DailiesVC is its delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -433,7 +432,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             controller.delegate = self 
         } else if segue.identifier == "EditDaily" {
             let controller = segue.destination as! DailyDetailViewController
-            
             controller.delegate = self
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
