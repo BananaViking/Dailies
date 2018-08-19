@@ -74,11 +74,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                 playSound(forObject: "completeDaily")
                 player.dailiesDone += 1
             } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
-                //                playSound(forObject: "uncheckDaily")  // add this back if want the noise
+                // playSound(forObject: "uncheckDaily")  // add this back if want the noise
                 player.dailiesDone -= 1
             }
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
         saveDailies()
     }
@@ -87,7 +86,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCellEditingStyle,
                             forRowAt indexPath: IndexPath) {
-        
         let daily = dailies[indexPath.row]
         if daily.checked {
             if player.dailiesDone > 0 {
@@ -167,7 +165,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             showNewDayMessage()
             resetDailies()
             saveDailies()
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
@@ -301,7 +299,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func updatePlayerImage() {
-        if let playerImageView = self.view.viewWithTag(600) as? UIImageView {
+        if let playerImageView = view.viewWithTag(600) as? UIImageView {
             playerImageView.layer.cornerRadius = 8
             playerImageView.image = UIImage(named: player.playerImage)
         }

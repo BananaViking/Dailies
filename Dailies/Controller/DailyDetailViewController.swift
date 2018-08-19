@@ -25,7 +25,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     var dueDate = Date()
     var datePickerVisible = false
     
-    
     // MARK: - Actions
     @IBAction func cancel() {
         delegate?.dailyDetailViewControllerDidCancel(self)
@@ -70,7 +69,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    
     // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
@@ -78,30 +76,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
-    
-    // MARK: - Function Overrides
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        textField.becomeFirstResponder()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let dailyToEdit = dailyToEdit {
-            title = "Edit Daily"
-            textField.text = dailyToEdit.text
-            doneBarButton.isEnabled = true
-            shouldRemindSwitch.isOn = dailyToEdit.shouldRemind
-            dueDate = dailyToEdit.dueDate
-        }
-        
-        updateDueDateLabel()
-        
-        self.tableView.isScrollEnabled = false
-    }
-    
     
     //MARK: - tableView Delegates
     // stops the cell from highlighting when tap just outside the text field
@@ -162,6 +136,25 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
+    // MARK: - Function Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let dailyToEdit = dailyToEdit {
+            title = "Edit Daily"
+            textField.text = dailyToEdit.text
+            doneBarButton.isEnabled = true
+            shouldRemindSwitch.isOn = dailyToEdit.shouldRemind
+            dueDate = dailyToEdit.dueDate
+        }
+        updateDueDateLabel()
+        tableView.isScrollEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textField.becomeFirstResponder()
+    }
     
     // MARK: - Functions
     // disables doneBarButton if textField is empty
@@ -169,33 +162,31 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         let oldText = textField.text!
         let stringRange = Range(range, in: oldText)!
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
-        
         doneBarButton.isEnabled = !newText.isEmpty
-        
+
         return true
     }
     
     func updateDueDateLabel() {
         let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
         formatter.timeStyle = .short
         dueDateLabel.text = formatter.string(from: dueDate)
     }
     
     func showDatePicker() {
-        self.datePicker.datePickerMode = .time
+        datePicker.datePickerMode = .time
         datePickerVisible = true
         let indexPathDateRow = IndexPath(row: 1, section: 1)
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
         
         if let dateCell = tableView.cellForRow(at: indexPathDateRow) {
-            dateCell.detailTextLabel!.textColor = dateCell.detailTextLabel!.tintColor
+            dateCell.detailTextLabel?.textColor = dateCell.detailTextLabel?.tintColor
         }
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
         tableView.reloadRows(at: [indexPathDateRow], with: .none)
         tableView.endUpdates()
-        
+
         datePicker.setDate(dueDate, animated: false)
     }
     
@@ -207,7 +198,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
             let indexPathDatePicker = IndexPath(row: 2, section: 1)
             
             if let cell = tableView.cellForRow(at: indexPathDateRow) {
-                cell.detailTextLabel!.textColor = UIColor.white
+                cell.detailTextLabel?.textColor = UIColor.white
             }
             tableView.beginUpdates()
             tableView.reloadRows(at: [indexPathDateRow], with: .none)
@@ -219,7 +210,6 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         hideDatePicker()
     }
-    
     
     // MARK: - Landscape
     // landscape transition
@@ -235,8 +225,8 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
-        guard landscapeVC == nil else { return }
-        landscapeVC = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+//        guard landscapeVC == nil else { return }
+        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController  // change sb! to ? and commented out above line
         
         if let controller = landscapeVC {
             controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
@@ -249,7 +239,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
             }, completion: { _ in
                 controller.didMove(toParentViewController: self)
             })
-            self.navigationController?.isNavigationBarHidden = true
+            navigationController?.isNavigationBarHidden = true
         }
         textField.resignFirstResponder()
     }
