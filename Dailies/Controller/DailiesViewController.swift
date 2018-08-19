@@ -53,21 +53,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     
     // MARK: - Function Overrides
-    @objc func willEnterForeground() {
-        setupFirstLaunch()
-        checkLastLaunch()
-        
-        if player.isNewDay == true {
-            processDay()
-            player.calculateLevelInfo()
-            updatePlayerImage()
-            showNewDayMessage()
-            resetDailies()
-            saveDailies()
-            self.tableView.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -172,6 +157,21 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     
     // MARK: - Functions
+    @objc func willEnterForeground() {
+        setupFirstLaunch()
+        checkLastLaunch()
+        
+        if player.isNewDay == true {
+            processDay()
+            player.calculateLevelInfo()
+            updatePlayerImage()
+            showNewDayMessage()
+            resetDailies()
+            saveDailies()
+            self.tableView.reloadData()
+        }
+    }
+    
     func configureCheckmark(for cell: UITableViewCell, with daily: Daily) {
         let label = cell.viewWithTag(1001) as! UILabel
         
