@@ -11,7 +11,7 @@ import XCTest
 
 class DailiesUnitTests: XCTestCase {
     
-    var player = QuestInfo()
+    var player = PlayerInfo()
     let vc = DailiesViewController()
     
     override func setUp() {

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwiftyUserDefaults
 
-class QuestInfoViewController: UITableViewController {
+class PlayerInfoViewController: UITableViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!

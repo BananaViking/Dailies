@@ -8,13 +8,11 @@
 
 import UIKit
 import AVFoundation
-import SwiftyUserDefaults
 
-class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {
-    
+class DailiesViewController: UITableViewController, DailyDetailViewControllerDelegate {    
     var landscapeVC: LandscapeViewController?
     var audioPlayer: AVAudioPlayer?
-    var player = QuestInfo()
+    var playerInfo = PlayerInfo()
     var dailies = [Daily]()
     
     @IBAction func resetButton(_ sender: UIBarButtonItem) {
@@ -71,10 +69,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             configureCheckmark(for: cell, with: daily)
             if daily.checked {
                 playSound(forObject: "completeDaily")
-                player.dailiesDone += 1
-            } else if player.dailiesDone > 0 {  // need the dailiesDone > 0 here?
+                playerInfo.dailiesDone += 1
+            } else if playerInfo.dailiesDone > 0 {  // need the dailiesDone > 0 here?
                 // playSound(forObject: "uncheckDaily")  // add this back if want the noise
-                player.dailiesDone -= 1
+                playerInfo.dailiesDone -= 1
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -87,8 +85,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
                             forRowAt indexPath: IndexPath) {
         let daily = dailies[indexPath.row]
         if daily.checked {
-            if player.dailiesDone > 0 {
-                player.dailiesDone -= 1
+            if playerInfo.dailiesDone > 0 {
+                playerInfo.dailiesDone -= 1
             }
         }
         dailies.remove(at: indexPath.row)
@@ -110,20 +108,20 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
                                                name: .UIApplicationWillEnterForeground,
                                                object: nil)
-        player.level = UserDefaults.standard.integer(forKey: "level")
-        player.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
-        player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
+        playerInfo.level = UserDefaults.standard.integer(forKey: "level")
+        playerInfo.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
+        playerInfo.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
         
         setupFirstLaunch()
         loadDailies()
         checkLastLaunch()
-        player.calculateLevelInfo()
+        playerInfo.calculateLevelInfo()
         updatePlayerImage()
         
-        if player.isNewDay == true {
+        if playerInfo.isNewDay == true {
             countCheckedDailies()
             processDay()
-            player.calculateLevelInfo()
+            playerInfo.calculateLevelInfo()
             updatePlayerImage()
             showNewDayMessage()
             resetDailies()
@@ -138,8 +136,8 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         if beatGame == true || lostGame == true {
             UserDefaults.standard.set(1, forKey: "level")
             UserDefaults.standard.set(0, forKey: "daysMissed")
-            player.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
-            player.calculateLevelInfo()
+            playerInfo.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
+            playerInfo.calculateLevelInfo()
             updatePlayerImage()
             resetDailies()
             dailies.removeAll()
@@ -156,9 +154,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         setupFirstLaunch()
         checkLastLaunch()
         
-        if player.isNewDay == true {
+        if playerInfo.isNewDay == true {
             processDay()
-            player.calculateLevelInfo()
+            playerInfo.calculateLevelInfo()
             updatePlayerImage()
             showNewDayMessage()
             resetDailies()
@@ -224,11 +222,11 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     func setupFirstLaunch() {
-        player.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if player.launchedBefore == false {
-            if player.level == 0 {
+        playerInfo.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if playerInfo.launchedBefore == false {
+            if playerInfo.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
-                player.daysTil = 3  // change to 7 in launch
+                playerInfo.daysTil = 3  // change to 7 in launch
             }
         }
     }
@@ -243,73 +241,73 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let todayDate = dateFormatter.string(from: today)
         
         if lastLaunchDate != todayDate { // change this back to != on launch
-            player.isNewDay = true
+            playerInfo.isNewDay = true
         } else {
-            player.isNewDay = false
+            playerInfo.isNewDay = false
         }
     }
     
     func countCheckedDailies() {
         for daily in dailies where daily.checked {
-            player.dailiesDone += 1
+            playerInfo.dailiesDone += 1
         }
     }
     
     func processDay() {  
-        if player.dailiesDone == dailies.count && dailies.count > 0 {
-            player.perfectDay = true
+        if playerInfo.dailiesDone == dailies.count && dailies.count > 0 {
+            playerInfo.perfectDay = true
         } else {
-            player.perfectDay = false
+            playerInfo.perfectDay = false
         }
         
-        switch player.perfectDay {
-        case true where player.daysTil > 1:
-            player.daysTil -= 1
-            player.daysMissed = 0
-        case true where player.daysTil == 1:
-            player.level += 1
-            if player.level == 11 {
+        switch playerInfo.perfectDay {
+        case true where playerInfo.daysTil > 1:
+            playerInfo.daysTil -= 1
+            playerInfo.daysMissed = 0
+        case true where playerInfo.daysTil == 1:
+            playerInfo.level += 1
+            if playerInfo.level == 11 {
                 UserDefaults.standard.set(true, forKey: "beatGame")
             }
-            player.gainedLevel = true
-            player.daysTil = 3 // change to 7 on launch
+            playerInfo.gainedLevel = true
+            playerInfo.daysTil = 3 // change to 7 on launch
         case false where dailies.count == 0:
             print("dailies.count: \(dailies.count)")
         case false:
-            player.daysMissed += 1
-            player.daysTil = 3 // change to 7 on launch
-            if player.daysMissed >= 2 && player.level > 0 {
-                player.level -= 1
-                if player.level == 0 {
+            playerInfo.daysMissed += 1
+            playerInfo.daysTil = 3 // change to 7 on launch
+            if playerInfo.daysMissed >= 2 && playerInfo.level > 0 {
+                playerInfo.level -= 1
+                if playerInfo.level == 0 {
                     UserDefaults.standard.set(true, forKey: "lostGame")
                 }
-                player.lostLevel = true
+                playerInfo.lostLevel = true
             }
         default:
             print("Error processing day")
         }
-        UserDefaults.standard.set(player.level, forKey: "level")
-        UserDefaults.standard.set(player.daysTil, forKey: "daysTil")
-        UserDefaults.standard.set(player.daysMissed, forKey: "daysMissed")
+        UserDefaults.standard.set(playerInfo.level, forKey: "level")
+        UserDefaults.standard.set(playerInfo.daysTil, forKey: "daysTil")
+        UserDefaults.standard.set(playerInfo.daysMissed, forKey: "daysMissed")
     }
     
     func updatePlayerImage() {
         if let playerImageView = view.viewWithTag(600) as? UIImageView {
             playerImageView.layer.cornerRadius = 8
-            playerImageView.image = UIImage(named: player.playerImage)
+            playerImageView.image = UIImage(named: playerInfo.playerImage)
         }
     }
     
     func showNewDayMessage() {
         if dailies.count == 0 {
             UserDefaults.standard.set(true, forKey: "noDailies")
-        } else if player.gainedLevel == true {
+        } else if playerInfo.gainedLevel == true {
             UserDefaults.standard.set(true, forKey: "gainLevel")
-        } else if player.perfectDay == true {
+        } else if playerInfo.perfectDay == true {
             UserDefaults.standard.set(true, forKey: "completeDailies")
-        } else if player.lostLevel == true {
+        } else if playerInfo.lostLevel == true {
             UserDefaults.standard.set(true, forKey: "loseLevel")
-        } else if player.perfectDay == false {
+        } else if playerInfo.perfectDay == false {
             UserDefaults.standard.set(true, forKey: "missDailies")
         }
         presentMessageVC()
@@ -325,9 +323,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             daily.checked = false
         }
         
-        player.dailiesDone = 0
-        player.gainedLevel = false  // still need this now with UserDefault resets at end of showNewDayMessage?
-        player.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day? // still need this now with UserDefault resets at end of showNewDayMessage?
+        playerInfo.dailiesDone = 0
+        playerInfo.gainedLevel = false  // still need this now with UserDefault resets at end of showNewDayMessage?
+        playerInfo.lostLevel = false  // need lostLevel to stay true until decrement and correct message is shown, then it needs to be reset for next day? // still need this now with UserDefault resets at end of showNewDayMessage?
     }
     
     func resetGame() {
@@ -341,7 +339,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             UserDefaults.standard.set(1, forKey: "level")
             UserDefaults.standard.set(3, forKey: "daysTil")  // change to 7 on launch
             UserDefaults.standard.set(0, forKey: "daysMissed")
-            self.player.calculateLevelInfo()
+            self.playerInfo.calculateLevelInfo()
             self.updatePlayerImage()
             self.dailies.removeAll()
             UserDefaults.standard.set(true, forKey: "noDailies")

@@ -16,7 +16,6 @@ protocol DailyDetailViewControllerDelegate: class {
 }
 
 class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
-    
     var landscapeVC: LandscapeViewController?
     weak var delegate: DailyDetailViewControllerDelegate?
     var dailyToEdit: Daily?

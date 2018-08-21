@@ -53,7 +53,7 @@
         <!--Quest Info-->
         <scene sceneID="i5L-j2-WuY">
             <objects>
-                <tableViewController id="RQ3-lq-D5Q" userLabel="Quest Info" customClass="QuestInfoViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RQ3-lq-D5Q" userLabel="Quest Info" customClass="PlayerInfoViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Cqo-rZ-qjF">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hQb-jK-YsI">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="hQb-jK-YsI">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -229,7 +229,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dB-Fz-aZ4">
-                                            <rect key="frame" x="37" y="11" width="235" height="20"/>
+                                            <rect key="frame" x="37" y="11" width="235" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="235" id="Rtp-Nq-BQS"/>
                                             </constraints>

@@ -5,17 +5,14 @@
 //  Created by Banana Viking on 6/9/18.
 //  Copyright © 2018 Banana Viking. All rights reserved.
 //
+import Foundation
 
-import SwiftyUserDefaults
-
-class QuestInfo: NSObject, Codable {
-    
+class PlayerInfo: NSObject, Codable {
     var quest = "Skeleton Quest"
     var level = 1
     var rank = "Neophyte"
     var playerImage = "wizard1"
     var enemyImage = "enemy1"
-    
     var launchedBefore = false
     var isNewDay = true
     var dailiesDone = 0
@@ -24,8 +21,6 @@ class QuestInfo: NSObject, Codable {
     var perfectDay = false
     var gainedLevel = false
     var lostLevel = false
-    
-    // need these or just keep up with them in UserDefaults?
     var beatGame = false
     var lostGame = false
     

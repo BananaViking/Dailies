@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import SwiftyUserDefaults
 
 class MessageViewController: UIViewController {
-    
     let dailiesVC = DailiesViewController()
     
     @IBAction func dismissMessageButton(_ sender: UIButton) {
@@ -19,7 +17,6 @@ class MessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         let noDailies = UserDefaults.standard.bool(forKey: "noDailies")
         let gainLevel = UserDefaults.standard.bool(forKey: "gainLevel")

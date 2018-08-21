@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import SwiftyUserDefaults
 
 class LandscapeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         guard let enemyImageView = view.viewWithTag(9000) as? UIImageView else { return }
         guard let enemyImage = UserDefaults.standard.object(forKey: "enemyImage") as? String else { return }
         enemyImageView.image = UIImage(named: enemyImage)

@@ -7,7 +7,6 @@
 //
 
 import UserNotifications
-import SwiftyUserDefaults
 
 class Daily: NSObject, Codable {
     var text = ""

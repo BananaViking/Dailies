@@ -15,8 +15,8 @@
 		054333A120E4788B005FE1D8 /* addDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 054333A020E4788B005FE1D8 /* addDaily.wav */; };
 		054333B720E537B2005FE1D8 /* DailiesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */; };
 		0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB520CC65C300059761 /* LandscapeViewController.swift */; };
-		0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */; };
-		0553BEBA20CC71B100059761 /* QuestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB920CC71B100059761 /* QuestInfo.swift */; };
+		0553BEB820CC6AA800059761 /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */; };
+		0553BEBA20CC71B100059761 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB920CC71B100059761 /* PlayerInfo.swift */; };
 		055654DD20D8B76F00EDBFA5 /* loseLevel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 055654D920D8B76F00EDBFA5 /* loseLevel.wav */; };
 		055654DF20D8B76F00EDBFA5 /* gainLevel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 055654DB20D8B76F00EDBFA5 /* gainLevel.wav */; };
 		055654E420D8BB6500EDBFA5 /* missDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 055654E320D8BB6500EDBFA5 /* missDailies.wav */; };
@@ -59,8 +59,8 @@
 		054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesUnitTests.swift; sourceTree = "<group>"; };
 		054333B820E537B2005FE1D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0553BEB520CC65C300059761 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
-		0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfoViewController.swift; sourceTree = "<group>"; };
-		0553BEB920CC71B100059761 /* QuestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInfo.swift; sourceTree = "<group>"; };
+		0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
+		0553BEB920CC71B100059761 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		055654D920D8B76F00EDBFA5 /* loseLevel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loseLevel.wav; sourceTree = "<group>"; };
 		055654DB20D8B76F00EDBFA5 /* gainLevel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gainLevel.wav; sourceTree = "<group>"; };
 		055654E320D8BB6500EDBFA5 /* missDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = missDailies.wav; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				0569D84720BF5C1100D733C9 /* DailiesViewController.swift */,
 				059510EA20C053320014D80D /* DailyDetailViewController.swift */,
 				0553BEB520CC65C300059761 /* LandscapeViewController.swift */,
-				0553BEB720CC6AA800059761 /* QuestInfoViewController.swift */,
+				0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */,
 				052F82D120E811CD00E43426 /* MessageViewController.swift */,
 			);
 			path = Controller;
@@ -187,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				0569D85820BF63B200D733C9 /* Daily.swift */,
-				0553BEB920CC71B100059761 /* QuestInfo.swift */,
+				0553BEB920CC71B100059761 /* PlayerInfo.swift */,
 				055654E020D8B77A00EDBFA5 /* Sounds */,
 			);
 			path = Model;
@@ -407,9 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0553BEBA20CC71B100059761 /* QuestInfo.swift in Sources */,
+				0553BEBA20CC71B100059761 /* PlayerInfo.swift in Sources */,
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
-				0553BEB820CC6AA800059761 /* QuestInfoViewController.swift in Sources */,
+				0553BEB820CC6AA800059761 /* PlayerInfoViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* MessageViewController.swift in Sources */,
