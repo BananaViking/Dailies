@@ -233,6 +233,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             let pageViewController = storyBoard.instantiateViewController(withIdentifier: "pageViewController")
             pageViewController.modalTransitionStyle = .crossDissolve
             parent?.present(pageViewController, animated: true, completion: nil)
+            playSound(forObject: "firstLaunch")
         }
     }
     

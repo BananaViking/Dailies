@@ -17,7 +17,7 @@ class MessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         let noDailies = UserDefaults.standard.bool(forKey: "noDailies")
         let gainLevel = UserDefaults.standard.bool(forKey: "gainLevel")
         let completeDailies = UserDefaults.standard.bool(forKey: "completeDailies")
@@ -34,12 +34,12 @@ class MessageViewController: UIViewController {
         guard let dismissMessageButton = view.viewWithTag(12) as? UIButton else { return }
         dismissMessageButton.layer.cornerRadius = 8
         
-        if launchedBefore == false {  // check to make sure you need ALL the UD resets even if you need SOME
-            imageView.image = UIImage(named: "advisorHappy")
-            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on wins."
-            dismissMessageButton.setTitle("Start Game", for: .normal)
-            dailiesVC.playSound(forObject: "firstLaunch")
-        } else if beatGame == true {
+        // check to make sure you need ALL the UD resets even if you need SOME
+//        if launchedBefore == false {
+//            imageView.image = UIImage(named: "advisorHappy")
+//            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on wins."
+//            dismissMessageButton.setTitle("Start Game", for: .normal)
+        if beatGame == true {
             imageView.image = UIImage(named: "beatGame")
             messageLabel.text = "After many hard fought battles, you have finally defeated the necromancer and all of his minions. Peace has been restored to the land. Sleep well tonight adventurer; you have earned it."
             dismissMessageButton.setTitle("Start a New Game", for: .normal)
