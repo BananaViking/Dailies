@@ -28,11 +28,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         super.viewDidLoad()
         dataSource = self
         delegate = self
-        
         if let firstViewController = viewControllerArray.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
-        
         configurePageControl()
     }
     
@@ -59,8 +57,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                                                   width: UIScreen.main.bounds.width, height: 50))
         pageControl.numberOfPages = viewControllerArray.count
         pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = .black
-        pageControl.currentPageIndicatorTintColor = .white
+        pageControl.pageIndicatorTintColor = .white
+        pageControl.currentPageIndicatorTintColor = .yellow
         view.addSubview(pageControl)
     }
     

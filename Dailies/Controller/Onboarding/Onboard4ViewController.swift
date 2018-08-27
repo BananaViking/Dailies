@@ -10,6 +10,5 @@ import UIKit
 
 class Onboard4ViewController: UIViewController {
     
-    @IBAction func getStartedButtonPressed(_ sender: UIButton) {
-    }
+
 }

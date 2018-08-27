@@ -224,10 +224,15 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func setupFirstLaunch() {
         playerInfo.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if playerInfo.launchedBefore == false {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
             if playerInfo.level == 0 {
                 UserDefaults.standard.set(1, forKey: "level")
                 playerInfo.daysTil = 3  // change to 7 in launch
             }
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let pageViewController = storyBoard.instantiateViewController(withIdentifier: "pageViewController")
+            pageViewController.modalTransitionStyle = .crossDissolve
+            parent?.present(pageViewController, animated: true, completion: nil)
         }
     }
     
@@ -240,7 +245,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         let today = Date()
         let todayDate = dateFormatter.string(from: today)
         
-        if lastLaunchDate != todayDate { // change this back to != on launch
+        if lastLaunchDate == todayDate { // change this back to != on launch
             playerInfo.isNewDay = true
         } else {
             playerInfo.isNewDay = false
