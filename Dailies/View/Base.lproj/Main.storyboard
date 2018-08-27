@@ -216,7 +216,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <imageView key="tableHeaderView" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="hQb-jK-YsI">
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" tag="600" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hQb-jK-YsI">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -428,6 +428,88 @@
                 </tableViewCell>
             </objects>
             <point key="canvasLocation" x="1054" y="77"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="3Wg-nf-Oos">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="hky-fB-xjn" customClass="PageViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBt-dM-6eR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1635" y="-1293"/>
+        </scene>
+        <!--Onboard1 View Controller-->
+        <scene sceneID="aPZ-OR-5q1">
+            <objects>
+                <viewController id="Nu0-FU-fe7" customClass="Onboard1ViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EJJ-ES-lYH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2eq-Mq-r4i"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5iy-oW-gJZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-882" y="-1292"/>
+        </scene>
+        <!--Onboard2 View Controller-->
+        <scene sceneID="ZB4-cz-FT3">
+            <objects>
+                <viewController id="XYn-pY-Lfg" customClass="Onboard2ViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dZE-Fl-Hih">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Odn-zx-8xL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h8j-aT-LSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-35" y="-1285"/>
+        </scene>
+        <!--Onboard3 View Controller-->
+        <scene sceneID="UiD-8D-Tpp">
+            <objects>
+                <viewController id="nDk-aY-Hza" customClass="Onboard3ViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E04-rz-SZy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QHB-yP-nAH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kpG-qp-R4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="759" y="-1281"/>
+        </scene>
+        <!--Onboard4 View Controller-->
+        <scene sceneID="QWl-Si-yLN">
+            <objects>
+                <viewController id="zKM-JJ-i5j" customClass="Onboard4ViewController" customModule="Dailies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wpf-UW-Ygu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YD6-jM-t23">
+                                <rect key="frame" x="111" y="269" width="99" height="30"/>
+                                <state key="normal" title="GET STARTED"/>
+                                <connections>
+                                    <action selector="getStartedButtonPressed:" destination="zKM-JJ-i5j" eventType="touchUpInside" id="FI5-x1-SDi"/>
+                                    <segue destination="8qP-qx-V4q" kind="show" id="Trj-83-FmB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YD6-jM-t23" firstAttribute="centerX" secondItem="Wpf-UW-Ygu" secondAttribute="centerX" id="S6b-lp-ooV"/>
+                            <constraint firstItem="YD6-jM-t23" firstAttribute="centerY" secondItem="Wpf-UW-Ygu" secondAttribute="centerY" id="ih1-Oy-oDf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="h3Z-1T-ykA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ll2-af-fCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1558.125" y="-1277.1126760563379"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="eAN-np-hbE">

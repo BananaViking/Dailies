@@ -26,6 +26,11 @@
 		0569D84D20BF5C1200D733C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84C20BF5C1200D733C9 /* Assets.xcassets */; };
 		0569D85020BF5C1200D733C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569D84E20BF5C1200D733C9 /* LaunchScreen.storyboard */; };
 		0569D85920BF63B200D733C9 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569D85820BF63B200D733C9 /* Daily.swift */; };
+		058E0F2221348D3700E3BAEF /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E0F2121348D3700E3BAEF /* PageViewController.swift */; };
+		058E0F2521348D7800E3BAEF /* Onboard1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E0F2421348D7800E3BAEF /* Onboard1ViewController.swift */; };
+		058E0F2721348D8200E3BAEF /* Onboard2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E0F2621348D8200E3BAEF /* Onboard2ViewController.swift */; };
+		058E0F2921348D9500E3BAEF /* Onboard3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E0F2821348D9500E3BAEF /* Onboard3ViewController.swift */; };
+		058E0F2B21348D9E00E3BAEF /* Onboard4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E0F2A21348D9D00E3BAEF /* Onboard4ViewController.swift */; };
 		059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059510EA20C053320014D80D /* DailyDetailViewController.swift */; };
 		05B1F21C20EDC17300D677B4 /* lostGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21B20EDC17300D677B4 /* lostGame.wav */; };
 		05B1F21E20EDC1FD00D677B4 /* beatGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05B1F21D20EDC1FD00D677B4 /* beatGame.wav */; };
@@ -72,6 +77,11 @@
 		0569D84F20BF5C1200D733C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0569D85120BF5C1200D733C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0569D85820BF63B200D733C9 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		058E0F2121348D3700E3BAEF /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		058E0F2421348D7800E3BAEF /* Onboard1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboard1ViewController.swift; sourceTree = "<group>"; };
+		058E0F2621348D8200E3BAEF /* Onboard2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboard2ViewController.swift; sourceTree = "<group>"; };
+		058E0F2821348D9500E3BAEF /* Onboard3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboard3ViewController.swift; sourceTree = "<group>"; };
+		058E0F2A21348D9D00E3BAEF /* Onboard4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboard4ViewController.swift; sourceTree = "<group>"; };
 		059510EA20C053320014D80D /* DailyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDetailViewController.swift; sourceTree = "<group>"; };
 		05B1F21B20EDC17300D677B4 /* lostGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lostGame.wav; sourceTree = "<group>"; };
 		05B1F21D20EDC1FD00D677B4 /* beatGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beatGame.wav; sourceTree = "<group>"; };
@@ -179,6 +189,7 @@
 				0553BEB520CC65C300059761 /* LandscapeViewController.swift */,
 				0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */,
 				052F82D120E811CD00E43426 /* MessageViewController.swift */,
+				058E0F2321348D4D00E3BAEF /* Onboarding */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,6 +202,18 @@
 				055654E020D8B77A00EDBFA5 /* Sounds */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		058E0F2321348D4D00E3BAEF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				058E0F2121348D3700E3BAEF /* PageViewController.swift */,
+				058E0F2421348D7800E3BAEF /* Onboard1ViewController.swift */,
+				058E0F2621348D8200E3BAEF /* Onboard2ViewController.swift */,
+				058E0F2821348D9500E3BAEF /* Onboard3ViewController.swift */,
+				058E0F2A21348D9D00E3BAEF /* Onboard4ViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		05C5A7EE20C72206008B5439 /* Frameworks */ = {
@@ -407,13 +430,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058E0F2921348D9500E3BAEF /* Onboard3ViewController.swift in Sources */,
 				0553BEBA20CC71B100059761 /* PlayerInfo.swift in Sources */,
 				0569D84820BF5C1100D733C9 /* DailiesViewController.swift in Sources */,
 				0553BEB820CC6AA800059761 /* PlayerInfoViewController.swift in Sources */,
+				058E0F2521348D7800E3BAEF /* Onboard1ViewController.swift in Sources */,
 				0569D84620BF5C1100D733C9 /* AppDelegate.swift in Sources */,
 				059510EB20C053320014D80D /* DailyDetailViewController.swift in Sources */,
+				058E0F2721348D8200E3BAEF /* Onboard2ViewController.swift in Sources */,
 				052F82D220E811CD00E43426 /* MessageViewController.swift in Sources */,
+				058E0F2B21348D9E00E3BAEF /* Onboard4ViewController.swift in Sources */,
 				0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */,
+				058E0F2221348D3700E3BAEF /* PageViewController.swift in Sources */,
 				0569D85920BF63B200D733C9 /* Daily.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
