@@ -232,6 +232,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             pageViewController.modalTransitionStyle = .crossDissolve
             parent?.present(pageViewController, animated: true, completion: nil)
             playSound(forObject: "firstLaunch")
+            UserDefaults.standard.set(true, forKey: "isNewGame")
         }
     }
     

@@ -479,7 +479,19 @@
                     <view key="view" contentMode="scaleToFill" id="dZE-Fl-Hih">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions Page 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vq-xF-nWh">
+                                <rect key="frame" x="93.5" y="274" width="133" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6vq-xF-nWh" firstAttribute="centerX" secondItem="dZE-Fl-Hih" secondAttribute="centerX" id="lT1-AI-1JQ"/>
+                            <constraint firstItem="6vq-xF-nWh" firstAttribute="centerY" secondItem="dZE-Fl-Hih" secondAttribute="centerY" id="xfP-rt-uI8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Odn-zx-8xL"/>
                     </view>
                 </viewController>
@@ -494,7 +506,19 @@
                     <view key="view" contentMode="scaleToFill" id="E04-rz-SZy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions Page 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8e-a9-L96">
+                                <rect key="frame" x="92.5" y="274" width="135" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="B8e-a9-L96" firstAttribute="centerY" secondItem="E04-rz-SZy" secondAttribute="centerY" id="0aF-8U-m3J"/>
+                            <constraint firstItem="B8e-a9-L96" firstAttribute="centerX" secondItem="E04-rz-SZy" secondAttribute="centerX" id="x9X-0v-4Nk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QHB-yP-nAH"/>
                     </view>
                 </viewController>
@@ -521,9 +545,17 @@
                                     <segue destination="8qP-qx-V4q" kind="show" id="dgL-rV-Vab"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions Page 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g2-oD-OoW">
+                                <rect key="frame" x="93" y="274" width="135" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6g2-oD-OoW" firstAttribute="centerX" secondItem="Wpf-UW-Ygu" secondAttribute="centerX" id="4AY-JD-CS5"/>
+                            <constraint firstItem="6g2-oD-OoW" firstAttribute="centerY" secondItem="Wpf-UW-Ygu" secondAttribute="centerY" id="DVq-33-9Wx"/>
                             <constraint firstItem="YD6-jM-t23" firstAttribute="centerX" secondItem="Wpf-UW-Ygu" secondAttribute="centerX" id="S6b-lp-ooV"/>
                             <constraint firstItem="h3Z-1T-ykA" firstAttribute="bottom" secondItem="YD6-jM-t23" secondAttribute="bottom" constant="50" id="jil-AL-gNB"/>
                         </constraints>
