@@ -27,7 +27,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func dailyDetailViewController(_ controller: DailyDetailViewController, didFinishAdding daily: Daily) {
         let newRowIndex = dailies.count
         dailies.append(daily)
-        
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
@@ -104,14 +103,13 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     // MARK: - Function Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
                                                name: .UIApplicationWillEnterForeground,
                                                object: nil)
         playerInfo.level = UserDefaults.standard.integer(forKey: "level")
         playerInfo.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         playerInfo.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
-        
+    
         setupFirstLaunch()
         loadDailies()
         checkLastLaunch()

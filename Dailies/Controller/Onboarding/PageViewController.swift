@@ -14,8 +14,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var pageControl = UIPageControl()
     
     lazy var viewControllerArray: [UIViewController] = {
-       let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let onboard1ViewController = storyBoard.instantiateViewController(withIdentifier: "onboard1ViewController")
         let onboard2ViewController = storyBoard.instantiateViewController(withIdentifier: "onboard2ViewController")
         let onboard3ViewController = storyBoard.instantiateViewController(withIdentifier: "onboard3ViewController")
@@ -35,7 +34,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
         guard let viewControllerIndex = viewControllerArray.index(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
         guard previousIndex >= 0 else { return nil }
@@ -44,7 +42,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
         guard let viewControllerIndex = viewControllerArray.index(of: viewController) else { return nil }
         let nextIndex = viewControllerIndex + 1
         guard viewControllerArray.count != nextIndex else { return nil }

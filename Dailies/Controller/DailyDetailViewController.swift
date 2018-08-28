@@ -129,14 +129,12 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         if indexPath.section == 1 && indexPath.row == 2 {
             newIndexPath = IndexPath(row: 0, section: indexPath.section)
         }
-        
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
     // MARK: - Function Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let dailyToEdit = dailyToEdit {
             title = "Edit Daily"
             textField.text = dailyToEdit.text
