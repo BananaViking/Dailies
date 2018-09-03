@@ -18,6 +18,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     var dailiesDone = 0
     var gainedLevel = false
     var lostLevel = false
+    var daysGone = 0
     
     @IBAction func resetButton(_ sender: UIBarButtonItem) {
         resetGame()
@@ -278,7 +279,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd"
-//        dateFormatter.timeStyle = .none
         
         let lastLaunch = UserDefaults.standard.object(forKey: "lastLaunch") as? Date ?? Date()
         let lastLaunchDate = dateFormatter.string(from: lastLaunch)
@@ -289,12 +289,10 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             player.isNewDay = true
         }
         
-        let lastDay = lastLaunchDate.suffix(2)
-        let todayDay = todayDate.suffix(2)
-        let daysGone = Int(todayDay)! - Int(lastDay)!
-        print("lastLaunchDate: \(lastLaunchDate), todayDate: \(todayDate), lastDay: \(lastDay), todayDay: \(todayDay), daysGone: \(daysGone)")
-
+        daysGone = Calendar.current.dateComponents([.day], from: lastLaunch, to: today).day ?? 0
         
+
+        print("lastLaunch: \(lastLaunch) \ntoday: \(today) \ndaysGone: \(daysGone)")
         print("checkLastLaunch")
     }
     
