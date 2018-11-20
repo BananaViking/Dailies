@@ -220,8 +220,7 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
-//        guard landscapeVC == nil else { return }
-        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController  // change sb! to ? and commented out above line
+        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         
         if let controller = landscapeVC {
             controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
