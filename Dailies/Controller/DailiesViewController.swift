@@ -121,7 +121,9 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
             processDay()
             playerInfo.calculateLevelInfo()
             updatePlayerImage()
-            showNewDayMessage()
+            DispatchQueue.main.async {
+                self.showNewDayMessage()
+            }
             resetDailies()
             saveDailies()
         }
