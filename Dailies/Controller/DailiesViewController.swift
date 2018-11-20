@@ -110,7 +110,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         playerInfo.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         playerInfo.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
     
-//        setupFirstLaunch()
         loadDailies()
         checkLastLaunch()
         playerInfo.calculateLevelInfo()
@@ -151,7 +150,6 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     // MARK: - Functions
     @objc func willEnterForeground() {
-//        setupFirstLaunch()
         checkLastLaunch()
         
         if playerInfo.isNewDay == true {
@@ -214,25 +212,12 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
     
-    func presentMessageVC() {  // getting the unbalanced calls error in llvm because we are doing modal messageVC presentation in viewDidLoad instead of viewDidAppear
+    func presentMessageVC() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let messageViewController = storyBoard.instantiateViewController(withIdentifier: "messageViewController")
         messageViewController.modalTransitionStyle = .crossDissolve
         parent?.present(messageViewController, animated: true, completion: nil)
     }
-    
-//    func setupFirstLaunch() {
-//        playerInfo.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-//        if playerInfo.launchedBefore == false {
-//            UserDefaults.standard.set(true, forKey: "launchedBefore")
-//            if playerInfo.level == 0 {
-//                UserDefaults.standard.set(1, forKey: "level")
-//                playerInfo.daysTil = 3  // change to 7 in launch
-//            }
-//            presentMessageVC()
-//            playSound(forObject: "firstLaunch")
-//        }
-//    }
     
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
@@ -432,4 +417,3 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         }
     }
 }
-

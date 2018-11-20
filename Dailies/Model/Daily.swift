@@ -60,8 +60,3 @@ class Daily: NSObject, Codable {
         removeNotification()
     }
 }
-
-
-
-
-

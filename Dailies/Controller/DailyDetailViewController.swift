@@ -255,9 +255,3 @@ class DailyDetailViewController: UITableViewController, UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
 }
-
-
-
-
-
-
