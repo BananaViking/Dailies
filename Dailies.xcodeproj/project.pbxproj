@@ -13,7 +13,6 @@
 		0543339D20E47732005FE1D8 /* deleteDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339C20E47731005FE1D8 /* deleteDaily.wav */; };
 		0543339F20E47743005FE1D8 /* uncheckDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0543339E20E47742005FE1D8 /* uncheckDaily.wav */; };
 		054333A120E4788B005FE1D8 /* addDaily.wav in Resources */ = {isa = PBXBuildFile; fileRef = 054333A020E4788B005FE1D8 /* addDaily.wav */; };
-		054333B720E537B2005FE1D8 /* DailiesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */; };
 		0553BEB620CC65C300059761 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB520CC65C300059761 /* LandscapeViewController.swift */; };
 		0553BEB820CC6AA800059761 /* PlayerInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */; };
 		0553BEBA20CC71B100059761 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553BEB920CC71B100059761 /* PlayerInfo.swift */; };
@@ -39,19 +38,7 @@
 		05DC912420DBF55B005D1954 /* resetGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912320DBF55A005D1954 /* resetGame.wav */; };
 		05DC912B20DD9A0D005D1954 /* rotate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05DC912A20DD9A0D005D1954 /* rotate.wav */; };
 		05EBC05320E6D0E300AB3146 /* noDailies.wav in Resources */ = {isa = PBXBuildFile; fileRef = 05EBC05220E6D0E300AB3146 /* noDailies.wav */; };
-		214735A3699B5D20048514ED /* Pods_Dailies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */; };
-		70F11F40B736408A7F5C12A2 /* Pods_DailiesUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		054333B920E537B2005FE1D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0569D83A20BF5C1100D733C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0569D84120BF5C1100D733C9;
-			remoteInfo = Dailies;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		050A8B4820D98E1F00096906 /* completeDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = completeDaily.wav; sourceTree = "<group>"; };
@@ -60,9 +47,6 @@
 		0543339C20E47731005FE1D8 /* deleteDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = deleteDaily.wav; sourceTree = "<group>"; };
 		0543339E20E47742005FE1D8 /* uncheckDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = uncheckDaily.wav; sourceTree = "<group>"; };
 		054333A020E4788B005FE1D8 /* addDaily.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addDaily.wav; sourceTree = "<group>"; };
-		054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailiesUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailiesUnitTests.swift; sourceTree = "<group>"; };
-		054333B820E537B2005FE1D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0553BEB520CC65C300059761 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		0553BEB720CC6AA800059761 /* PlayerInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoViewController.swift; sourceTree = "<group>"; };
 		0553BEB920CC71B100059761 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
@@ -90,44 +74,20 @@
 		05DC912320DBF55A005D1954 /* resetGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = resetGame.wav; sourceTree = "<group>"; };
 		05DC912A20DD9A0D005D1954 /* rotate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rotate.wav; sourceTree = "<group>"; };
 		05EBC05220E6D0E300AB3146 /* noDailies.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = noDailies.wav; sourceTree = "<group>"; };
-		147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailiesUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailiesUnitTests/Pods-DailiesUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dailies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dailies/Pods-Dailies.debug.xcconfig"; sourceTree = "<group>"; };
-		6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dailies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dailies/Pods-Dailies.release.xcconfig"; sourceTree = "<group>"; };
-		96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailiesUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailiesUnitTests/Pods-DailiesUnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailiesUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dailies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		054333B120E537B1005FE1D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70F11F40B736408A7F5C12A2 /* Pods_DailiesUnitTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0569D83F20BF5C1100D733C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				05C5A7F020C72206008B5439 /* PassKit.framework in Frameworks */,
-				214735A3699B5D20048514ED /* Pods_Dailies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		054333B520E537B2005FE1D8 /* DailiesUnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				054333B620E537B2005FE1D8 /* DailiesUnitTests.swift */,
-				054333B820E537B2005FE1D8 /* Info.plist */,
-			);
-			path = DailiesUnitTests;
-			sourceTree = "<group>";
-		};
 		055654E020D8B77A00EDBFA5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,10 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				0569D84420BF5C1100D733C9 /* Dailies */,
-				054333B520E537B2005FE1D8 /* DailiesUnitTests */,
 				0569D84320BF5C1100D733C9 /* Products */,
 				05C5A7EE20C72206008B5439 /* Frameworks */,
-				4E3150F8F020B8A9BC32D938 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				0569D84220BF5C1100D733C9 /* Dailies.app */,
-				054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,8 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				05C5A7EF20C72206008B5439 /* PassKit.framework */,
-				E31D702E15B799A4A86786A3 /* Pods_Dailies.framework */,
-				A438FA4E72635F96DDC270AA /* Pods_DailiesUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -236,48 +191,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4E3150F8F020B8A9BC32D938 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */,
-				6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */,
-				147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */,
-				96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		054333B320E537B1005FE1D8 /* DailiesUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 054333BD20E537B2005FE1D8 /* Build configuration list for PBXNativeTarget "DailiesUnitTests" */;
-			buildPhases = (
-				D85180780A2B1FAB6DF38A86 /* [CP] Check Pods Manifest.lock */,
-				054333B020E537B1005FE1D8 /* Sources */,
-				054333B120E537B1005FE1D8 /* Frameworks */,
-				054333B220E537B1005FE1D8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				054333BA20E537B2005FE1D8 /* PBXTargetDependency */,
-			);
-			name = DailiesUnitTests;
-			productName = DailiesUnitTests;
-			productReference = 054333B420E537B1005FE1D8 /* DailiesUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		0569D84120BF5C1100D733C9 /* Dailies */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0569D85420BF5C1200D733C9 /* Build configuration list for PBXNativeTarget "Dailies" */;
 			buildPhases = (
-				0FF55CF39D1ACDD07C9C51CC /* [CP] Check Pods Manifest.lock */,
 				0569D83E20BF5C1100D733C9 /* Sources */,
 				0569D83F20BF5C1100D733C9 /* Frameworks */,
 				0569D84020BF5C1100D733C9 /* Resources */,
-				12FBC11EDDC65F71516B86ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,10 +221,6 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Banana Viking";
 				TargetAttributes = {
-					054333B320E537B1005FE1D8 = {
-						CreatedOnToolsVersion = 9.4.1;
-						TestTargetID = 0569D84120BF5C1100D733C9;
-					};
 					0569D84120BF5C1100D733C9 = {
 						CreatedOnToolsVersion = 9.3.1;
 					};
@@ -321,19 +240,11 @@
 			projectRoot = "";
 			targets = (
 				0569D84120BF5C1100D733C9 /* Dailies */,
-				054333B320E537B1005FE1D8 /* DailiesUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		054333B220E537B1005FE1D8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0569D84020BF5C1100D733C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,72 +271,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0FF55CF39D1ACDD07C9C51CC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Dailies-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		12FBC11EDDC65F71516B86ED /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Dailies/Pods-Dailies-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dailies/Pods-Dailies-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D85180780A2B1FAB6DF38A86 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DailiesUnitTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		054333B020E537B1005FE1D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				054333B720E537B2005FE1D8 /* DailiesUnitTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0569D83E20BF5C1100D733C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,14 +294,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		054333BA20E537B2005FE1D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0569D84120BF5C1100D733C9 /* Dailies */;
-			targetProxy = 054333B920E537B2005FE1D8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		0569D84920BF5C1100D733C9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -476,50 +314,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		054333BB20E537B2005FE1D8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 147C3FD953B90B293D9445C5 /* Pods-DailiesUnitTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7YNF79H478;
-				INFOPLIST_FILE = DailiesUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bananaviking.DailiesUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dailies.app/Dailies";
-			};
-			name = Debug;
-		};
-		054333BC20E537B2005FE1D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96F8BAA96C03B2085C7F4483 /* Pods-DailiesUnitTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7YNF79H478;
-				INFOPLIST_FILE = DailiesUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bananaviking.DailiesUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dailies.app/Dailies";
-			};
-			name = Release;
-		};
 		0569D85220BF5C1200D733C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -636,7 +430,6 @@
 		};
 		0569D85520BF5C1200D733C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DE8D441966B04EAF99DABA1 /* Pods-Dailies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -656,7 +449,6 @@
 		};
 		0569D85620BF5C1200D733C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F043093BB2338041924930E /* Pods-Dailies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -677,15 +469,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		054333BD20E537B2005FE1D8 /* Build configuration list for PBXNativeTarget "DailiesUnitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				054333BB20E537B2005FE1D8 /* Debug */,
-				054333BC20E537B2005FE1D8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		0569D83D20BF5C1100D733C9 /* Build configuration list for PBXProject "Dailies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
