@@ -367,8 +367,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
         playSound(forObject: "rotate")
-//        guard landscapeVC == nil else { return }
-        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController //changed storyboard! to ? and commented out above line
+        landscapeVC = storyboard?.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         
         if let controller = landscapeVC {
             controller.view.frame = view.frame  // was view.bounds but was showing table rows at bottom
