@@ -110,7 +110,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         playerInfo.daysTil = UserDefaults.standard.integer(forKey: "daysTil")
         playerInfo.daysMissed = UserDefaults.standard.integer(forKey: "daysMissed")
     
-        setupFirstLaunch()
+//        setupFirstLaunch()
         loadDailies()
         checkLastLaunch()
         playerInfo.calculateLevelInfo()
@@ -149,7 +149,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     
     // MARK: - Functions
     @objc func willEnterForeground() {
-        setupFirstLaunch()
+//        setupFirstLaunch()
         checkLastLaunch()
         
         if playerInfo.isNewDay == true {
@@ -219,21 +219,18 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
         parent?.present(messageViewController, animated: true, completion: nil)
     }
     
-    func setupFirstLaunch() {
-        playerInfo.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if playerInfo.launchedBefore == false {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            if playerInfo.level == 0 {
-                UserDefaults.standard.set(1, forKey: "level")
-                playerInfo.daysTil = 3  // change to 7 in launch
-            }
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let pageViewController = storyBoard.instantiateViewController(withIdentifier: "pageViewController")
-            pageViewController.modalTransitionStyle = .crossDissolve
-            parent?.present(pageViewController, animated: true, completion: nil)
-            playSound(forObject: "firstLaunch")
-        }
-    }
+//    func setupFirstLaunch() {
+//        playerInfo.launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        if playerInfo.launchedBefore == false {
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//            if playerInfo.level == 0 {
+//                UserDefaults.standard.set(1, forKey: "level")
+//                playerInfo.daysTil = 3  // change to 7 in launch
+//            }
+//            presentMessageVC()
+//            playSound(forObject: "firstLaunch")
+//        }
+//    }
     
     func checkLastLaunch() {
         let dateFormatter = DateFormatter()
