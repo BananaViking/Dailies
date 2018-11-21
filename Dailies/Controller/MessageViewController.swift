@@ -39,7 +39,7 @@ class MessageViewController: UIViewController {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
 //            playSound(forObject: "firstLaunch")
             imageView.image = UIImage(named: "advisorHappy")
-            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest. But be warned, you have a much better chance of surviving if you start small and build on wins."
+            messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest."
             dismissMessageButton.setTitle("Start Game", for: .normal)
         } else if beatGame == true {
             imageView.image = UIImage(named: "beatGame")

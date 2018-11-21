@@ -129,6 +129,7 @@ class DailiesViewController: UITableViewController, DailyDetailViewControllerDel
     }
     
     override func viewWillAppear(_ animated: Bool) {  // to update the image after winning the game and resetting
+        super.viewWillAppear(animated)
         let beatGame = UserDefaults.standard.bool(forKey: "beatGame")
         let lostGame = UserDefaults.standard.bool(forKey: "lostGame")
         
