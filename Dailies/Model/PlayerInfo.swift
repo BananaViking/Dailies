@@ -80,7 +80,8 @@ class PlayerInfo: NSObject, Codable {
             playerImage = "wizard10"
             enemyImage = "enemy10"
         default:
-            print("error")
+            print("error calculating level info")
+            print("level: \(level)")
         }
 
         // these are needed unless you call calculateLevelInfo EVERY time you need to access one of these values

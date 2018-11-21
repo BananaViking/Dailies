@@ -37,7 +37,7 @@ class MessageViewController: UIViewController {
         // check to make sure you need ALL the UD resets even if you need SOME
         if launchedBefore == false {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-//            playSound(forObject: "firstLaunch")
+            dailiesVC.playSound(forObject: "firstLaunch")
             imageView.image = UIImage(named: "advisorHappy")
             messageLabel.text = "Welcome to Habit Quest! My name is Maya, and I will be your advisor on your journey. Add some Dailies when you are ready to begin the Skeleton Quest."
             dismissMessageButton.setTitle("Start Game", for: .normal)
