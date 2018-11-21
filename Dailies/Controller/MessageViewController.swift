@@ -43,7 +43,7 @@ class MessageViewController: UIViewController {
             dismissMessageButton.setTitle("Start Game", for: .normal)
         } else if beatGame == true {
             imageView.image = UIImage(named: "beatGame")
-            messageLabel.text = "After many hard fought battles, you have finally defeated the necromancer and all of his minions. Peace has been restored to the land. Sleep well tonight adventurer; you have earned it."
+            messageLabel.text = "After many hard fought battles, you have finally defeated the necromancer and all of his minions. Peace has been restored to the land."
             dismissMessageButton.setTitle("Start a New Game", for: .normal)
             dailiesVC.playSound(forObject: "beatGame")
         } else if lostGame == true {
